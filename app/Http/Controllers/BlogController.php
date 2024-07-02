@@ -20,6 +20,17 @@ class BlogController extends Controller
         return view('blogs.viewBlogs', compact('blogs'));
     }
 
+
+    public function getBlogsApi()
+    {
+       try {
+            $blogs = Blog::all();
+            return response()->json($blogs);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['error' => 'Error fetching blogs']);
+       }
+    }
     /**
      * Show the form for creating a new resource.
      */

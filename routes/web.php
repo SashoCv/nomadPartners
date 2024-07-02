@@ -34,6 +34,10 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('delete-blog-post/{id}', [BlogController::class, 'destroy'])->name('admin.deleteBlogPost');
 
     Route::get('home-page', [HomeController::class, 'index'])->name("admin.homePageView");
+    Route::get('home-page-edit', [HomeController::class, 'edit'])->name("admin.homeViewForUpdate");
+    Route::put('home-page-edit/{id}', [HomeController::class, 'update'])->name("admin.homePageUpdate");
+    
+    Route::post('home-page', [HomeController::class, 'store'])->name("admin.homePagePost");
 
 
     Route::get('about-us', [AboutUsController::class, 'index'])->name("admin.aboutUsView");

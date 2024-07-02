@@ -1,3 +1,9 @@
+<?php
+
+use App\Models\Home;
+
+$home = Home::all();
+?>
 <div class="d-flex sidebarNav flex-column p-3 bg-light" style="height: 100vh; position:fixed; width: 230px">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <span class="fs-4">Nomad Partners</span>
@@ -11,11 +17,18 @@
             <i class="fa-brands fa-codepen"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
+            @if($home->isEmpty())
             <a href="{{ route('admin.homePageView') }}" class="nav-link link-dark {{ request()->routeIs('admin.homePageView') ? 'underline' : '' }}">
                 Home Page
             </a>
+            @else
+            <a href="{{ route('admin.homeViewForUpdate') }}" class="nav-link link-dark {{ request()->routeIs('admin.homePageView') ? 'underline' : '' }}">
+                Home Page
+            </a>
+            @endif
             <i class="fa-solid fa-house-chimney-window"></i>
         </li>
+
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.aboutUsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.aboutUsView') ? 'underline' : '' }}">
                 About Page

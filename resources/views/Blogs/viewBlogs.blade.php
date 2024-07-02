@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('style')
+<link rel="stylesheet" href="/style.css">
+@endsection
+
 @section('content')
 <h2 class="mb-5 pt-3 titleBlogs">Blogs</h2>
 

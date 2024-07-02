@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('style')
+<link rel="stylesheet" href="/style.css">
+@endsection
+
 @section('activePage')
 @endsection
 
