@@ -36,7 +36,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blogs.createBlogs');
+        return view('Blogs.createBlogs');
     }
 
     /**
