@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,10 @@ Route::middleware(['admin'])->group(function () {
     Route::get('blogs/edit/{id}', [BlogController::class, 'edit'])->name("admin.editBlogView");
     Route::put('blogs/edit/{id}', [BlogController::class, 'update'])->name("admin.editBlogPost");
     Route::post('blogs/picture', [BlogController::class, 'updatePicture'])->name("admin.updatePicture");
+
+
+    Route::get('home-page', [HomeController::class, 'index'])->name("admin.homePageView");
+
+
+    Route::get('about-us', [AboutUsController::class, 'index'])->name("admin.aboutUsView");
 });     

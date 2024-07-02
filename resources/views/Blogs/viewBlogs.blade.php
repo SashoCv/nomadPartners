@@ -1,21 +1,8 @@
 @extends('layouts.main')
 
-@section('activePage')
-
-
-@endsection
-
-@section('style')
-
-<style>
-
-</style>
-
-@endsection
-
 @section('content')
-
 <h2 class="mb-5 pt-3">Listing All Blogs</h2>
+
 <table class="table listingBlogs">
     <thead>
         <tr>

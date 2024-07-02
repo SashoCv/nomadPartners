@@ -3,24 +3,14 @@
 @section('activePage')
 @endsection
 
-@section('style')
-<style>
-    .formBlogs {
-        gap: 20px;
-    }
-    .form-group {
-        margin-bottom: 20px;
-    }
-</style>
-@endsection
 
 @section('content')
-<h2 class="mb-5 pt-3">Create Blogs</h2>
+<h2 class="mb-5 pt-3 titleBlogs">Create Blogs</h2>
 
-<form method="POST" action="{{ route('admin.createBlogPost') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.createBlogPost') }}" enctype="multipart/form-data" class="w-100 p-0">
     @csrf
     
-    <div class="form-group">
+    <div class="form-group w-100">
         <textarea id="blogContent" name="content" class="form-control" placeholder="Enter your blog content here"></textarea>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Submit</button>
@@ -28,7 +18,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const csrfToken = '{{ csrf_token() }}';

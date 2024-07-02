@@ -6,15 +6,29 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item d-flex align-items-center justify-content-between">
-            <a href="" class="nav-link activeDashboard link-dark">
+            <a href="{{ route('admin.blogsView') }}" class="nav-link activeDashboard link-dark">
                 Dashboard
             </a>
             <i class="fa-brands fa-codepen"></i>
         </li>
 
         <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.homePageView') }}" class="nav-link activeDashboard link-dark">
+                Home Page
+            </a>
+            <i class="fa-solid fa-house-chimney-window"></i>
+        </li>
 
-            <a href="" class="nav-link link-dark activeBlogs">
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.aboutUsView') }}" class="nav-link activeDashboard link-dark">
+                About Page
+            </a>
+            <i class="fa-regular fa-address-book"></i>
+        </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
+
+            <a href="{{ route('admin.createBlogPost') }}" class="nav-link link-dark activeBlogs">
                 Blogs
             </a>
             <i class="fa-brands fa-discourse"></i>
@@ -23,7 +37,7 @@
         <li class="nav-item d-flex align-items-center justify-content-between">
             <form action="" method="post" class="nav-link link-dark">
                 @csrf
-                <button class="" type="submit">Logout</button>
+                <button class="btn-sideBar" type="submit">Logout</button>
             </form>
             <i class="fa-solid fa-right-from-bracket "></i>
         </li>
