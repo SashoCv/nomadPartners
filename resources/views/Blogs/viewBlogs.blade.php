@@ -8,8 +8,7 @@
 @section('style')
 
 <style>
-.listingBlogs {
-}
+
 </style>
 
 @endsection

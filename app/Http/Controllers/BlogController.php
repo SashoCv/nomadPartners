@@ -6,6 +6,7 @@ use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -49,12 +50,49 @@ class BlogController extends Controller
         }
     }
 
+    public function updatePicture(Request $request)
+    {
+        try {
+            if ($request->hasFile('upload')) {
+                $file = $request->file('upload');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('public/uploads', $filename);
+
+                $url = Storage::url($path);
+                $msg = 'Image uploaded successfully';
+
+                return response()->json([
+                    'uploaded' => true,
+                    'url' => $url,
+                    'message' => $msg,
+                ]);
+            } else {
+                return response()->json([
+                    'uploaded' => false,
+                    'error' => [
+                        'message' => 'No file was uploaded.',
+                    ]
+                ]);
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'uploaded' => false,
+                'error' => [
+                    'message' => 'File upload error: ' . $e->getMessage(),
+                ]
+            ]);
+        }
+    }
+    
+
+
     /**
      * Display the specified resource.
      */
     public function show(Blog $blog)
     {
-        try{
+        try {
             return view('blogs.showBlog', compact('blog'));
         } catch (\Exception $e) {
             Log::info($e->getMessage());

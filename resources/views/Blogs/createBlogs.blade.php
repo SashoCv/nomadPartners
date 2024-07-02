@@ -31,19 +31,17 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const csrfToken = '{{ csrf_token() }}';
+
         ClassicEditor
             .create(document.querySelector('#blogContent'), {
                 ckfinder: {
-                    uploadUrl: ''
+                    uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
                 },
                 toolbar: [
                     'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                    'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo', 'fontSize'
+                    'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
                 ],
-                fontSize: {
-                    options: ['tiny', 'small', 'default', 'big', 'huge'],
-                    supportAllValues: true
-                }
             })
             .catch(error => {
                 console.error(error);
