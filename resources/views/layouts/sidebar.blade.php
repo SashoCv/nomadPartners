@@ -29,12 +29,12 @@ $home = Home::all();
             <i class="fa-solid fa-house-chimney-window"></i>
         </li>
 
-        <li class="nav-item d-flex align-items-center justify-content-between">
+        <!-- <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.aboutUsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.aboutUsView') ? 'underline' : '' }}">
                 About Page
             </a>
             <i class="fa-regular fa-address-book"></i>
-        </li>
+        </li> -->
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.createBlogView') }}" class="nav-link link-dark {{ request()->routeIs('admin.createBlogView') ? 'underline' : '' }}">
                 Blogs
