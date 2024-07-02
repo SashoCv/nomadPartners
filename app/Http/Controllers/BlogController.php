@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
@@ -30,7 +32,21 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        try {
+            $blog = new Blog();
+            $blog->titleOfBlog = $request->titleOfBlog;
+            $blog->contentOfBlog = $request->contentOfBlog;
+            $blog->blog_category_id = $request->blog_category_id ?? null;
+            $blog->pictureOfBlogPath = storage_path('app/public/blogs/' . $request->pictureOfBlog);
+            $blog->pictureOfBlog = $request->pictureOfBlog->getClientOriginalName();
+            $blog->save();
+
+            return redirect()->route('admin.blogsView')->with('success', 'Blog created successfully');
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error creating blog');
+        }
     }
 
     /**
@@ -38,7 +54,12 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        try{
+            return view('blogs.showBlog', compact('blog'));
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error showing blog');
+        }
     }
 
     /**
@@ -54,7 +75,13 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        try {
+            $blog->update($request->all());
+            return redirect()->route('admin.blogsView')->with('success', 'Blog updated successfully');
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error updating blog');
+        }
     }
 
     /**
@@ -62,6 +89,12 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        try {
+            $blog->delete();
+            return redirect()->route('admin.blogsView')->with('success', 'Blog deleted successfully');
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error deleting blog');
+        }
     }
 }

@@ -24,4 +24,5 @@ Route::post('login', [UserController::class, 'login'])->name("loginPost");
 Route::middleware(['admin'])->group(function () {
     Route::get('blogs', [BlogController::class, 'index'])->name("admin.blogsView");
     Route::get('blogs/create', [BlogController::class, 'create'])->name("admin.createBlogView");
+    Route::post('blogs/create', [BlogController::class, 'store'])->name("admin.createBlogPost");
 });

@@ -1,55 +1,53 @@
 @extends('layouts.main')
 
 @section('activePage')
-
-
 @endsection
 
 @section('style')
-
 <style>
     .formBlogs {
         gap: 20px;
     }
-
-    .leftForm {
-        width: 50%;
-    }
-
-    .rightForm {
-        width: 50%;
+    .form-group {
+        margin-bottom: 20px;
     }
 </style>
-
 @endsection
 
 @section('content')
-
 <h2 class="mb-5 pt-3">Create Blogs</h2>
 
-<form>
+<form method="POST" action="{{ route('admin.createBlogPost') }}" enctype="multipart/form-data">
     @csrf
-    <div class="d-flex formBlogs mb-3">
-        <div class="leftForm">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Enter email">
-            </div>
-            <div class="form-group mt-2">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Enter email">
-            </div>
-        </div>
-
-        <div class="rightForm">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Enter email">
-            </div>
-        </div>
+    
+    <div class="form-group">
+        <textarea id="blogContent" name="content" class="form-control" placeholder="Enter your blog content here"></textarea>
     </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
+@endsection
 
+@section('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        ClassicEditor
+            .create(document.querySelector('#blogContent'), {
+                ckfinder: {
+                    uploadUrl: ''
+                },
+                toolbar: [
+                    'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                    'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo', 'fontSize'
+                ],
+                fontSize: {
+                    options: ['tiny', 'small', 'default', 'big', 'huge'],
+                    supportAllValues: true
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
 @endsection

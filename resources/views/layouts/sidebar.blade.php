@@ -1,4 +1,4 @@
-<div class="d-flex sidebarNav flex-column p-3 bg-light" style="height: 100vh; position:fixed">
+<div class="d-flex sidebarNav flex-column p-3 bg-light" style="height: 100vh; position:fixed; width: 230px">
 
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <span class="fs-4">Nomad Partners</span>
