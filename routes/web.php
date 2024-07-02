@@ -27,10 +27,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('blogs', [BlogController::class, 'index'])->name("admin.blogsView");
     Route::get('blogs/create', [BlogController::class, 'create'])->name("admin.createBlogView");
     Route::post('blogs/create', [BlogController::class, 'store'])->name("admin.createBlogPost");
-    Route::get('blogs/edit/{id}', [BlogController::class, 'edit'])->name("admin.editBlogView");
-    Route::put('blogs/edit/{id}', [BlogController::class, 'update'])->name("admin.editBlogPost");
+    Route::put('blogs/edit/{id}', [BlogController::class, 'update'])->name("admin.updateBlogPost");
     Route::post('blogs/picture', [BlogController::class, 'updatePicture'])->name("admin.updatePicture");
 
+    Route::get('edit-blog-post/{id}', [BlogController::class, 'edit'])->name('admin.editBlogPost');
+    Route::delete('delete-blog-post/{id}', [BlogController::class, 'destroy'])->name('admin.deleteBlogPost');
 
     Route::get('home-page', [HomeController::class, 'index'])->name("admin.homePageView");
 

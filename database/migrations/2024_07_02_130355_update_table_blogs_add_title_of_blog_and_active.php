@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('blogs', function (Blueprint $table) {
-            $table->string('pictureOfBlog')->nullable();
-            $table->string('pictureOfBlogPath')->nullable();
+            $table->string('titleOfBlog')->after('id');
+            $table->softDeletes();
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('blogs', function (Blueprint $table) {
-            $table->dropColumn('pictureOfBlog');
-            $table->dropColumn('pictureOfBlogPath');
+            $table->dropColumn('titleOfBlog');
+            $table->dropSoftDeletes();
         });
     }
 };

@@ -33,14 +33,10 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         try {
             $blog = new Blog();
             $blog->titleOfBlog = $request->titleOfBlog;
-            $blog->contentOfBlog = $request->contentOfBlog;
-            $blog->blog_category_id = $request->blog_category_id ?? null;
-            $blog->pictureOfBlogPath = storage_path('app/public/blogs/' . $request->pictureOfBlog);
-            $blog->pictureOfBlog = $request->pictureOfBlog->getClientOriginalName();
+            $blog->content = $request->content;
             $blog->save();
 
             return redirect()->route('admin.blogsView')->with('success', 'Blog created successfully');

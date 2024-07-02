@@ -1,36 +1,33 @@
 @extends('layouts.main')
 
 @section('content')
-<h2 class="mb-5 pt-3">Listing All Blogs</h2>
+<h2 class="mb-5 pt-3 titleBlogs">Blogs</h2>
 
-<table class="table listingBlogs">
+<table class="table table-responsive">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col" style="width: 40%;">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @foreach($blogs as $blog)
+            <tr>
+                <td style="width: 40%;">{{ $blog->titleOfBlog }}</td>
+                <td>{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
+                <td>{{ $blog->created_at->format('F j, Y') }}</td>
+                <td class="d-flex align-items-center">
+                    <a href="{{ route('admin.editBlogPost', $blog->id) }}" class="btnBlogsEdit">Edit</a>
+                    <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btnBlogsEdit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
-
 @endsection

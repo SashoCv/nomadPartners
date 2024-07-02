@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('titleOfBlog');
-            $table->text('contentOfBlog');
-            $table->foreignId('blog_category_id')->constrained();
+            $table->longText('content');
             $table->timestamps();
         });
     }
