@@ -59,6 +59,9 @@ class HomePageResource extends JsonResource
                 'title' => $this->titleAbout,
                 'subtitle' => $this->subtitleAbout,
                 'content' => $this->contentAbout,
+                'titleWhoWeAre' => $this->titleWhoWeAre,
+                'contentWhoWeAre' => $this->contentWhoWeAre,
+                'imageWhoWeAre' => $this->whoWeArePictureAboutUs ? asset('storage/' . $this->whoWeArePictureAboutUs) : null,
             ],
             [
                 'type' => 'live',
