@@ -40,7 +40,7 @@ class AboutUsController extends Controller
             if ($request->hasFile('imageHeroAboutUsPath')) {
                 Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
                 $name = Storage::disk('public')->put('partners', $request->file('imageHeroAboutUsPath'));
-                $aboutUs->image_hero_path = $name;
+                $aboutUs->imageHeroAboutUsPath = $name;
             }
 
             if ($request->hasFile('whoWeArePictureAboutUs')) {
@@ -55,7 +55,7 @@ class AboutUsController extends Controller
             if ($request->hasFile('livePicturePathAboutUs')) {
                 Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
                 $name = Storage::disk('public')->put('partners', $request->file('livePicturePathAboutUs'));
-                $aboutUs->live_picture_path = $name;
+                $aboutUs->livePicturePathAboutUs = $name;
             }
 
             $aboutUs->save();
@@ -105,23 +105,22 @@ class AboutUsController extends Controller
 
             // Update imageHeroAboutUsPath if a new file is uploaded
             if ($request->hasFile('imageHeroAboutUsPath')) {
-                Storage::disk('public')->delete($aboutUs->image_hero_path); // Delete old file if exists
+                Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
                 $name = Storage::disk('public')->put('partners', $request->file('imageHeroAboutUsPath'));
-                $aboutUs->image_hero_path = $name;
+                $aboutUs->imageHeroAboutUsPath = $name;
             }
 
-            // Update whoWeArePictureAboutUs if a new file is uploaded
             if ($request->hasFile('whoWeArePictureAboutUs')) {
-                Storage::disk('public')->delete($aboutUs->whoWeArePictureAboutUs); // Delete old file if exists
+                Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
                 $name = Storage::disk('public')->put('partners', $request->file('whoWeArePictureAboutUs'));
                 $aboutUs->whoWeArePictureAboutUs = $name;
             }
 
             // Update livePicturePathAboutUs if a new file is uploaded
             if ($request->hasFile('livePicturePathAboutUs')) {
-                Storage::disk('public')->delete($aboutUs->live_picture_path); // Delete old file if exists
+                Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
                 $name = Storage::disk('public')->put('partners', $request->file('livePicturePathAboutUs'));
-                $aboutUs->live_picture_path = $name;
+                $aboutUs->livePicturePathAboutUs = $name;
             }
 
             $aboutUs->save();
