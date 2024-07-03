@@ -11,12 +11,6 @@ $home = Home::all();
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item d-flex align-items-center justify-content-between">
-            <a href="{{ route('admin.blogsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">
-                Dashboard
-            </a>
-            <i class="fa-brands fa-codepen"></i>
-        </li>
-        <li class="nav-item d-flex align-items-center justify-content-between">
             @if($home->isEmpty())
             <a href="{{ route('admin.homePageView') }}" class="nav-link link-dark {{ request()->routeIs('admin.homePageView') ? 'underline' : '' }}">
                 Home Page
@@ -36,10 +30,24 @@ $home = Home::all();
             <i class="fa-regular fa-address-book"></i>
         </li> -->
         <li class="nav-item d-flex align-items-center justify-content-between">
-            <a href="{{ route('admin.createBlogView') }}" class="nav-link link-dark {{ request()->routeIs('admin.createBlogView') ? 'underline' : '' }}">
+            <a href="{{ route('admin.blogsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">
                 Blogs
             </a>
+            <i class="fa-brands fa-codepen"></i>
+        </li>
+        
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.createBlogView') }}" class="nav-link link-dark {{ request()->routeIs('admin.createBlogView') ? 'underline' : '' }}">
+               Add Blog
+            </a>
             <i class="fa-brands fa-discourse"></i>
+        </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.partnersView') }}" class="nav-link link-dark {{ request()->routeIs('admin.partnersView') ? 'underline' : '' }}">
+                Partners
+            </a>
+            <i class="fa-solid fa-handshake-simple"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
             <form action="" method="post" class="nav-link link-dark">

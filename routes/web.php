@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,9 @@ Route::middleware(['admin'])->group(function () {
 
 
     Route::get('about-us', [AboutUsController::class, 'index'])->name("admin.aboutUsView");
+
+
+    Route::get('partners', [PartnerController::class, 'index'])->name("admin.partnersView");
+    Route::post('partners', [PartnerController::class, 'store'])->name("admin.partnersPost");
+    Route::delete('partners/{id}', [PartnerController::class, 'destroy'])->name("admin.deletePartner");
 });     

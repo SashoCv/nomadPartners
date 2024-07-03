@@ -2,6 +2,7 @@
 
 @section('style')
 <link rel="stylesheet" href="/styleHomePage.css">
+
 <style>
 .formAddHomePage .form-group {
     margin-bottom: 20px;
@@ -19,7 +20,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Home Page</h1>
+    <h2 class="mb-5 pt-3 titleBlogs">Create Home Page</h2>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse">

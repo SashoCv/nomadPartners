@@ -15,22 +15,6 @@ input {
   text-decoration: underline;
 }
 
-.btnBlogsEdit{
-  margin: 0px;
-  padding: 5px 10px;
-  border: none;
-  text-decoration: none;
-  color: #fff;
-  background-color: #333;
-  border-radius: 6px;
-  transition: all 0.3s;
-}
-
-.btnBlogsEdit:hover{
-  background-color: #444444;
-  color: #fff;
-}
-
 .containerButtonsBlogs{
   display: flex;
   flex-direction: column;
@@ -183,20 +167,6 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
-}
-
-.btn-sideBar{
-  padding: 5px 10px;
-  border: none;
-  color: #fff;
-  background-color: #333;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-sideBar:hover{
-  background-color: #444444;
 }
 
 .btn:hover {

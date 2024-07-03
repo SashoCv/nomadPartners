@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HomePageResource;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -20,13 +21,14 @@ class HomeController extends Controller
     public function getHomePageApi()
     {
         try {
-            $home = Home::first();
-            return response()->json($home);
+            $home = Home::with('partners')->first();
+            return response()->json(new HomePageResource($home));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Error fetching home page']);
+            return response()->json(['error' => 'Error fetching home page'], 500);
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -175,7 +177,7 @@ class HomeController extends Controller
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
             }
 
-    
+
             if ($request->hasFile('livePicturePath')) {
                 Storage::disk('public')->put('liveImages', $request->file('livePicturePath'));
                 $name = Storage::disk('public')->put('heroImages', $request->file('livePicturePath'));
@@ -190,21 +192,21 @@ class HomeController extends Controller
                 $home->missionPicturePathOne = $name;
                 $home->missionPictureNameOne = $request->file('missionPicturePathOne')->getClientOriginalName();
             }
-            
+
             if ($request->hasFile('missionPicturePathTwo')) {
                 Storage::disk('public')->put('missionPictures', $request->file('missionPicturePathTwo'));
                 $name = Storage::disk('public')->put('heroImages', $request->file('missionPicturePathTwo'));
                 $home->missionPicturePathTwo = $name;
                 $home->missionPictureNameTwo = $request->file('missionPicturePathTwo')->getClientOriginalName();
             }
-            
+
             if ($request->hasFile('missionPicturePathThree')) {
                 Storage::disk('public')->put('missionPictures', $request->file('missionPicturePathThree'));
                 $name = Storage::disk('public')->put('heroImages', $request->file('missionPicturePathThree'));
                 $home->missionPicturePathThree = $name;
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
-            
+
 
             $home->save();
 

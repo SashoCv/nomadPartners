@@ -17,4 +17,5 @@ class Blog extends Model
         'pictureOfBlog',
         'pictureOfBlogPath'
     ];
+
 }
