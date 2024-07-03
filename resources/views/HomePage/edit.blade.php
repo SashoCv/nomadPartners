@@ -4,21 +4,21 @@
 <link rel="stylesheet" href="/styleHomePage.css">
 
 <style>
-.formAddHomePage .form-group {
-    margin-bottom: 20px;
-}
+    .formAddHomePage .form-group {
+        margin-bottom: 20px;
+    }
 
-.navbar {
-    margin-bottom: 20px;
-}
+    .navbar {
+        margin-bottom: 20px;
+    }
 
-.section-heading {
-    margin-top: 40px;
-}
+    .section-heading {
+        margin-top: 40px;
+    }
 
-.section-content {
-    display: none;
-}
+    .section-content {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -58,8 +58,8 @@
     </nav>
 
     <form action="{{ route('admin.homePageUpdate', $home->id) }}" method="POST" enctype="multipart/form-data" class="formAddHomePage">
-    @csrf
-    @method('PUT')
+        @csrf
+        @method('PUT')
 
         <div id="heroSection" class="section-content">
             <h2 class="section-heading">Hero Section</h2>
@@ -83,7 +83,7 @@
                 <input type="file" class="form-control-file" id="imageHeroSectionPath" name="imageHeroSectionPath">
                 @if($home->imageHeroSectionPath)
                 <div>
-                <img src="{{ asset('storage/' . $home->imageHeroSectionPath) }}" alt="Hero Section Image" style="max-width: 100px; margin-top: 10px;">
+                    <img src="{{ asset('storage/' . $home->imageHeroSectionPath) }}" alt="Hero Section Image" style="max-width: 100px; margin-top: 10px;">
                 </div>
                 @endif
             </div>
@@ -153,6 +153,26 @@
                 <label for="contentAbout">Content About</label>
                 <textarea class="form-control" id="contentAbout" name="contentAbout">{{ $home->contentAbout }}</textarea>
             </div>
+
+            <div class="form-group">
+                <label for="whoWeAreTitleAbout">Who We Are Title</label>
+                <input type="text" class="form-control" id="whoWeAreTitleAbout" name="whoWeAreTitleAbout" value="{{ $home->whoWeAreTitleAbout }}">
+            </div>
+
+            <div class="form-group">
+                <label for="whoWeAreContentAbout">Who We Are Content</label>
+                <textarea class="form-control" id="whoWeAreContentAbout" name="whoWeAreContentAbout">{{ $home->whoWeAreContentAbout }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="whoWeArePicturePathAbout">Who We Are Picture</label>
+                <input type="file" class="form-control-file" id="whoWeArePicturePathAbout" name="whoWeArePicturePathAbout">
+                <div>
+                    @if($home->whoWeArePicturePathAbout)
+                    <img src="{{ asset('storage/' . $home->whoWeArePicturePathAbout) }}" alt="Who We Are Picture" style="max-width: 100px; margin-top: 10px;">
+                    @endif
+                </div>
+            </div>
         </div>
 
         <div id="liveSection" class="section-content">
@@ -171,7 +191,7 @@
                 <label for="livePicturePath">Live Picture</label>
                 <input type="file" class="form-control-file" id="livePicturePath" name="livePicturePath">
                 @if($home->livePicturePath)
-                    <img src="{{ asset($home->livePicturePath) }}" alt="Live Section Image" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset($home->livePicturePath) }}" alt="Live Section Image" style="max-width: 100px; margin-top: 10px;">
                 @endif
             </div>
         </div>
@@ -238,7 +258,7 @@
                 <label for="missionPicturePathOne">Mission Picture One</label>
                 <input type="file" class="form-control-file" id="missionPicturePathOne" name="missionPicturePathOne">
                 @if($home->missionPicturePathOne)
-                    <img src="{{ asset($home->missionPicturePathOne) }}" alt="Mission Picture One" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset($home->missionPicturePathOne) }}" alt="Mission Picture One" style="max-width: 100px; margin-top: 10px;">
                 @endif
             </div>
 
@@ -246,7 +266,7 @@
                 <label for="missionPicturePathTwo">Mission Picture Two</label>
                 <input type="file" class="form-control-file" id="missionPicturePathTwo" name="missionPicturePathTwo">
                 @if($home->missionPicturePathTwo)
-                    <img src="{{ asset($home->missionPicturePathTwo) }}" alt="Mission Picture Two" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset($home->missionPicturePathTwo) }}" alt="Mission Picture Two" style="max-width: 100px; margin-top: 10px;">
                 @endif
             </div>
 
@@ -254,7 +274,7 @@
                 <label for="missionPicturePathThree">Mission Picture Three</label>
                 <input type="file" class="form-control-file" id="missionPicturePathThree" name="missionPicturePathThree">
                 @if($home->missionPicturePathThree)
-                    <img src="{{ asset($home->missionPicturePathThree) }}" alt="Mission Picture Three" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset($home->missionPicturePathThree) }}" alt="Mission Picture Three" style="max-width: 100px; margin-top: 10px;">
                 @endif
             </div>
         </div>
@@ -277,16 +297,16 @@
 </div>
 
 <script>
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-        document.querySelectorAll('.section-content').forEach(section => {
-            section.style.display = 'none';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.style.display = 'none';
+            });
+            const section = document.querySelector(this.getAttribute('href'));
+            if (section) {
+                section.style.display = 'block';
+            }
         });
-        const section = document.querySelector(this.getAttribute('href'));
-        if (section) {
-            section.style.display = 'block';
-        }
     });
-});
 </script>
 @endsection

@@ -15,6 +15,7 @@
 .section-heading {
     margin-top: 40px;
 }
+
 </style>
 @endsection
 

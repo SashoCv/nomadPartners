@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('about_us', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->string('imageHeroAboutUsPath')->nullable();
+            $table->string('titleWhoWeAre')->nullable();
+            $table->text('contentWhoWeAre')->nullable();
+            $table->string('whoWeArePictureAboutUs')->nullable();
+            $table->string('liveTitleAboutUs')->nullable();
+            $table->text('liveContentAboutUs')->nullable();
+            $table->string('livePicturePathAboutUs')->nullable();
             $table->timestamps();
         });
     }

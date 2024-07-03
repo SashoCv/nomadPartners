@@ -28,7 +28,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('blogs', [BlogController::class, 'index'])->name("admin.blogsView");
     Route::get('blogs/create', [BlogController::class, 'create'])->name("admin.createBlogView");
     Route::post('blogs/create', [BlogController::class, 'store'])->name("admin.createBlogPost");
-    Route::put('blogs/edit/{id}', [BlogController::class, 'update'])->name("admin.updateBlogPost");
+    Route::put('blogs/edit/{id}', [BlogController::class, 'update'])->name("admin.updateBlog");
     Route::post('blogs/picture', [BlogController::class, 'updatePicture'])->name("admin.updatePicture");
 
     Route::get('edit-blog-post/{id}', [BlogController::class, 'edit'])->name('admin.editBlogPost');
@@ -42,9 +42,15 @@ Route::middleware(['admin'])->group(function () {
 
 
     Route::get('about-us', [AboutUsController::class, 'index'])->name("admin.aboutUsView");
+    Route::get('about-us-edit', [AboutUsController::class, 'edit'])->name("admin.aboutUsViewForUpdate");
+    Route::post('about-us', [AboutUsController::class, 'store'])->name("admin.aboutUsPost");
+    Route::put('about-us-edit/{id}', [AboutUsController::class, 'update'])->name("admin.aboutUsUpdate");
 
 
     Route::get('partners', [PartnerController::class, 'index'])->name("admin.partnersView");
     Route::post('partners', [PartnerController::class, 'store'])->name("admin.partnersPost");
     Route::delete('partners/{id}', [PartnerController::class, 'destroy'])->name("admin.deletePartner");
+
+
+    Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");
 });     

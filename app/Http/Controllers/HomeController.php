@@ -154,6 +154,8 @@ class HomeController extends Controller
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
+            $home->whoWeAreTitleAbout = $request->input('whoWeAreTitleAbout');
+            $home->whoWeAreContentAbout = $request->input('whoWeAreContentAbout');
             $home->liveTitle = $request->input('liveTitle');
             $home->liveContent = $request->input('liveContent');
             $home->chooseUsTitle = $request->input('chooseUsTitle');
@@ -168,54 +170,52 @@ class HomeController extends Controller
             $home->missionContent = $request->input('missionContent');
             $home->partnersTitle = $request->input('partnersTitle');
             $home->partnersSubtitle = $request->input('partnersSubtitle');
-
-            // Handle image updates if new files are uploaded
+    
             if ($request->hasFile('imageHeroSectionPath')) {
-                Storage::disk('public')->put('heroImages', $request->file('imageHeroSectionPath'));
-                $name = Storage::disk('public')->put('heroImages', $request->file('imageHeroSectionPath'));
-                $home->imageHeroSectionPath = $name;
+                $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
+                $home->imageHeroSectionPath = $path;
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
             }
-
-
+    
             if ($request->hasFile('livePicturePath')) {
-                Storage::disk('public')->put('liveImages', $request->file('livePicturePath'));
-                $name = Storage::disk('public')->put('heroImages', $request->file('livePicturePath'));
-                $home->livePicturePath = $name;
+                $path = $request->file('livePicturePath')->store('liveImages', 'public');
+                $home->livePicturePath = $path;
                 $home->livePictureName = $request->file('livePicturePath')->getClientOriginalName();
             }
-
+    
             if ($request->hasFile('missionPicturePathOne')) {
-
-                Storage::disk('public')->put('missionPictures', $request->file('missionPicturePathOne'));
-                $name = Storage::disk('public')->put('heroImages', $request->file('missionPicturePathOne'));
-                $home->missionPicturePathOne = $name;
+                $path = $request->file('missionPicturePathOne')->store('missionPictures', 'public');
+                $home->missionPicturePathOne = $path;
                 $home->missionPictureNameOne = $request->file('missionPicturePathOne')->getClientOriginalName();
             }
-
+    
             if ($request->hasFile('missionPicturePathTwo')) {
-                Storage::disk('public')->put('missionPictures', $request->file('missionPicturePathTwo'));
-                $name = Storage::disk('public')->put('heroImages', $request->file('missionPicturePathTwo'));
-                $home->missionPicturePathTwo = $name;
+                $path = $request->file('missionPicturePathTwo')->store('missionPictures', 'public');
+                $home->missionPicturePathTwo = $path;
                 $home->missionPictureNameTwo = $request->file('missionPicturePathTwo')->getClientOriginalName();
             }
-
+    
             if ($request->hasFile('missionPicturePathThree')) {
-                Storage::disk('public')->put('missionPictures', $request->file('missionPicturePathThree'));
-                $name = Storage::disk('public')->put('heroImages', $request->file('missionPicturePathThree'));
-                $home->missionPicturePathThree = $name;
+                $path = $request->file('missionPicturePathThree')->store('missionPictures', 'public');
+                $home->missionPicturePathThree = $path;
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
-
-
+    
+            if ($request->hasFile('whoWeArePicturePathAbout')) {
+                $path = $request->file('whoWeArePicturePathAbout')->store('aboutImages', 'public');
+                $home->whoWeArePicturePathAbout = $path;
+                $home->whoWeArePictureNameAbout = $request->file('whoWeArePicturePathAbout')->getClientOriginalName();
+            }
+    
             $home->save();
-
+    
             return redirect()->route('admin.homeViewForUpdate')->with('success', 'Home page updated successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Error updating home page');
         }
     }
+    
 
     /**
      * Remove the specified resource from storage.

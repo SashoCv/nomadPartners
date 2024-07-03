@@ -10,3 +10,20 @@ body,
 input {
   font-family: "Poppins", sans-serif;
 }
+
+.btnBlogsEdit{
+  margin: 0px;
+  padding: 5px 10px;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.btnBlogsEdit:hover{
+  background-color: #444444;
+  color: #fff;
+}
+

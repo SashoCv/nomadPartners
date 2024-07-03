@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\AboutUs;
 use App\Models\Home;
 
 $home = Home::all();
+$aboutPage = AboutUs::all();
 ?>
 <div class="d-flex sidebarNav flex-column p-3 bg-light" style="height: 100vh; position:fixed; width: 230px">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -22,13 +24,21 @@ $home = Home::all();
             @endif
             <i class="fa-solid fa-house-chimney-window"></i>
         </li>
-
-        <!-- <li class="nav-item d-flex align-items-center justify-content-between">
+            @if($aboutPage->isEmpty())
+        <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.aboutUsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.aboutUsView') ? 'underline' : '' }}">
                 About Page
             </a>
             <i class="fa-regular fa-address-book"></i>
-        </li> -->
+        </li>
+        @else
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.aboutUsViewForUpdate') }}" class="nav-link link-dark {{ request()->routeIs('admin.aboutUsView') ? 'underline' : '' }}">
+                About Page
+            </a>
+            <i class="fa-regular fa-address-book"></i>
+        </li>
+        @endif
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.blogsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">
                 Blogs
@@ -50,7 +60,7 @@ $home = Home::all();
             <i class="fa-solid fa-handshake-simple"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
-            <form action="" method="post" class="nav-link link-dark">
+            <form action="{{ route('admin.logout') }}" method="post" class="nav-link link-dark">
                 @csrf
                 <button class="btn-sideBar" type="submit">Logout</button>
             </form>

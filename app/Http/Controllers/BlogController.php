@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with('user')->get();
 
         return view('Blogs.viewBlogs', compact('blogs'));
     }
@@ -48,6 +49,7 @@ class BlogController extends Controller
             $blog = new Blog();
             $blog->titleOfBlog = $request->titleOfBlog;
             $blog->content = $request->content;
+            $blog->user_id = Auth::user()->id;
             $blog->save();
 
             return redirect()->route('admin.blogsView')->with('success', 'Blog created successfully');
@@ -110,18 +112,28 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        //
+        try {
+            $blog = Blog::find($id);
+            return view('Blogs.editBlog', compact('blog'));
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error editing blog');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
         try {
-            $blog->update($request->all());
+            $blog = Blog::find($id);
+            $blog->titleOfBlog = $request->titleOfBlog;
+            $blog->content = $request->content;
+            $blog->user_id = Auth::user()->id;
+            $blog->save();
             return redirect()->route('admin.blogsView')->with('success', 'Blog updated successfully');
         } catch (\Exception $e) {
             Log::info($e->getMessage());
@@ -132,9 +144,10 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
         try {
+            $blog = Blog::find($id);
             $blog->delete();
             return redirect()->route('admin.blogsView')->with('success', 'Blog deleted successfully');
         } catch (\Exception $e) {
