@@ -19,6 +19,13 @@
         background-color: #444444;
         color: #fff;
     }
+
+    .blog-thumbnail {
+        max-width: 100px; /* Adjust the maximum width as per your design */
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
 </style>
 @endsection
 
@@ -28,7 +35,8 @@
 <table class="table table-responsive">
     <thead>
         <tr>
-            <th scope="col" style="width: 30%;">Title</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th scope="col">Status</th>
             <th scope="col">Created At</th>
@@ -38,13 +46,20 @@
     <tbody>
         @foreach($blogs as $blog)
             <tr>
-                <td style="width: 30%;">{{ $blog->titleOfBlog }}</td>
-                <td style="width: 25%;">{{ $blog->user->email }}</td>
-                <td style="width: 15%;">{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
-                <td style="width: 15%;">{{ $blog->created_at->format('F j, Y') }}</td>
-                <td class="d-flex align-items-center" style="width: 15%;">
+                <td>
+                    @if($blog->picturePathBlog)
+                        <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Image" class="blog-thumbnail">
+                    @else
+                        <span>No Image</span>
+                    @endif
+                </td>
+                <td>{{ $blog->titleOfBlog }}</td>
+                <td>{{ $blog->user->email }}</td>
+                <td>{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
+                <td>{{ $blog->created_at->format('F j, Y') }}</td>
+                <td>
                     <a href="{{ route('admin.editBlogPost', $blog->id) }}" class="btnBlogsEdit">Edit</a>
-                    <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0">
+                    <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0 p-0" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btnBlogsEdit">Delete</button>

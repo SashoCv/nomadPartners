@@ -2,6 +2,13 @@
 
 @section('style')
 <link rel="stylesheet" href="/style.css">
+<style>
+    /* Additional styles for textarea and CKEditor */
+    #blogContent,
+    .ck-content {
+        min-height: 300px; /* Adjust the height as needed */
+    }
+</style>
 @endsection
 
 @section('activePage')
@@ -21,6 +28,11 @@
     <div class="form-group w-100 mb-3">
         <label for="blogContent">Content</label>
         <textarea id="blogContent" name="content" class="form-control" placeholder="Enter your blog content here"></textarea>
+    </div>
+
+    <div class="form-group w-100 mb-3">
+        <label for="picturePathBlog">Blog Picture</label>
+        <input type="file" id="picturePathBlog" name="picturePathBlog" class="form-control-file">
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Submit</button>

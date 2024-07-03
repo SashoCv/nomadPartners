@@ -2,6 +2,11 @@
 
 @section('style')
 <link rel="stylesheet" href="/style.css">
+<style>
+    .ck-editor__editable {
+        min-height: 300px; /* Adjust height as needed */
+    }
+</style>
 @endsection
 
 @section('content')
@@ -18,7 +23,17 @@
 
     <div class="form-group w-100 mb-3">
         <label for="blogContent">Content</label>
-        <textarea id="blogContent" name="content" class="form-control" placeholder="Enter your blog content here">{{ $blog->content }}</textarea>
+        <textarea id="blogContent" name="content" class="form-control">{{ $blog->content }}</textarea>
+    </div>
+
+    <div class="form-group w-100 mb-3">
+        <label for="picturePathBlog">Blog Picture</label>
+        <input type="file" id="picturePathBlog" name="picturePathBlog" class="form-control-file">
+        <div>
+        @if ($blog->picturePathBlog)
+            <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Picture" style="max-width: 100px; margin-top: 10px;">
+        @endif
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Update</button>

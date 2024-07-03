@@ -16,21 +16,26 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('user')->get();
+        try {
+            $blogs = Blog::with('user')->get();
 
-        return view('Blogs.viewBlogs', compact('blogs'));
+            return view('Blogs.viewBlogs', compact('blogs'));
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching blogs');
+        }
     }
 
 
     public function getBlogsApi()
     {
-       try {
+        try {
             $blogs = Blog::all();
             return response()->json($blogs);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => 'Error fetching blogs']);
-       }
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -50,6 +55,14 @@ class BlogController extends Controller
             $blog->titleOfBlog = $request->titleOfBlog;
             $blog->content = $request->content;
             $blog->user_id = Auth::user()->id;
+
+            if ($request->hasFile('picturePathBlog')) {
+                Storage::disk('public')->put('blogs', $request->file('picturePathBlog'));
+                $name = Storage::disk('public')->put('blogs', $request->file('picturePathBlog'));
+                $blog->picturePathBlog = $name;
+                $blog->pictureNameBlog = $request->file('picturePathBlog')->getClientOriginalName();
+            }
+
             $blog->save();
 
             return redirect()->route('admin.blogsView')->with('success', 'Blog created successfully');
@@ -93,7 +106,7 @@ class BlogController extends Controller
             ]);
         }
     }
-    
+
 
 
     /**
@@ -133,6 +146,16 @@ class BlogController extends Controller
             $blog->titleOfBlog = $request->titleOfBlog;
             $blog->content = $request->content;
             $blog->user_id = Auth::user()->id;
+
+
+            if ($request->hasFile('picturePathBlog')) {
+                Storage::disk('public')->put('blogs', $request->file('picturePathBlog'));
+                $name = Storage::disk('public')->put('blogs', $request->file('picturePathBlog'));
+                $blog->picturePathBlog = $name;
+                $blog->pictureNameBlog = $request->file('picturePathBlog')->getClientOriginalName();
+            }
+
+            
             $blog->save();
             return redirect()->route('admin.blogsView')->with('success', 'Blog updated successfully');
         } catch (\Exception $e) {
