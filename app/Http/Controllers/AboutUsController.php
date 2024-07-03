@@ -17,12 +17,16 @@ class AboutUsController extends Controller
         return view('AboutUs.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function getAboutUsApi()
     {
-        //
+        try {
+            $aboutUs = AboutUs::first();
+            return response()->json($aboutUs);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['error' => 'Error fetching about us']);
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('blogs', [BlogController::class, 'getBlogsApi']);
 Route::get('home-page', [HomeController::class, 'getHomePageApi']);
+Route::get('about-us', [AboutUsController::class, 'getAboutUsApi']);
