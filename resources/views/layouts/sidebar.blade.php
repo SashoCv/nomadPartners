@@ -59,6 +59,13 @@ $aboutPage = AboutUs::all();
             </a>
             <i class="fa-solid fa-handshake-simple"></i>
         </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="" class="nav-link link-dark">
+                Contact
+            </a>
+            <i class="fa-solid fa-envelope"></i>
+        </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
             <form action="{{ route('admin.logout') }}" method="post" class="nav-link link-dark">
                 @csrf
