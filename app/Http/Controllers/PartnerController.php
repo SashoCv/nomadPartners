@@ -15,8 +15,13 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = Partner::all();
-        return view('Partners.index', compact('partners'));
+       try {
+            $partners = Partner::all();
+            return view('Partners.index', compact('partners'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+       }
     }
 
     /**
