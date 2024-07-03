@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         try {
             $home = Home::with('partners')->first();
-            return response()->json(new HomePageResource($home));
+            return response()->json($home);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['error' => 'Error fetching home page'], 500);
