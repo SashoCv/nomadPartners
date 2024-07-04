@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use Illuminate\Http\Request;
@@ -34,3 +36,12 @@ Route::get('about-us', [AboutUsController::class, 'getAboutUsApi']);
 
 // PARTNERS
 Route::get('partners', [PartnerController::class, 'getPartnersApi']);
+
+// CONTACT SECTION
+Route::get('contact', [ContactController::class, 'getContactApi']);
+
+
+// CONTACT
+Route::post('contact', [ContactFormController::class, 'store']);
+
+

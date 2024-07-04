@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\AboutUs;
+use App\Models\Contact;
 use App\Models\Home;
 
 $home = Home::all();
 $aboutPage = AboutUs::all();
+$contactPage = Contact::all();
 ?>
 <div class="d-flex sidebarNav flex-column p-3 bg-light" style="height: 100vh; position:fixed; width: 230px">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -59,13 +61,21 @@ $aboutPage = AboutUs::all();
             </a>
             <i class="fa-solid fa-handshake-simple"></i>
         </li>
-
+        @if($contactPage->isEmpty())
         <li class="nav-item d-flex align-items-center justify-content-between">
-            <a href="" class="nav-link link-dark">
-                Contact
+            <a href="{{ route('admin.contactView') }}" class="nav-link link-dark">
+                Contact Section
             </a>
             <i class="fa-solid fa-envelope"></i>
         </li>
+        @else
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.contactViewForUpdate') }}" class="nav-link link-dark">
+                Contact Section
+            </a>
+            <i class="fa-solid fa-envelope"></i>
+        </li>
+        @endif
         <li class="nav-item d-flex align-items-center justify-content-between">
             <form action="{{ route('admin.logout') }}" method="post" class="nav-link link-dark">
                 @csrf
