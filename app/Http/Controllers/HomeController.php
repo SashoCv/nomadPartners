@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function getHomePageApi()
     {
         try {
-            $home = Home::with('partners')->first();
+            $home = Home::first();
             return response()->json($home);
         } catch (\Exception $e) {
             Log::error($e->getMessage());

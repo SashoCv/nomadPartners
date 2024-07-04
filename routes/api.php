@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// BLOGS
 Route::get('blogs', [BlogController::class, 'getBlogsApi']);
+Route::get('blogs/{id}', [BlogController::class, 'getBlogApi']);
+
+// HOME PAGE
 Route::get('home-page', [HomeController::class, 'getHomePageApi']);
+
+// ABOUT US
 Route::get('about-us', [AboutUsController::class, 'getAboutUsApi']);
+
+// PARTNERS
+Route::get('partners', [PartnerController::class, 'getPartnersApi']);

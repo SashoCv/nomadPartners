@@ -30,11 +30,22 @@ class BlogController extends Controller
     public function getBlogsApi()
     {
         try {
-            $blogs = Blog::all();
+            $blogs = Blog::with('user')->paginate(8);
             return response()->json($blogs);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => 'Error fetching blogs']);
+        }
+    }
+
+    public function getBlogApi($id)
+    {
+        try {
+            $blog = Blog::with('user')->find($id);
+            return response()->json($blog);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['error' => 'Error fetching blog']);
         }
     }
     /**

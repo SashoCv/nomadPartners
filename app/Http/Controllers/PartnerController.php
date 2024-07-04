@@ -23,13 +23,16 @@ class PartnerController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
        }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function getPartnersApi()
     {
-        //
+        try {
+            $partners = Partner::all();
+            return response()->json($partners);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['error' => 'Error fetching partners']);
+        }
     }
 
     /**
