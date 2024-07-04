@@ -207,7 +207,49 @@
                 <label for="chooseUsContent">Choose Us Content</label>
                 <textarea class="form-control" id="chooseUsContent" name="chooseUsContent">{{ $home->chooseUsContent }}</textarea>
             </div>
+
+            <!-- Нови полиња за Choose Us Section -->
+            <div class="form-group">
+                <label for="statsTitleOne">Stats Title One</label>
+                <input type="text" class="form-control" id="statsTitleOne" name="statsTitleOne" value="{{ $home->statsTitleOne }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsNumberOne">Stats Number One</label>
+                <input type="text" class="form-control" id="statsNumberOne" name="statsNumberOne" value="{{ $home->statsNumberOne }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsTitleTwo">Stats Title Two</label>
+                <input type="text" class="form-control" id="statsTitleTwo" name="statsTitleTwo" value="{{ $home->statsTitleTwo }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsNumberTwo">Stats Number Two</label>
+                <input type="text" class="form-control" id="statsNumberTwo" name="statsNumberTwo" value="{{ $home->statsNumberTwo }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsTitleThree">Stats Title Three</label>
+                <input type="text" class="form-control" id="statsTitleThree" name="statsTitleThree" value="{{ $home->statsTitleThree }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsNumberThree">Stats Number Three</label>
+                <input type="text" class="form-control" id="statsNumberThree" name="statsNumberThree" value="{{ $home->statsNumberThree }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsTitleFour">Stats Title Four</label>
+                <input type="text" class="form-control" id="statsTitleFour" name="statsTitleFour" value="{{ $home->statsTitleFour }}">
+            </div>
+
+            <div class="form-group">
+                <label for="statsNumberFour">Stats Number Four</label>
+                <input type="text" class="form-control" id="statsNumberFour" name="statsNumberFour" value="{{ $home->statsNumberFour }}">
+            </div>
         </div>
+
 
         <div id="listSection" class="section-content">
             <h2 class="section-heading">List Section</h2>
