@@ -51,7 +51,7 @@ class PartnerController extends Controller
                 Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
                 $name = Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
                 $partner->logoPath = $name;
-                $partner->logoName = $request->file('logoPathPartner')->getClientOriginalName();
+                $partner->logoName = $request->file('logoPathPartner')->getClientOriginalName() ?? "logo name";
             }
 
             $partner->save();
