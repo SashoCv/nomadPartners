@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#heroSection">Hero Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testimonialSection">Info Carts</a>
+                    <a class="nav-link" href="#testimonialSection">Testimonial Section</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#aboutSection">About Section</a>
@@ -249,7 +249,6 @@
                 <input type="text" class="form-control" id="statsNumberFour" name="statsNumberFour" value="{{ $home->statsNumberFour }}">
             </div>
         </div>
-
 
         <div id="listSection" class="section-content">
             <h2 class="section-heading">List Section</h2>
