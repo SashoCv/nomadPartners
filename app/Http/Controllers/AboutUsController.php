@@ -17,7 +17,6 @@ class AboutUsController extends Controller
         return view('AboutUs.index');
     }
 
-   
     public function getAboutUsApi()
     {
         try {
@@ -42,14 +41,12 @@ class AboutUsController extends Controller
             $aboutUs->contentWhoWeAre = $request->contentWhoWeAre;
 
             if ($request->hasFile('imageHeroAboutUsPath')) {
-                Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
-                $name = Storage::disk('public')->put('partners', $request->file('imageHeroAboutUsPath'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
                 $aboutUs->imageHeroAboutUsPath = $name;
             }
 
             if ($request->hasFile('whoWeArePictureAboutUs')) {
-                Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
-                $name = Storage::disk('public')->put('partners', $request->file('whoWeArePictureAboutUs'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
                 $aboutUs->whoWeArePictureAboutUs = $name;
             }
 
@@ -57,10 +54,14 @@ class AboutUsController extends Controller
             $aboutUs->liveContentAboutUs = $request->liveContentAboutUs;
 
             if ($request->hasFile('livePicturePathAboutUs')) {
-                Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
-                $name = Storage::disk('public')->put('partners', $request->file('livePicturePathAboutUs'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
                 $aboutUs->livePicturePathAboutUs = $name;
             }
+
+            $aboutUs->linkHeroAboutUs1 = $request->linkHeroAboutUs1;
+            $aboutUs->buttonNameHeroAboutUs1 = $request->buttonNameHeroAboutUs1;
+            $aboutUs->linkHeroAboutUs2 = $request->linkHeroAboutUs2;
+            $aboutUs->buttonNameHeroAboutUs2 = $request->buttonNameHeroAboutUs2;
 
             $aboutUs->save();
 
@@ -107,25 +108,25 @@ class AboutUsController extends Controller
             $aboutUs->liveTitleAboutUs = $request->input('liveTitleAboutUs');
             $aboutUs->liveContentAboutUs = $request->input('liveContentAboutUs');
 
-            // Update imageHeroAboutUsPath if a new file is uploaded
             if ($request->hasFile('imageHeroAboutUsPath')) {
-                Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
-                $name = Storage::disk('public')->put('partners', $request->file('imageHeroAboutUsPath'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
                 $aboutUs->imageHeroAboutUsPath = $name;
             }
 
             if ($request->hasFile('whoWeArePictureAboutUs')) {
-                Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
-                $name = Storage::disk('public')->put('partners', $request->file('whoWeArePictureAboutUs'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
                 $aboutUs->whoWeArePictureAboutUs = $name;
             }
 
-            // Update livePicturePathAboutUs if a new file is uploaded
             if ($request->hasFile('livePicturePathAboutUs')) {
-                Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
-                $name = Storage::disk('public')->put('partners', $request->file('livePicturePathAboutUs'));
+                $name = Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
                 $aboutUs->livePicturePathAboutUs = $name;
             }
+
+            $aboutUs->linkHeroAboutUs1 = $request->input('linkHeroAboutUs1');
+            $aboutUs->buttonNameHeroAboutUs1 = $request->input('buttonNameHeroAboutUs1');
+            $aboutUs->linkHeroAboutUs2 = $request->input('linkHeroAboutUs2');
+            $aboutUs->buttonNameHeroAboutUs2 = $request->input('buttonNameHeroAboutUs2');
 
             $aboutUs->save();
 
@@ -135,7 +136,6 @@ class AboutUsController extends Controller
             return redirect()->back()->with('error', 'Error updating about us');
         }
     }
-
 
     /**
      * Remove the specified resource from storage.

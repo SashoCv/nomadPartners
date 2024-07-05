@@ -59,6 +59,26 @@
             </div>
 
             <div class="form-group">
+                <label for="linkHeroAboutUs1">Hero About Us Link 1</label>
+                <input type="text" class="form-control" id="linkHeroAboutUs1" name="linkHeroAboutUs1" value="{{ $aboutUs->linkHeroAboutUs1 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonNameHeroAboutUs1">Hero About Us Button Name 1</label>
+                <input type="text" class="form-control" id="buttonNameHeroAboutUs1" name="buttonNameHeroAboutUs1" value="{{ $aboutUs->buttonNameHeroAboutUs1 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="linkHeroAboutUs2">Hero About Us Link 2</label>
+                <input type="text" class="form-control" id="linkHeroAboutUs2" name="linkHeroAboutUs2" value="{{ $aboutUs->linkHeroAboutUs2 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonNameHeroAboutUs2">Hero About Us Button Name 2</label>
+                <input type="text" class="form-control" id="buttonNameHeroAboutUs2" name="buttonNameHeroAboutUs2" value="{{ $aboutUs->buttonNameHeroAboutUs2 }}">
+            </div>
+
+            <div class="form-group">
                 <label for="imageHeroAboutUsPath">Image Hero About Us</label>
                 <input type="file" class="form-control-file" id="imageHeroAboutUsPath" name="imageHeroAboutUsPath">
                 @if($aboutUs->imageHeroAboutUsPath)
