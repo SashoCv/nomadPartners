@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#heroSection">Hero Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testimonialSection">Testimonial Section</a>
+                    <a class="nav-link" href="#testimonialSection">Info Carts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#aboutSection">About Section</a>

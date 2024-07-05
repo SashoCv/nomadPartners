@@ -30,7 +30,7 @@
                     <a class="nav-link" href="#heroSection">Hero Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testimonialSection">Testimonial Section</a>
+                    <a class="nav-link" href="#testimonialSection">Info Carts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#aboutSection">About Section</a>
@@ -81,7 +81,7 @@
         </div>
 
         <div id="testimonialSection">
-            <h2 class="section-heading">Testimonial Section</h2>
+            <h2 class="section-heading">Info Carts</h2>
             <div class="form-group">
                 <label for="testimonialTitleOne">Testimonial Title One</label>
                 <input type="text" class="form-control" id="testimonialTitleOne" name="testimonialTitleOne">
