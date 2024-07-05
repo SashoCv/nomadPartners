@@ -47,6 +47,11 @@
             </div>
 
             <div class="form-group">
+                <label for="subtitleContact">Description</label>
+                <textarea type="text" class="form-control" id="descriptionContact" name="descriptionContact">
+            </div>
+
+            <div class="form-group">
                 <label for="addressContact">Address</label>
                 <input type="text" class="form-control" id="addressContact" name="addressContact">
             </div>

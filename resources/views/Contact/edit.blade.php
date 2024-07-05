@@ -56,6 +56,11 @@
             </div>
 
             <div class="form-group">
+                <label for="descriptionContact">Description</label>
+                <textarea class="form-control" id="descriptionContact" name="descriptionContact">{{ $contact->descriptionContact }}</textarea>
+            </div>
+
+            <div class="form-group">
                 <label for="addressContact">Address Contact</label>
                 <input type="text" class="form-control" id="addressContact" name="addressContact" value="{{ $contact->addressContact }}">
             </div>

@@ -35,6 +35,7 @@ class ContactController extends Controller
         try {
             $contact = new Contact();
             $contact->titleContact = $request->titleContact;
+            $contact->descriptionContact = $request->descriptionContact;
             $contact->subtitleContact = $request->subtitleContact;
             $contact->addressContact = $request->addressContact;
             $contact->phoneContact = $request->phoneContact;
@@ -80,6 +81,7 @@ class ContactController extends Controller
         try {
             $contact = Contact::find($id);
             $contact->titleContact = $request->titleContact;
+            $contact->descriptionContact = $request->descriptionContact;
             $contact->subtitleContact = $request->subtitleContact;
             $contact->addressContact = $request->addressContact;
             $contact->phoneContact = $request->phoneContact;

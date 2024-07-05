@@ -14,6 +14,13 @@ $contactPage = Contact::all();
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">
+                Dashboard
+            </a>
+            <i class="fa-solid fa-chart-line"></i>
+        </li>
+
         <li class="nav-item d-flex align-items-center justify-content-between">
             @if($home->isEmpty())
             <a href="{{ route('admin.homePageView') }}" class="nav-link link-dark {{ request()->routeIs('admin.homePageView') ? 'underline' : '' }}">
