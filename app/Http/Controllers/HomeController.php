@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\HomePageResource;
+use App\Models\Blog;
 use App\Models\Home;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +24,15 @@ class HomeController extends Controller
     {
         try {
             $home = Home::first();
-            return response()->json($home);
+            $latestFourBlogs = Blog::latest()->take(4)->get();
+            $allPartners = Partner::all();
+
+            return response()->json([
+                'status' => 200,
+                'home' => $home,
+                'latestFourBlogs' => $latestFourBlogs,
+                'allPartners' => $allPartners
+            ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['error' => 'Error fetching home page'], 500);
