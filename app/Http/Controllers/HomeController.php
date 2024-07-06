@@ -27,12 +27,14 @@ class HomeController extends Controller
             $latestFourBlogs = Blog::latest()->take(4)->get();
             $allPartners = Partner::all();
 
-            return response()->json([
-                'status' => 200,
-                'home' => $home,
-                'latestFourBlogs' => $latestFourBlogs,
-                'allPartners' => $allPartners
-            ]);
+            return response()->json($home);
+
+            // return response()->json([
+            //     'status' => 200,
+            //     'home' => $home,
+            //     'latestFourBlogs' => $latestFourBlogs,
+            //     'allPartners' => $allPartners
+            // ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['error' => 'Error fetching home page'], 500);
