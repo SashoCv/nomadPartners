@@ -31,17 +31,17 @@ class ContactFormController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'full_name' => 'required',
                 'email' => 'required|email',
                 'message' => 'required',
             ]);
 
-
             $contactForm = new ContactForm();
-            $contactForm->name = $request->name;
+            $contactForm->full_name = $request->full_name;
             $contactForm->email = $request->email;
             $contactForm->message = $request->message;
             $contactForm->save();
+
             
             return response()->json([
                 'message' => 'Message sent successfully'

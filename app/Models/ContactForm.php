@@ -10,10 +10,9 @@ class ContactForm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'full_name',
         'email',
         'message',
     ];
 
-    protected $table = 'contact_forms';
 }
