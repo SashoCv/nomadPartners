@@ -13,7 +13,8 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-       return view('Dashboard.index');
+        $allContactForms = ContactForm::all();
+       return view('Dashboard.index', compact('allContactForms'));
     }
 
     /**

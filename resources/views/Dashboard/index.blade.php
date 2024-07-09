@@ -31,19 +31,27 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="col-2">John Doe</td>
-            <td class="col-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus ac libero ultrices aliquam. Donec nec nunc nec nunc.</td>
-            <td class="col-3">
-                <a href="">saso@gmail.com</a>
-            </td>
-            
-            <td class="col-2">
-                <button type="button" class="btn-sideBar" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-partner="John Doe" data-action="{{ route('admin.deletePartner', 1) }}">
-                    Delete
-                </button>
-            </td>
-        </tr>
+        @if($allContactForms->count() > 0)
+            @foreach ($allContactForms as $contactForm)
+                <tr>
+                    <td class="col-2">{{ $contactForm->full_name }}</td>
+                    <td class="col-5">{{ $contactForm->message }}</td>
+                    <td class="col-3">
+                        <a href="mailto:{{ $contactForm->email }}">{{ $contactForm->email }}</a>
+                    </td>
+                    
+                    <td class="col-2">
+                        <button type="button" class="btn-sideBar">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="4">No messages found.</td>
+            </tr>
+        @endif
     </tbody>
 </table>
 
