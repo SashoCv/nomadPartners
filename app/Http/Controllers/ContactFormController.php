@@ -13,7 +13,7 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-        //
+       return view('Dashboard.index');
     }
 
     /**
@@ -36,8 +36,17 @@ class ContactFormController extends Controller
                 'message' => 'required',
             ]);
 
-            ContactForm::create($request->all());
-            return redirect()->back()->with('success', 'Message sent successfully');
+
+            $contactForm = new ContactForm();
+            $contactForm->name = $request->name;
+            $contactForm->email = $request->email;
+            $contactForm->message = $request->message;
+            $contactForm->save();
+            
+            dd($contactForm);
+            return response()->json([
+                'message' => 'Message sent successfully'
+            ], 200);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

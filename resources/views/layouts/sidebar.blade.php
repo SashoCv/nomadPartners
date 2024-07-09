@@ -15,7 +15,7 @@ $contactPage = Contact::all();
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item d-flex align-items-center justify-content-between">
-            <a href="" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">
+            <a href=" {{route('admin.dashboardView')}} " class="nav-link link-dark {{ request()->routeIs('admin.dashboardView') ? 'underline' : '' }}">
                 Dashboard
             </a>
             <i class="fa-solid fa-chart-line"></i>
@@ -27,7 +27,7 @@ $contactPage = Contact::all();
                 Home Page
             </a>
             @else
-            <a href="{{ route('admin.homeViewForUpdate') }}" class="nav-link link-dark {{ request()->routeIs('admin.homePageView') ? 'underline' : '' }}">
+            <a href="{{ route('admin.homeViewForUpdate') }}" class="nav-link link-dark {{ request()->routeIs('admin.homeViewForUpdate') ? 'underline' : '' }}">
                 Home Page
             </a>
             @endif
