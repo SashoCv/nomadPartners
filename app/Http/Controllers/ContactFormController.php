@@ -43,7 +43,6 @@ class ContactFormController extends Controller
             $contactForm->message = $request->message;
             $contactForm->save();
             
-            dd($contactForm);
             return response()->json([
                 'message' => 'Message sent successfully'
             ], 200);
