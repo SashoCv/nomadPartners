@@ -29,9 +29,9 @@
     <div class="form-group w-100 mb-3">
         <label for="picturePathBlog">Blog Picture</label>
         <input type="file" id="picturePathBlog" name="picturePathBlog" class="form-control-file">
-        <div>
+        <div style="width: 200px">
         @if ($blog->picturePathBlog)
-            <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Picture" style="max-width: 100px; margin-top: 10px;">
+            <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Picture" style="width: 100%; margin-top: 10px;">
         @endif
         </div>
     </div>

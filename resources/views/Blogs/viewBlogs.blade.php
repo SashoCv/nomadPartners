@@ -21,7 +21,8 @@
     }
 
     .blog-thumbnail {
-        max-width: 100px; /* Adjust the maximum width as per your design */
+        max-width: 100px;
+        /* Adjust the maximum width as per your design */
         height: auto;
         display: block;
         margin-bottom: 10px;
@@ -45,27 +46,29 @@
     </thead>
     <tbody>
         @foreach($blogs as $blog)
-            <tr>
-                <td>
-                    @if($blog->picturePathBlog)
-                        <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Image" class="blog-thumbnail">
-                    @else
-                        <span>No Image</span>
-                    @endif
-                </td>
-                <td>{{ $blog->titleOfBlog }}</td>
-                <td>{{ $blog->user->email }}</td>
-                <td>{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
-                <td>{{ $blog->created_at->format('F j, Y') }}</td>
-                <td>
-                    <a href="{{ route('admin.editBlogPost', $blog->id) }}" class="btnBlogsEdit">Edit</a>
-                    <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0 p-0" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btnBlogsEdit">Delete</button>
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @if($blog->picturePathBlog)
+                <div style="width: 150px; height: 150px">
+                    <img src="{{ asset('storage/' . $blog->picturePathBlog) }}" alt="Blog Image" class="blog-thumbnail" style="width: 100%;">
+                </div>
+                @else
+                <span>No Image</span>
+                @endif
+            </td>
+            <td>{{ $blog->titleOfBlog }}</td>
+            <td>{{ $blog->user->email }}</td>
+            <td>{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
+            <td>{{ $blog->created_at->format('F j, Y') }}</td>
+            <td>
+                <a href="{{ route('admin.editBlogPost', $blog->id) }}" class="btnBlogsEdit">Edit</a>
+                <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0 p-0" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btnBlogsEdit">Delete</button>
+                </form>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>

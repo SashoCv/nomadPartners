@@ -34,7 +34,9 @@
         @foreach ($partners as $partner)
         <tr>
             <td>{{ $partner->namePartner }}</td>
-            <td><img src="{{ asset('storage/' .$partner->logoPath) }}" alt="Partner Logo" width="50"></td>
+            <td style="width: 100px; height: 100px">
+                <img src="{{ asset('storage/' .$partner->logoPath) }}" alt="Partner Logo" width="100%">
+            </td>
             <td><a href="{{ $partner->linkPartner }}" target="_blank">{{ $partner->linkPartner }}</a></td>
             <td>
                 <button type="button" class="btn-sideBar" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-partner="{{ $partner->namePartner }}" data-action="{{ route('admin.deletePartner', $partner->id) }}">

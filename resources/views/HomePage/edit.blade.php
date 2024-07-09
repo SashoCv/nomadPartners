@@ -83,7 +83,7 @@
                 <input type="file" class="form-control-file" id="imageHeroSectionPath" name="imageHeroSectionPath">
                 @if($home->imageHeroSectionPath)
                 <div>
-                    <img src="{{ asset('storage/' . $home->imageHeroSectionPath) }}" alt="Hero Section Image" style="max-width: 100px; margin-top: 10px;">
+                    <img src="{{ asset('storage/' . $home->imageHeroSectionPath) }}" alt="Hero Section Image" style="max-width: 200px; margin-top: 10px;">
                 </div>
                 @endif
             </div>
@@ -169,7 +169,7 @@
                 <input type="file" class="form-control-file" id="whoWeArePicturePathAbout" name="whoWeArePicturePathAbout">
                 <div>
                     @if($home->whoWeArePicturePathAbout)
-                    <img src="{{ asset('storage/' . $home->whoWeArePicturePathAbout) }}" alt="Who We Are Picture" style="max-width: 100px; margin-top: 10px;">
+                    <img src="{{ asset('storage/' . $home->whoWeArePicturePathAbout) }}" alt="Who We Are Picture" style="max-width: 200px; margin-top: 10px;">
                     @endif
                 </div>
             </div>
@@ -191,7 +191,7 @@
                 <label for="livePicturePath">Live Picture</label>
                 <input type="file" class="form-control-file" id="livePicturePath" name="livePicturePath">
                 @if($home->livePicturePath)
-                <img src="{{ asset($home->livePicturePath) }}" alt="Live Section Image" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset('storage/' . $home->livePicturePath) }}" alt="Live Section Image" style="max-width: 200px; margin-top: 10px;">
                 @endif
             </div>
         </div>
@@ -299,7 +299,7 @@
                 <label for="missionPicturePathOne">Mission Picture One</label>
                 <input type="file" class="form-control-file" id="missionPicturePathOne" name="missionPicturePathOne">
                 @if($home->missionPicturePathOne)
-                <img src="{{ asset($home->missionPicturePathOne) }}" alt="Mission Picture One" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset('storage/' . $home->missionPicturePathOne) }}" alt="Mission Picture One" style="max-width: 200px; margin-top: 10px;">
                 @endif
             </div>
 
@@ -307,7 +307,7 @@
                 <label for="missionPicturePathTwo">Mission Picture Two</label>
                 <input type="file" class="form-control-file" id="missionPicturePathTwo" name="missionPicturePathTwo">
                 @if($home->missionPicturePathTwo)
-                <img src="{{ asset($home->missionPicturePathTwo) }}" alt="Mission Picture Two" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset('storage/' . $home->missionPicturePathTwo) }}" alt="Mission Picture Two" style="max-width: 200px; margin-top: 10px;">
                 @endif
             </div>
 
@@ -315,7 +315,7 @@
                 <label for="missionPicturePathThree">Mission Picture Three</label>
                 <input type="file" class="form-control-file" id="missionPicturePathThree" name="missionPicturePathThree">
                 @if($home->missionPicturePathThree)
-                <img src="{{ asset($home->missionPicturePathThree) }}" alt="Mission Picture Three" style="max-width: 100px; margin-top: 10px;">
+                <img src="{{ asset('storage/' . $home->missionPicturePathThree) }}" alt="Mission Picture Three" style="max-width: 200px; margin-top: 10px;">
                 @endif
             </div>
         </div>
