@@ -30,10 +30,10 @@
                     <a class="nav-link" href="#heroSection">Hero Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testimonialSection">Info Carts</a>
+                        <a class="nav-link" href="#testimonialSection">Info Cards</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#aboutSection">About Section</a>
+                    <a class="nav-link" href="#aboutSection">About / Who we are sections</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#liveSection">Live Section</a>
@@ -81,19 +81,19 @@
         </div>
 
         <div id="testimonialSection">
-            <h2 class="section-heading">Info Carts</h2>
+            <h2 class="section-heading">Info Cards</h2>
             <div class="form-group">
-                <label for="testimonialTitleOne">Testimonial Title One</label>
+                <label for="testimonialTitleOne">Info Card Title One</label>
                 <input type="text" class="form-control" id="testimonialTitleOne" name="testimonialTitleOne">
             </div>
 
             <div class="form-group">
-                <label for="testimonialContentOne">Testimonial Content One</label>
+                <label for="testimonialContentOne">Info Card Content One</label>
                 <textarea class="form-control" id="testimonialContentOne" name="testimonialContentOne"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="linkTestimonialOne">Link Testimonial One</label>
+                <label for="linkTestimonialOne">Link Info One</label>
                 <input type="text" class="form-control" id="linkTestimonialOne" name="linkTestimonialOne">
             </div>
 
@@ -103,22 +103,22 @@
             </div>
 
             <div class="form-group">
-                <label for="contentTestimonialTwo">Content Testimonial Two</label>
+                <label for="contentTestimonialTwo">Content Info Card Two</label>
                 <textarea class="form-control" id="contentTestimonialTwo" name="contentTestimonialTwo"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="linkTestimonialTwo">Link Testimonial Two</label>
+                <label for="linkTestimonialTwo">Link Info Card Two</label>
                 <input type="text" class="form-control" id="linkTestimonialTwo" name="linkTestimonialTwo">
             </div>
 
             <div class="form-group">
-                <label for="titleTestimonialThree">Title Testimonial Three</label>
+                <label for="titleTestimonialThree">Title Info Card Three</label>
                 <input type="text" class="form-control" id="titleTestimonialThree" name="titleTestimonialThree">
             </div>
 
             <div class="form-group">
-                <label for="contentTestimonialThree">Content Testimonial Three</label>
+                <label for="contentTestimonialThree">Content Info Card Three</label>
                 <textarea class="form-control" id="contentTestimonialThree" name="contentTestimonialThree"></textarea>
             </div>
 
@@ -129,7 +129,7 @@
         </div>
 
         <div id="aboutSection">
-            <h2 class="section-heading">About Section</h2>
+            <h2 class="section-heading">About / Who we are sections</h2>
             <div class="form-group">
                 <label for="titleAbout">Title About</label>
                 <input type="text" class="form-control" id="titleAbout" name="titleAbout">

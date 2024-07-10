@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HomePageResource;
 use App\Models\Blog;
 use App\Models\Home;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -24,7 +22,7 @@ class HomeController extends Controller
     {
         try {
             $home = Home::first();
-            $latestFourBlogs = Blog::latest()->take(4)->get();
+            $latestFourBlogs = Blog::latest()->take(8)->get();
             $allPartners = Partner::all();
 
 
@@ -72,6 +70,8 @@ class HomeController extends Controller
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
+            $home->buttonTextAbout = $request->input('buttonTextAbout');
+            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
             $home->liveTitle = $request->input('liveTitle');
             $home->liveContent = $request->input('liveContent');
             $home->chooseUsTitle = $request->input('chooseUsTitle');
@@ -173,6 +173,8 @@ class HomeController extends Controller
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
+            $home->buttonTextAbout = $request->input('buttonTextAbout');
+            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
             $home->whoWeAreTitleAbout = $request->input('whoWeAreTitleAbout');
             $home->whoWeAreContentAbout = $request->input('whoWeAreContentAbout');
             $home->liveTitle = $request->input('liveTitle');

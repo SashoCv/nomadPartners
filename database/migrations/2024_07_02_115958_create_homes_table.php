@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('linkTestimonialThree')->nullable();
             $table->string('titleAbout')->nullable();
             $table->string('subtitleAbout')->nullable();
+            $table->string('buttonTextAbout')->nullable();
+            $table->string('buttonLinkAbout')->nullable();
             $table->string('contentAbout')->nullable();
             $table->string('liveTitle')->nullable();
             $table->string('liveContent')->nullable();
