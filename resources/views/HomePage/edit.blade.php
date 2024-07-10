@@ -33,10 +33,10 @@
                     <a class="nav-link" href="#heroSection">Hero Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testimonialSection">Testimonial Section</a>
+                    <a class="nav-link" href="#testimonialSection">Info cards section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#aboutSection">About Section</a>
+                    <a class="nav-link" href="#aboutSection">About / Who we are sections</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#liveSection">Live Section</a>
@@ -90,44 +90,44 @@
         </div>
 
         <div id="testimonialSection" class="section-content">
-            <h2 class="section-heading">Testimonial Section</h2>
+            <h2 class="section-heading">Info Cards Session</h2>
             <div class="form-group">
-                <label for="testimonialTitleOne">Testimonial Title One</label>
+                <label for="testimonialTitleOne">Info Card One</label>
                 <input type="text" class="form-control" id="testimonialTitleOne" name="testimonialTitleOne" value="{{ $home->testimonialTitleOne }}">
             </div>
 
             <div class="form-group">
-                <label for="testimonialContentOne">Testimonial Content One</label>
+                <label for="testimonialContentOne">Info Card Content One</label>
                 <textarea class="form-control" id="testimonialContentOne" name="testimonialContentOne">{{ $home->testimonialContentOne }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="linkTestimonialOne">Link Testimonial One</label>
+                <label for="linkTestimonialOne">Link Info Card One</label>
                 <input type="text" class="form-control" id="linkTestimonialOne" name="linkTestimonialOne" value="{{ $home->linkTestimonialOne }}">
             </div>
 
             <div class="form-group">
-                <label for="titleTestimonialTwo">Title Testimonial Two</label>
+                <label for="titleTestimonialTwo">Title Info Card Two</label>
                 <input type="text" class="form-control" id="titleTestimonialTwo" name="titleTestimonialTwo" value="{{ $home->titleTestimonialTwo }}">
             </div>
 
             <div class="form-group">
-                <label for="contentTestimonialTwo">Content Testimonial Two</label>
+                <label for="contentTestimonialTwo">Content Info Card Two</label>
                 <textarea class="form-control" id="contentTestimonialTwo" name="contentTestimonialTwo">{{ $home->contentTestimonialTwo }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="linkTestimonialTwo">Link Testimonial Two</label>
+                <label for="linkTestimonialTwo">Link Info Card Two</label>
                 <input type="text" class="form-control" id="linkTestimonialTwo" name="linkTestimonialTwo" value="{{ $home->linkTestimonialTwo }}">
             </div>
 
             <div class="form-group">
-                <label for="titleTestimonialThree">Title Testimonial Three</label>
+                <label for="titleTestimonialThree">Title Info Card Three</label>
                 <input type="text" class="form-control" id="titleTestimonialThree" name="titleTestimonialThree" value="{{ $home->titleTestimonialThree }}">
             </div>
 
             <div class="form-group">
-                <label for="contentTestimonialThree">Content Testimonial Three</label>
+                <label for="contentTestimonialThree">Content Info Card Three</label>
                 <textarea class="form-control" id="contentTestimonialThree" name="contentTestimonialThree">{{ $home->contentTestimonialThree }}</textarea>
             </div>
 
@@ -138,21 +138,27 @@
         </div>
 
         <div id="aboutSection" class="section-content">
-            <h2 class="section-heading">About Section</h2>
+            <h2 class="section-heading">About / Who we are sections</h2>
             <div class="form-group">
                 <label for="titleAbout">Title About</label>
                 <input type="text" class="form-control" id="titleAbout" name="titleAbout" value="{{ $home->titleAbout }}">
             </div>
 
             <div class="form-group">
-                <label for="subtitleAbout">Subtitle About</label>
-                <input type="text" class="form-control" id="subtitleAbout" name="subtitleAbout" value="{{ $home->subtitleAbout }}">
-            </div>
-
-            <div class="form-group">
                 <label for="contentAbout">Content About</label>
                 <textarea class="form-control" id="contentAbout" name="contentAbout">{{ $home->contentAbout }}</textarea>
             </div>
+
+            <div class="form-group">
+                <label for="buttonTextAbout">Button Text About</label>
+                <input type="text" class="form-control" id="buttonTextAbout" name="buttonTextAbout" value="{{ $home->buttonTextAbout }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonLinkAbout">Button Link About</label>
+                <textarea class="form-control" id="buttonLinkAbout" name="buttonLinkAbout">{{ $home->buttonLinkAbout }}</textarea>
+            </div>
+
 
             <div class="form-group">
                 <label for="whoWeAreTitleAbout">Who We Are Title</label>
