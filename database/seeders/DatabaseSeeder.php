@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\HomeController;
-use App\Models\Blog;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +21,7 @@ class DatabaseSeeder extends Seeder
             HomeSeeder::class,
             BlogSeeder::class,
             BlogCategorySeeder::class,
-            AboutUsSeeder::class
+            AboutUsSeeder::class,
         ]);
     }
 }

@@ -36,6 +36,10 @@ return new class extends Migration
             $table->string('liveContent')->nullable();
             $table->string('livePictureName')->nullable();
             $table->string('livePicturePath')->nullable();
+            $table->string('buttonText1')->nullable();
+            $table->string('buttonLink1')->nullable();
+            $table->string('buttonText2')->nullable();
+            $table->string('buttonLink2')->nullable();
             $table->string('chooseUsTitle')->nullable();
             $table->string('chooseUsContent')->nullable();
             $table->string('listTitleOne')->nullable();
@@ -44,6 +48,8 @@ return new class extends Migration
             $table->string('listContentTwo')->nullable();
             $table->string('listTitleThree')->nullable();
             $table->string('listContentThree')->nullable();
+            $table->string('listTitleFour')->nullable();
+            $table->string('listContentFour')->nullable();
             $table->string('missionTitle')->nullable();
             $table->string('missionContent')->nullable();
             $table->string('missionPictureNameOne')->nullable();
@@ -52,6 +58,12 @@ return new class extends Migration
             $table->string('missionPicturePathTwo')->nullable();
             $table->string('missionPictureNameThree')->nullable();
             $table->string('missionPicturePathThree')->nullable();
+            $table->string('missionPictureNameFour')->nullable();
+            $table->string('missionPicturePathFour')->nullable();
+            $table->string('getStartedTitle')->nullable();
+            $table->string('getStartedDescription')->nullable();
+            $table->string('getStartedButton')->nullable();
+            $table->string('getStartedLink')->nullable();
             $table->string('partnersTitle')->nullable();
             $table->string('partnersSubtitle')->nullable();
             $table->timestamps();

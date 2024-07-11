@@ -42,13 +42,16 @@
                     <a class="nav-link" href="#liveSection">Live Section</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#chooseUsSection">Choose Us Section</a>
+                    <a class="nav-link" href="#chooseUsSection">Choose Us Section Stats</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#listSection">List Section</a>
+                    <a class="nav-link" href="#listSection">Choose Us Section List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#missionSection">Mission Section</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#getStartedSection">Get Started Section</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#partnersSection">Partners Section</a>
@@ -194,6 +197,26 @@
             </div>
 
             <div class="form-group">
+                <label for="buttonText1">Live Button 1</label>
+                <input type="text" class="form-control" id="buttonText1" name="buttonText1" value="{{ $home->buttonText1 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonLink1">Live Text 1</label>
+                <input type="text" class="form-control" id="buttonLink1" name="buttonLink1" value="{{ $home->buttonLink1 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonText2">Live Button 2</label>
+                <input type="text" class="form-control"  id="buttonLink1" name="buttonText2" value="{{ $home->buttonText2 }}">
+            </div>
+
+            <div class="form-group">
+                <label for="buttonLink2">Live Text 2</label>
+                <input type="text" class="form-control" id="buttonLink2" name="buttonLink2" value="{{ $home->buttonLink2 }}">
+            </div>
+
+            <div class="form-group">
                 <label for="livePicturePath">Live Picture</label>
                 <input type="file" class="form-control-file" id="livePicturePath" name="livePicturePath">
                 @if($home->livePicturePath)
@@ -203,7 +226,7 @@
         </div>
 
         <div id="chooseUsSection" class="section-content">
-            <h2 class="section-heading">Choose Us Section</h2>
+            <h2 class="section-heading">Choose Us Section Stats</h2>
             <div class="form-group">
                 <label for="chooseUsTitle">Choose Us Title</label>
                 <input type="text" class="form-control" id="chooseUsTitle" name="chooseUsTitle" value="{{ $home->chooseUsTitle }}">
@@ -287,6 +310,17 @@
                 <label for="listContentThree">List Content Three</label>
                 <textarea class="form-control" id="listContentThree" name="listContentThree">{{ $home->listContentThree }}</textarea>
             </div>
+
+            <div class="form-group">
+                <label for="listTitleFour">List Title Four</label>
+                <input type="text" class="form-control" id="listTitleFour" name="listTitleFour" value="{{ $home->listTitleFour }}">
+            </div>
+
+            <div class="form-group">
+                <label for="listContentFour">List Content Four</label>
+                <textarea class="form-control" id="listContentFour" name="listContentFour">{{ $home->listContentFour }}</textarea>
+            </div>
+
         </div>
 
         <div id="missionSection" class="section-content">
@@ -324,6 +358,38 @@
                 <img src="{{ asset('storage/' . $home->missionPicturePathThree) }}" alt="Mission Picture Three" style="max-width: 200px; margin-top: 10px;">
                 @endif
             </div>
+
+            <div class="form-group">
+                <label for="missionPicturePathFour">Mission Picture Four ( Signature )</label>
+                <input type="file" class="form-control-file" id="missionPicturePathFour" name="missionPicturePathFour">
+                @if($home->missionPicturePathFour)
+                    <img src="{{ asset('storage/' . $home->missionPicturePathFour) }}" alt="Mission Picture Four" style="max-width: 200px; margin-top: 10px;">
+                @endif
+            </div>
+        </div>
+
+        <div id="getStartedSection" class="section-content">
+            <h2 class="section-heading">Get Started Section</h2>
+            <div class="form-group">
+                <label for="getStartedTitle">Get Started Title</label>
+                <input type="text" class="form-control" id="getStartedTitle" name="getStartedTitle" value="{{ $home->getStartedTitle }}">
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedDescription">Get Started Description</label>
+                <textarea class="form-control" id="getStartedDescription" name="getStartedDescription">{{ $home->getStartedDescription }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedButton">Get Started Button</label>
+                <input type="text" class="form-control" id="getStartedButton" name="getStartedButton" value="{{ $home->getStartedButton }}">
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedLink">Get Started Link</label>
+                <input class="form-control" id="getStartedLink" name="getStartedLink" value="{{ $home->getStartedLink }}">
+            </div>
+
         </div>
 
         <div id="partnersSection" class="section-content">

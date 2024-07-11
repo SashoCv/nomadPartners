@@ -25,6 +25,8 @@ class HomeController extends Controller
             $latestFourBlogs = Blog::latest()->take(8)->get();
             $allPartners = Partner::all();
 
+            // Some modification on the data that we need on the FE.
+            $home = $this->transformHomeData($home);
 
             return response()->json([
                 'status' => 200,
@@ -74,6 +76,10 @@ class HomeController extends Controller
             $home->buttonLinkAbout = $request->input('buttonLinkAbout');
             $home->liveTitle = $request->input('liveTitle');
             $home->liveContent = $request->input('liveContent');
+            $home->buttonText1 = $request->input('buttonText1');
+            $home->buttonLink1 = $request->input('buttonLink1');
+            $home->buttonText2 = $request->input('buttonText2');
+            $home->buttonLink2 = $request->input('buttonLink2');
             $home->chooseUsTitle = $request->input('chooseUsTitle');
             $home->chooseUsContent = $request->input('chooseUsContent');
             $home->listTitleOne = $request->input('listTitleOne');
@@ -82,6 +88,8 @@ class HomeController extends Controller
             $home->listContentTwo = $request->input('listContentTwo');
             $home->listTitleThree = $request->input('listTitleThree');
             $home->listContentThree = $request->input('listContentThree');
+            $home->listTitleFour = $request->input('listTitleFour');
+            $home->listContentFour = $request->input('listContentFour');
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
             $home->partnersTitle = $request->input('partnersTitle');
@@ -94,6 +102,10 @@ class HomeController extends Controller
             $home->statsNumberThree = $request->input('statsNumberThree');
             $home->statsTitleFour = $request->input('statsTitleFour');
             $home->statsNumberFour = $request->input('statsNumberFour');
+            $home->getStartedTitle = $request->input('getStartedTitle');
+            $home->getStartedDescription = $request->input('getStartedDescription');
+            $home->getStartedButton = $request->input('getStartedButton');
+            $home->getStartedLink = $request->input('getStartedLink');
 
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('images');
@@ -123,6 +135,12 @@ class HomeController extends Controller
                 $path = $request->file('missionPicturePathThree')->store('images');
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
                 $home->missionPicturePathThree = $path;
+            }
+
+            if ($request->hasFile('missionPicturePathFour')) {
+                $path = $request->file('missionPicturePathFour')->store('images');
+                $home->missionPictureNameFour = $request->file('missionPicturePathFour')->getClientOriginalName();
+                $home->missionPicturePathFour = $path;
             }
 
             $home->save();
@@ -179,6 +197,10 @@ class HomeController extends Controller
             $home->whoWeAreContentAbout = $request->input('whoWeAreContentAbout');
             $home->liveTitle = $request->input('liveTitle');
             $home->liveContent = $request->input('liveContent');
+            $home->buttonText1 = $request->input('buttonText1');
+            $home->buttonLink1 = $request->input('buttonLink1');
+            $home->buttonText2 = $request->input('buttonText2');
+            $home->buttonLink2 = $request->input('buttonLink2');
             $home->chooseUsTitle = $request->input('chooseUsTitle');
             $home->chooseUsContent = $request->input('chooseUsContent');
             $home->listTitleOne = $request->input('listTitleOne');
@@ -187,6 +209,8 @@ class HomeController extends Controller
             $home->listContentTwo = $request->input('listContentTwo');
             $home->listTitleThree = $request->input('listTitleThree');
             $home->listContentThree = $request->input('listContentThree');
+            $home->listTitleFour = $request->input('listTitleFour');
+            $home->listContentFour = $request->input('listContentFour');
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
             $home->partnersTitle = $request->input('partnersTitle');
@@ -199,6 +223,10 @@ class HomeController extends Controller
             $home->statsNumberThree = $request->input('statsNumberThree');
             $home->statsTitleFour = $request->input('statsTitleFour');
             $home->statsNumberFour = $request->input('statsNumberFour');
+            $home->getStartedTitle = $request->input('getStartedTitle');
+            $home->getStartedDescription = $request->input('getStartedDescription');
+            $home->getStartedButton = $request->input('getStartedButton');
+            $home->getStartedLink = $request->input('getStartedLink');
 
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
@@ -230,6 +258,12 @@ class HomeController extends Controller
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
 
+            if ($request->hasFile('missionPicturePathFour')) {
+                $path = $request->file('missionPicturePathFour')->store('images');
+                $home->missionPictureNameFour = $request->file('missionPicturePathFour')->getClientOriginalName();
+                $home->missionPicturePathFour = $path;
+            }
+
             if ($request->hasFile('whoWeArePicturePathAbout')) {
                 $path = $request->file('whoWeArePicturePathAbout')->store('aboutImages', 'public');
                 $home->whoWeArePicturePathAbout = $path;
@@ -252,5 +286,81 @@ class HomeController extends Controller
     public function destroy(Home $home)
     {
         //
+    }
+
+    /**
+     * Modify the data so we will just use on FE.
+     */
+    protected function transformHomeData($home) {
+        $home->cardsInfoArray = [
+            [
+                'title' => $home->testimonialTitleOne ?? "",
+                'subtitle' => $home->testimonialContentOne ?? "",
+                'href' => $home->linkTestimonialOne ?? "",
+                'Icon' => 'Users',
+            ],
+            [
+                'title' => $home->titleTestimonialTwo ?? "",
+                'subtitle' => $home->contentTestimonialTwo ?? "",
+                'href' => $home->linkTestimonialTwo ?? "",
+                'Icon' => 'Globe',
+            ],
+            [
+                'title' => $home->titleTestimonialThree ?? "",
+                'subtitle' => $home->contentTestimonialThree ?? "",
+                'href' => $home->linkTestimonialThree ?? "",
+                'Icon' => 'MessageSquareText',
+            ],
+        ];
+
+        unset($home->testimonialTitleOne, $home->testimonialContentOne, $home->linkTestimonialOne);
+        unset($home->titleTestimonialTwo, $home->contentTestimonialTwo, $home->linkTestimonialTwo);
+        unset($home->titleTestimonialThree, $home->contentTestimonialThree, $home->linkTestimonialThree);
+
+        $home->statItemsArray = [
+            [
+                'value' => $home->statsNumberOne ?? "",
+                'description' => $home->statsTitleOne ?? "",
+            ],
+            [
+                'value' => $home->statsNumberTwo ?? "",
+                'description' => $home->statsTitleTwo ?? "",
+            ],
+            [
+                'value' => $home->statsNumberThree ?? "",
+                'description' => $home->statsTitleThree ?? "",
+            ],
+            [
+                'value' => $home->statsNumberFour ?? "",
+                'description' => $home->statsTitleFour ?? "",
+            ],
+        ];
+
+        unset($home->statsNumberOne, $home->statsTitleOne, $home->statsNumberTwo, $home->statsTitleTwo);
+        unset($home->statsNumberThree, $home->statsTitleThree, $home->statsNumberFour, $home->statsTitleFour);
+
+        $home->statsFeatures = [
+            [
+                'title' => $home->listTitleOne ?? "",
+                'description' => $home->listContentOne ?? "",
+            ],
+            [
+                'title' => $home->listTitleTwo ?? "",
+                'description' => $home->listContentTwo ?? "",
+            ],
+            [
+                'title' => $home->listTitleThree ?? "",
+                'description' => $home->listContentThree ?? "",
+            ],
+            [
+                'title' => $home->listTitleFour ?? "",
+                'description' => $home->listContentFour ?? "",
+            ],
+        ];
+
+        unset($home->listTitleOne, $home->listContentOne, $home->listTitleTwo, $home->listContentTwo);
+        unset($home->listTitleThree, $home->listContentThree, $home->listTitleFour, $home->listContentFour);
+
+        return $home;
     }
 }
