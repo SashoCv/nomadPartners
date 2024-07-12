@@ -48,6 +48,9 @@
                     <a class="nav-link" href="#missionSection">Mission Section</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#getStartedSection">Get Started Section</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#partnersSection">Partners Section</a>
                 </li>
             </ul>
@@ -237,6 +240,30 @@
                 <input type="file" class="form-control-file" id="missionPicturePathThree" name="missionPicturePathThree">
             </div>
         </div>
+
+        <div id="getStartedSection">
+            <h2 class="section-heading">Get Started Section</h2>
+            <div class="form-group">
+                <label for="getStartedTitle">Get Started Title</label>
+                <input type="text" class="form-control" id="getStartedTitle" name="getStartedTitle">
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedDescription">Get Started Description</label>
+                <textarea class="form-control" id="getStartedDescription" name="getStartedDescription"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedButton">Get Started Button</label>
+                <input type="text" class="form-control" id="getStartedButton" name="getStartedButton">
+            </div>
+
+            <div class="form-group">
+                <label for="getStartedLink">Get Started Link</label>
+                <textarea class="form-control" id="getStartedLink" name="getStartedLink"></textarea>
+            </div>
+        </div>
+
 
         <div id="partnersSection">
             <h2 class="section-heading">Partners Section</h2>
