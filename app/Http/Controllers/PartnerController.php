@@ -23,7 +23,7 @@ class PartnerController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
        }
     }
-    
+
     public function getPartnersApi()
     {
         try {
@@ -46,7 +46,7 @@ class PartnerController extends Controller
             $partner->namePartner = $request->namePartner;
             $partner->linkPartner = $request->linkPartner;
             $partner->home_id = $homeId;
-                        
+
             if ($request->hasFile('logoPathPartner')) {
                 Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
                 $name = Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
@@ -75,15 +75,36 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $partner = Partner::findOrFail($id);
+            $partner->namePartner = $request->namePartner;
+            $partner->linkPartner = $request->linkPartner;
+
+            if ($request->hasFile('logoPathPartner')) {
+                // Delete the old logo if it exists
+                if ($partner->logoPath) {
+                    Storage::disk('public')->delete($partner->logoPath);
+                }
+
+                $name = $request->file('logoPathPartner')->store('partners', 'public');
+                $partner->logoPath = $name;
+                $partner->logoName = $request->file('logoPathPartner')->getClientOriginalName() ?? "logo name";
+            }
+
+            $partner->save();
+            return redirect()->route('admin.partnersView');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**

@@ -52,6 +52,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('partners', [PartnerController::class, 'index'])->name("admin.partnersView");
     Route::post('partners', [PartnerController::class, 'store'])->name("admin.partnersPost");
+    Route::put('/partners/{id}', [PartnerController::class, 'update'])->name('admin.updatePartner');
     Route::delete('partners/{id}', [PartnerController::class, 'destroy'])->name("admin.deletePartner");
 
     Route::get('contact', [ContactController::class, 'index'])->name("admin.contactView");
@@ -62,4 +63,4 @@ Route::middleware(['admin'])->group(function () {
     Route::get('dashboard', [ContactFormController::class, 'index'])->name("admin.dashboardView");
 
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");
-});     
+});
