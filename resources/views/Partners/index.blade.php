@@ -25,6 +25,7 @@
         <thead>
         <tr>
             <th>Name Partner</th>
+            <th>Subtitle Partner</th>
             <th>Logo Partner</th>
             <th>Link Partner</th>
             <th>Actions</th>
@@ -34,12 +35,13 @@
         @foreach ($partners as $partner)
             <tr>
                 <td>{{ $partner->namePartner }}</td>
+                <td>{{ $partner->subtitlePartner }}</td>
                 <td style="width: 100px; height: 100px">
                     <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" width="100%">
                 </td>
                 <td><a href="{{ $partner->linkPartner }}" target="_blank">{{ $partner->linkPartner }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-link="{{ $partner->linkPartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-link="{{ $partner->linkPartner }}" data-subtitle="{{ $partner->subtitlePartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-partner="{{ $partner->namePartner }}" data-action="{{ route('admin.deletePartner', $partner->id) }}">
@@ -69,6 +71,11 @@
                         <div class="form-group">
                             <label for="namePartner">Name Partner</label>
                             <input type="text" class="form-control" id="namePartner" name="namePartner">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subtitlePartner">Subtitle Partner</label>
+                            <input type="text" class="form-control" id="subtitlePartner" name="subtitlePartner">
                         </div>
 
                         <div class="form-group">
@@ -103,6 +110,11 @@
                         <div class="form-group">
                             <label for="editNamePartner">Name Partner</label>
                             <input type="text" class="form-control" id="editNamePartner" name="namePartner">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editSubtitlePartner">Name Partner</label>
+                            <input type="text" class="form-control" id="editSubtitlePartner" name="subtitlePartner">
                         </div>
 
                         <div class="form-group">
@@ -169,11 +181,13 @@
             var partnerName = button.data('name');
             var partnerLink = button.data('link');
             var partnerLogo = button.data('logo');
+            var partnerSubtitle = button.data('subtitle');
 
             var modal = $(this);
             var form = modal.find('#editPartnerForm');
             form.attr('action', '{{ url("partners") }}/' + partnerId);
             form.find('#editNamePartner').val(partnerName);
+            form.find('#editSubtitlePartner').val(partnerSubtitle);
             form.find('#editLinkPartner').val(partnerLink);
             form.find('#editLogoPreview').attr('src', partnerLogo);
         });
