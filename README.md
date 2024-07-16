@@ -90,3 +90,5 @@
     - `php artisan schedule:clear-cache`
 - Flush expired password reset tokens
     - `php artisan auth:clear-resets`
+- Run fresh migration and seed
+    - `php artisan migrate:fresh --seed --seeder=DatabaseSeeder`

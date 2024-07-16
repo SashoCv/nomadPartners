@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         try {
             $home = Home::first();
-            $latestFourBlogs = Blog::latest()->take(8)->get();
+            $latestFourBlogs = Blog::latest()->take(4)->get();
             $allPartners = Partner::all();
 
             // Some modification on the data that we need on the FE.

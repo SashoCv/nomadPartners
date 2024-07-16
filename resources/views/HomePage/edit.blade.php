@@ -19,6 +19,15 @@
     .section-content {
         display: none;
     }
+
+    .active-section {
+        display: block;
+    }
+
+    .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+    }
 </style>
 @endsection
 
@@ -410,16 +419,45 @@
 </div>
 
 <script>
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set the default section to be displayed
+        const defaultSectionId = '#heroSection';
+        const defaultSection = document.querySelector(defaultSectionId);
+        if (defaultSection) {
+            defaultSection.style.display = 'block';
+        }
+
+        // Set the default active tab
+        const defaultNavLink = document.querySelector(`.nav-link[href="${defaultSectionId}"]`);
+        if (defaultNavLink) {
+            defaultNavLink.classList.add('active');
+        }
+
+        // Add click event listeners to section navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    event.preventDefault();
+
+                    document.querySelectorAll('.section-content').forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+
+                    const section = document.querySelector(href);
+                    if (section) {
+                        section.style.display = 'block';
+                    }
+
+                    this.classList.add('active');
+                }
             });
-            const section = document.querySelector(this.getAttribute('href'));
-            if (section) {
-                section.style.display = 'block';
-            }
         });
     });
 </script>
+
 @endsection

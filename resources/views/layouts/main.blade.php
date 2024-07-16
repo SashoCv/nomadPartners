@@ -20,7 +20,7 @@
             width: 100%;
             margin-left: 260px;
             margin-right: 30px;
-            
+
         }
 
     </style>
