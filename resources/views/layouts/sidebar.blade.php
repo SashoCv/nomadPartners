@@ -14,12 +14,12 @@ $contactPage = Contact::all();
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-{{--    <li class="nav-item d-flex align-items-center justify-content-between">--}}
-{{--            <a href="" class="nav-link link-dark {{ request()->routeIs('admin.blogsView') ? 'underline' : '' }}">--}}
-{{--                Dashboard--}}
-{{--            </a>--}}
-{{--            <i class="fa-solid fa-chart-line"></i>--}}
-{{--        </li>--}}
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.dashboardView') }}" class="nav-link link-dark {{ request()->routeIs('admin.dashboardView') ? 'underline' : '' }}">
+                Dashboard
+            </a>
+            <i class="fa-solid fa-chart-line"></i>
+        </li>
 
         <li class="nav-item d-flex align-items-center justify-content-between">
             @if($home->isEmpty())
@@ -33,7 +33,7 @@ $contactPage = Contact::all();
             @endif
             <i class="fa-solid fa-house-chimney-window"></i>
         </li>
-            @if($aboutPage->isEmpty())
+        @if($aboutPage->isEmpty())
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.aboutUsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.aboutUsView') ? 'underline' : '' }}">
                 About Page
@@ -57,7 +57,7 @@ $contactPage = Contact::all();
 
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.createBlogView') }}" class="nav-link link-dark {{ request()->routeIs('admin.createBlogView') ? 'underline' : '' }}">
-               Add Blog
+                Add Blog
             </a>
             <i class="fa-brands fa-discourse"></i>
         </li>
