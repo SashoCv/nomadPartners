@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/styleHomePage.css">
 
     <style>
-        .formAddHomePage .form-group {
+        .formAddAboutUs .form-group {
             margin-bottom: 20px;
         }
 
@@ -45,25 +45,31 @@
                         <a class="nav-link" href="#whoWeAreSection">Who We Are</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#liveAboutUsSection">Live Section</a>
+                        <a class="nav-link" href="#ourMissionSection">Our Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contactUsSection">Contact Us Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutUsTextSection">About Us Text</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-        <form action="{{ route('admin.aboutUsUpdate', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" class="formAddHomePage">
+        <form action="{{ route('admin.aboutUsUpdate', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" class="formAddAboutUs">
             @csrf
             @method('PUT')
 
+            <!-- Hero About Us Section -->
             <div id="heroAboutUsSection" class="section-content">
-                <h2 class="section-heading">Hero About Us Section</h2>
                 <div class="form-group">
                     <label for="titleHeroAboutUs">Title Hero About Us</label>
-                    <input type="text" class="form-control" id="titleHeroAboutUs" name="titleHeroAboutUs" value="{{ $aboutUs->title }}">
+                    <input type="text" class="form-control" id="titleHeroAboutUs" name="titleHeroAboutUs" value="{{ $aboutUs->titleHeroAboutUs }}">
                 </div>
                 <div class="form-group">
                     <label for="subtitleHeroAboutUs">Subtitle Hero About Us</label>
-                    <input type="text" class="form-control" id="subtitleHeroAboutUs" name="subtitleHeroAboutUs" value="{{ $aboutUs->subtitle }}">
+                    <input type="text" class="form-control" id="subtitleHeroAboutUs" name="subtitleHeroAboutUs" value="{{ $aboutUs->subtitleHeroAboutUs }}">
                 </div>
                 <div class="form-group">
                     <label for="imageHeroAboutUsPath">Image Hero About Us</label>
@@ -88,112 +94,148 @@
                 </div>
             </div>
 
+            <!-- Testimonial About Us Section -->
             <div id="whoWeAreSection" class="section-content">
-                <h2 class="section-heading">Who We Are Section</h2>
+                <!-- Card 1 -->
                 <div class="form-group">
-                    <label for="titleWhoWeAre">Title Who We Are</label>
-                    <input type="text" class="form-control" id="titleWhoWeAre" name="titleWhoWeAre" value="{{ $aboutUs->titleWhoWeAre }}">
+                    <label for="iconWhoWeAre1">Icon 1</label>
+                    <input type="file" class="form-control-file" id="iconWhoWeAre1" name="iconWhoWeAre1">
                 </div>
                 <div class="form-group">
-                    <label for="contentWhoWeAre">Content Who We Are</label>
-                    <textarea class="form-control" id="contentWhoWeAre" name="contentWhoWeAre" rows="3">{{ $aboutUs->contentWhoWeAre }}</textarea>
+                    <label for="titleWhoWeAre1">Title 1</label>
+                    <input type="text" class="form-control" id="titleWhoWeAre1" name="titleWhoWeAre1" value="{{ $aboutUs->titleWhoWeAre1 }}">
                 </div>
                 <div class="form-group">
-                    <label for="whoWeArePictureAboutUs">Who We Are Picture About Us</label>
-                    <input type="file" class="form-control-file" id="whoWeArePictureAboutUs" name="whoWeArePictureAboutUs">
+                    <label for="contentWhoWeAre1">Content 1</label>
+                    <textarea class="form-control" id="contentWhoWeAre1" name="contentWhoWeAre1">{{ $aboutUs->contentWhoWeAre1 }}</textarea>
                 </div>
-            </div>
-
-            <div id="liveAboutUsSection" class="section-content">
-                <h2 class="section-heading">Live About Us Section</h2>
+                <!-- Card 2 -->
                 <div class="form-group">
-                    <label for="liveTitleAboutUs">Live Title About Us</label>
-                    <input type="text" class="form-control" id="liveTitleAboutUs" name="liveTitleAboutUs" value="{{ $aboutUs->liveTitleAboutUs }}">
+                    <label for="iconWhoWeAre2">Icon 2</label>
+                    <input type="file" class="form-control-file" id="iconWhoWeAre2" name="iconWhoWeAre2">
                 </div>
                 <div class="form-group">
-                    <label for="liveContentAboutUs">Live Content About Us</label>
-                    <textarea class="form-control" id="liveContentAboutUs" name="liveContentAboutUs" rows="3">{{ $aboutUs->liveContentAboutUs }}</textarea>
+                    <label for="titleWhoWeAre2">Title 2</label>
+                    <input type="text" class="form-control" id="titleWhoWeAre2" name="titleWhoWeAre2" value="{{ $aboutUs->titleWhoWeAre2 }}">
                 </div>
                 <div class="form-group">
-                    <label for="livePicturePathAboutUs">Live Picture Path About Us</label>
-                    <input type="file" class="form-control-file" id="livePicturePathAboutUs" name="livePicturePathAboutUs">
+                    <label for="contentWhoWeAre2">Content 2</label>
+                    <textarea class="form-control" id="contentWhoWeAre2" name="contentWhoWeAre2">{{ $aboutUs->contentWhoWeAre2 }}</textarea>
                 </div>
-                <!-- New fields -->
+                <!-- Card 3 -->
                 <div class="form-group">
-                    <label for="liveButtonText1">Live Button Text 1</label>
-                    <input type="text" class="form-control" id="liveButtonText1" name="liveButtonText1" value="{{ $aboutUs->liveButtonText1 }}">
-                </div>
-                <div class="form-group">
-                    <label for="liveButtonLink1">Live Button Link 1</label>
-                    <input type="text" class="form-control" id="liveButtonLink1" name="liveButtonLink1" value="{{ $aboutUs->liveButtonLink1 }}">
+                    <label for="iconWhoWeAre3">Icon 3</label>
+                    <input type="file" class="form-control-file" id="iconWhoWeAre3" name="iconWhoWeAre3">
                 </div>
                 <div class="form-group">
-                    <label for="liveButtonText2">Live Button Text 2</label>
-                    <input type="text" class="form-control" id="liveButtonText2" name="liveButtonText2" value="{{ $aboutUs->liveButtonText2 }}">
+                    <label for="titleWhoWeAre3">Title 3</label>
+                    <input type="text" class="form-control" id="titleWhoWeAre3" name="titleWhoWeAre3" value="{{ $aboutUs->titleWhoWeAre3 }}">
                 </div>
                 <div class="form-group">
-                    <label for="liveButtonLink2">Live Button Link 2</label>
-                    <input type="text" class="form-control" id="liveButtonLink2" name="liveButtonLink2" value="{{ $aboutUs->liveButtonLink2 }}">
-                </div>
-                <div class="form-group">
-                    <label for="liveButtonText3">Live Button Text 3</label>
-                    <input type="text" class="form-control" id="liveButtonText3" name="liveButtonText3" value="{{ $aboutUs->liveButtonText3 }}">
-                </div>
-                <div class="form-group">
-                    <label for="liveButtonLink3">Live Button Link 3</label>
-                    <input type="text" class="form-control" id="liveButtonLink3" name="liveButtonLink3" value="{{ $aboutUs->liveButtonLink3 }}">
-                </div>
-                <div class="form-group">
-                    <label for="liveButtonText4">Live Button Text 4</label>
-                    <input type="text" class="form-control" id="liveButtonText4" name="liveButtonText4" value="{{ $aboutUs->liveButtonText4 }}">
-                </div>
-                <div class="form-group">
-                    <label for="liveButtonLink4">Live Button Link 4</label>
-                    <input type="text" class="form-control" id="liveButtonLink4" name="liveButtonLink4" value="{{ $aboutUs->liveButtonLink4 }}">
+                    <label for="contentWhoWeAre3">Content 3</label>
+                    <textarea class="form-control" id="contentWhoWeAre3" name="contentWhoWeAre3">{{ $aboutUs->contentWhoWeAre3 }}</textarea>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <!-- Our Mission Section -->
+            <div id="ourMissionSection" class="section-content">
+                <div class="form-group">
+                    <label for="titleOurMission">Title</label>
+                    <input type="text" class="form-control" id="titleOurMission" name="titleOurMission" value="{{ $aboutUs->titleOurMission }}">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionOurMission">Description</label>
+                    <textarea class="form-control" id="descriptionOurMission" name="descriptionOurMission">{{ $aboutUs->descriptionOurMission }}</textarea>
+                </div>
+                <!-- Card 1 -->
+                <div class="form-group">
+                    <label for="iconMission1">Icon 1</label>
+                    <input type="file" class="form-control-file" id="iconMission1" name="iconMission1">
+                </div>
+                <div class="form-group">
+                    <label for="titleMission1">Title 1</label>
+                    <input type="text" class="form-control" id="titleMission1" name="titleMission1" value="{{ $aboutUs->titleMission1 }}">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionMission1">Description 1</label>
+                    <textarea class="form-control" id="descriptionMission1" name="descriptionMission1">{{ $aboutUs->descriptionMission1 }}</textarea>
+                </div>
+                <!-- Card 2 -->
+                <div class="form-group">
+                    <label for="iconMission2">Icon 2</label>
+                    <input type="file" class="form-control-file" id="iconMission2" name="iconMission2">
+                </div>
+                <div class="form-group">
+                    <label for="titleMission2">Title 2</label>
+                    <input type="text" class="form-control" id="titleMission2" name="titleMission2" value="{{ $aboutUs->titleMission2 }}">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionMission2">Description 2</label>
+                    <textarea class="form-control" id="descriptionMission2" name="descriptionMission2">{{ $aboutUs->descriptionMission2 }}</textarea>
+                </div>
+                <!-- Card 3 -->
+                <div class="form-group">
+                    <label for="iconMission3">Icon 3</label>
+                    <input type="file" class="form-control-file" id="iconMission3" name="iconMission3">
+                </div>
+                <div class="form-group">
+                    <label for="titleMission3">Title 3</label>
+                    <input type="text" class="form-control" id="titleMission3" name="titleMission3" value="{{ $aboutUs->titleMission3 }}">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionMission3">Description 3</label>
+                    <textarea class="form-control" id="descriptionMission3" name="descriptionMission3">{{ $aboutUs->descriptionMission3 }}</textarea>
+                </div>
+            </div>
+
+            <!-- Contact Us Now Section -->
+            <div id="contactUsSection" class="section-content">
+                <div class="form-group">
+                    <label for="contactUsTitle">Title</label>
+                    <input type="text" class="form-control" id="contactUsTitle" name="contactUsTitle" value="{{ $aboutUs->contactUsTitle }}">
+                </div>
+                <div class="form-group">
+                    <label for="contactUsText">Text</label>
+                    <textarea class="form-control" id="contactUsText" name="contactUsText">{{ $aboutUs->contactUsText }}</textarea>
+                </div>
+            </div>
+
+            <!-- About Us Text Section -->
+            <div id="aboutUsTextSection" class="section-content">
+                <div class="form-group">
+                    <label for="aboutUsText">Text</label>
+                    <textarea class="form-control" id="aboutUsText" name="aboutUsText">{{ $aboutUs->aboutUsText }}</textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Update</button>
         </form>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set the default section to be displayed
-            const defaultSectionId = '#heroAboutUsSection';
-            const defaultSection = document.querySelector(defaultSectionId);
-            if (defaultSection) {
-                defaultSection.style.display = 'block';
-            }
-
-            // Set the default active tab
-            const defaultNavLink = document.querySelector(`.nav-link[href="${defaultSectionId}"]`);
-            if (defaultNavLink) {
-                defaultNavLink.classList.add('active');
-            }
-
-            // Add click event listeners to section navigation links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    const href = this.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        event.preventDefault();
-                        document.querySelectorAll('.section-content').forEach(section => {
-                            section.style.display = 'none';
-                        });
-
-                        document.querySelectorAll('.nav-link').forEach(navLink => {
-                            navLink.classList.remove('active');
-                        });
-
-                        const section = document.querySelector(href);
-                        if (section) {
-                            section.style.display = 'block';
-                        }
-                        this.classList.add('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show the appropriate section based on the URL hash
+            function showSection() {
+                const hash = window.location.hash;
+                if (hash) {
+                    document.querySelectorAll('.section-content').forEach(section => section.classList.remove('active-section'));
+                    const sectionToShow = document.querySelector(hash);
+                    if (sectionToShow) {
+                        sectionToShow.classList.add('active-section');
                     }
-                });
-            });
+                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                    const navLinkToActivate = document.querySelector(`.nav-link[href="${hash}"]`);
+                    if (navLinkToActivate) {
+                        navLinkToActivate.classList.add('active');
+                    }
+                }
+            }
+
+            // Initial load
+            showSection();
+
+            // Update section on hash change
+            window.addEventListener('hashchange', showSection);
         });
     </script>
 @endsection

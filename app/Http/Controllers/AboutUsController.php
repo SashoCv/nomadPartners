@@ -35,47 +35,48 @@ class AboutUsController extends Controller
     {
         try {
             $aboutUs = new AboutUs();
-            $aboutUs->title = $request->titleHeroAboutUs;
-            $aboutUs->subtitle = $request->subtitleHeroAboutUs;
-            $aboutUs->titleWhoWeAre = $request->titleWhoWeAre;
-            $aboutUs->contentWhoWeAre = $request->contentWhoWeAre;
+            $aboutUs->titleHeroAboutUs = $request->input('titleHeroAboutUs');
+            $aboutUs->subtitleHeroAboutUs = $request->input('subtitleHeroAboutUs');
 
             if ($request->hasFile('imageHeroAboutUsPath')) {
                 $name = Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
                 $aboutUs->imageHeroAboutUsPath = $name;
             }
 
-            if ($request->hasFile('whoWeArePictureAboutUs')) {
-                $name = Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
-                $aboutUs->whoWeArePictureAboutUs = $name;
-            }
+            $aboutUs->linkHeroAboutUs1 = $request->input('linkHeroAboutUs1');
+            $aboutUs->buttonNameHeroAboutUs1 = $request->input('buttonNameHeroAboutUs1');
+            $aboutUs->linkHeroAboutUs2 = $request->input('linkHeroAboutUs2');
+            $aboutUs->buttonNameHeroAboutUs2 = $request->input('buttonNameHeroAboutUs2');
 
-            $aboutUs->liveTitleAboutUs = $request->liveTitleAboutUs;
-            $aboutUs->liveContentAboutUs = $request->liveContentAboutUs;
+            $aboutUs->iconWhoWeAre1 = $request->input('iconWhoWeAre1');
+            $aboutUs->titleWhoWeAre1 = $request->input('titleWhoWeAre1');
+            $aboutUs->contentWhoWeAre1 = $request->input('contentWhoWeAre1');
+            $aboutUs->iconWhoWeAre2 = $request->input('iconWhoWeAre2');
+            $aboutUs->titleWhoWeAre2 = $request->input('titleWhoWeAre2');
+            $aboutUs->contentWhoWeAre2 = $request->input('contentWhoWeAre2');
+            $aboutUs->iconWhoWeAre3 = $request->input('iconWhoWeAre3');
+            $aboutUs->titleWhoWeAre3 = $request->input('titleWhoWeAre3');
+            $aboutUs->contentWhoWeAre3 = $request->input('contentWhoWeAre3');
 
-            if ($request->hasFile('livePicturePathAboutUs')) {
-                $name = Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
-                $aboutUs->livePicturePathAboutUs = $name;
-            }
+            $aboutUs->titleOurMission = $request->input('titleOurMission');
+            $aboutUs->descriptionOurMission = $request->input('descriptionOurMission');
+            $aboutUs->iconMission1 = $request->input('iconMission1');
+            $aboutUs->titleMission1 = $request->input('titleMission1');
+            $aboutUs->descriptionMission1 = $request->input('descriptionMission1');
+            $aboutUs->iconMission2 = $request->input('iconMission2');
+            $aboutUs->titleMission2 = $request->input('titleMission2');
+            $aboutUs->descriptionMission2 = $request->input('descriptionMission2');
+            $aboutUs->iconMission3 = $request->input('iconMission3');
+            $aboutUs->titleMission3 = $request->input('titleMission3');
+            $aboutUs->descriptionMission3 = $request->input('descriptionMission3');
 
-            // New fields
-            $aboutUs->linkHeroAboutUs1 = $request->linkHeroAboutUs1;
-            $aboutUs->buttonNameHeroAboutUs1 = $request->buttonNameHeroAboutUs1;
-            $aboutUs->linkHeroAboutUs2 = $request->linkHeroAboutUs2;
-            $aboutUs->buttonNameHeroAboutUs2 = $request->buttonNameHeroAboutUs2;
-
-            $aboutUs->liveButtonText1 = $request->liveButtonText1;
-            $aboutUs->liveButtonLink1 = $request->liveButtonLink1;
-            $aboutUs->liveButtonText2 = $request->liveButtonText2;
-            $aboutUs->liveButtonLink2 = $request->liveButtonLink2;
-            $aboutUs->liveButtonText3 = $request->liveButtonText3;
-            $aboutUs->liveButtonLink3 = $request->liveButtonLink3;
-            $aboutUs->liveButtonText4 = $request->liveButtonText4;
-            $aboutUs->liveButtonLink4 = $request->liveButtonLink4;
+            $aboutUs->contactUsTitle = $request->input('contactUsTitle');
+            $aboutUs->contactUsText = $request->input('contactUsText');
+            $aboutUs->aboutUsText = $request->input('aboutUsText');
 
             $aboutUs->save();
 
-            return redirect()->route('admin.aboutUsView')->with('success', 'About us created successfully');
+            return redirect()->route('admin.aboutUsViewForUpdate')->with('success', 'About us created successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Error creating about us');
@@ -112,41 +113,49 @@ class AboutUsController extends Controller
     {
         try {
             $aboutUs = AboutUs::findOrFail($id);
-            $aboutUs->title = $request->input('titleHeroAboutUs');
-            $aboutUs->subtitle = $request->input('subtitleHeroAboutUs');
-            $aboutUs->titleWhoWeAre = $request->input('titleWhoWeAre');
-            $aboutUs->contentWhoWeAre = $request->input('contentWhoWeAre');
-            $aboutUs->liveTitleAboutUs = $request->input('liveTitleAboutUs');
-            $aboutUs->liveContentAboutUs = $request->input('liveContentAboutUs');
-            $aboutUs->liveButtonText1 = $request->input('liveButtonText1');
-            $aboutUs->liveButtonLink1 = $request->input('liveButtonLink1');
-            $aboutUs->liveButtonText2 = $request->input('liveButtonText2');
-            $aboutUs->liveButtonLink2 = $request->input('liveButtonLink2');
-            $aboutUs->liveButtonText3 = $request->input('liveButtonText3');
-            $aboutUs->liveButtonLink3 = $request->input('liveButtonLink3');
-            $aboutUs->liveButtonText4 = $request->input('liveButtonText4');
-            $aboutUs->liveButtonLink4 = $request->input('liveButtonLink4');
+
+            $aboutUs->titleHeroAboutUs = $request->input('titleHeroAboutUs');
+            $aboutUs->subtitleHeroAboutUs = $request->input('subtitleHeroAboutUs');
+
+            if ($request->hasFile('imageHeroAboutUsPath')) {
+                if ($aboutUs->imageHeroAboutUsPath) {
+                    Storage::disk('public')->delete($aboutUs->imageHeroAboutUsPath);
+                }
+                $name = Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
+                $aboutUs->imageHeroAboutUsPath = $name;
+            }
+
+            // Update other fields
             $aboutUs->linkHeroAboutUs1 = $request->input('linkHeroAboutUs1');
             $aboutUs->buttonNameHeroAboutUs1 = $request->input('buttonNameHeroAboutUs1');
             $aboutUs->linkHeroAboutUs2 = $request->input('linkHeroAboutUs2');
             $aboutUs->buttonNameHeroAboutUs2 = $request->input('buttonNameHeroAboutUs2');
 
-            if ($request->hasFile('imageHeroAboutUsPath')) {
-                $name = Storage::disk('public')->put('aboutUs', $request->file('imageHeroAboutUsPath'));
-                $aboutUs->imageHeroAboutUsPath = $name;
-            }
+            $aboutUs->iconWhoWeAre1 = $request->input('iconWhoWeAre1');
+            $aboutUs->titleWhoWeAre1 = $request->input('titleWhoWeAre1');
+            $aboutUs->contentWhoWeAre1 = $request->input('contentWhoWeAre1');
+            $aboutUs->iconWhoWeAre2 = $request->input('iconWhoWeAre2');
+            $aboutUs->titleWhoWeAre2 = $request->input('titleWhoWeAre2');
+            $aboutUs->contentWhoWeAre2 = $request->input('contentWhoWeAre2');
+            $aboutUs->iconWhoWeAre3 = $request->input('iconWhoWeAre3');
+            $aboutUs->titleWhoWeAre3 = $request->input('titleWhoWeAre3');
+            $aboutUs->contentWhoWeAre3 = $request->input('contentWhoWeAre3');
 
-            if ($request->hasFile('whoWeArePictureAboutUs')) {
-                $name = Storage::disk('public')->put('aboutUs', $request->file('whoWeArePictureAboutUs'));
-                $aboutUs->whoWeArePictureAboutUs = $name;
-            }
+            $aboutUs->titleOurMission = $request->input('titleOurMission');
+            $aboutUs->descriptionOurMission = $request->input('descriptionOurMission');
+            $aboutUs->iconMission1 = $request->input('iconMission1');
+            $aboutUs->titleMission1 = $request->input('titleMission1');
+            $aboutUs->descriptionMission1 = $request->input('descriptionMission1');
+            $aboutUs->iconMission2 = $request->input('iconMission2');
+            $aboutUs->titleMission2 = $request->input('titleMission2');
+            $aboutUs->descriptionMission2 = $request->input('descriptionMission2');
+            $aboutUs->iconMission3 = $request->input('iconMission3');
+            $aboutUs->titleMission3 = $request->input('titleMission3');
+            $aboutUs->descriptionMission3 = $request->input('descriptionMission3');
 
-            if ($request->hasFile('livePicturePathAboutUs')) {
-                $name = Storage::disk('public')->put('aboutUs', $request->file('livePicturePathAboutUs'));
-                $aboutUs->livePicturePathAboutUs = $name;
-            }
-
-
+            $aboutUs->contactUsTitle = $request->input('contactUsTitle');
+            $aboutUs->contactUsText = $request->input('contactUsText');
+            $aboutUs->aboutUsText = $request->input('aboutUsText');
 
             $aboutUs->save();
 
