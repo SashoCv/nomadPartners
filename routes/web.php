@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\BusinessFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\UserController;
@@ -55,12 +56,21 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/partners/{id}', [PartnerController::class, 'update'])->name('admin.updatePartner');
     Route::delete('partners/{id}', [PartnerController::class, 'destroy'])->name("admin.deletePartner");
 
+
     Route::get('contact', [ContactController::class, 'index'])->name("admin.contactView");
     Route::post('contact', [ContactController::class, 'store'])->name("admin.contactPost");
     Route::get('contact-edit', [ContactController::class, 'edit'])->name("admin.contactViewForUpdate");
     Route::put('contact-edit/{id}', [ContactController::class, 'update'])->name("admin.contactUpdate");
 
+
+    Route::get('business', [BusinessFormController::class, 'index'])->name("admin.forBusinessView");
+    Route::post('business', [BusinessFormController::class, 'store'])->name("admin.forBusinessPost");
+    Route::delete('delete-business-submit/{id}', [BusinessFormController::class, 'destroy'])->name('admin.deleteBusinessSubmit');
+
+
     Route::get('dashboard', [ContactFormController::class, 'index'])->name("admin.dashboardView");
+    Route::delete('delete-contact-submit/{id}', [ContactFormController::class, 'destroy'])->name('admin.deleteContactSubmit');
+
 
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");
 });

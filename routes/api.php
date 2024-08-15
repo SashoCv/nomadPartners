@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BusinessFormController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
@@ -44,4 +45,6 @@ Route::get('contact', [ContactController::class, 'getContactApi']);
 // CONTACT
 Route::post('contact', [ContactFormController::class, 'store']);
 
+// CONTACT
+Route::post('business', [BusinessFormController::class, 'store']);
 

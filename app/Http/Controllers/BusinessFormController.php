@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactForm;
+use App\Models\BusinessForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ContactFormController extends Controller
+class BusinessFormController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $allContactForms = ContactForm::all();
-       return view('Dashboard.index', compact('allContactForms'));
+        $allBusinessForms = BusinessForm::all();
+        return view('Business.index', compact('allBusinessForms'));
     }
 
     /**
@@ -32,14 +32,19 @@ class ContactFormController extends Controller
     {
         try {
             $request->validate([
-                'full_name' => 'required',
+                'first_name' => 'required',
+                'last_name' => 'required',
                 'email' => 'required|email',
+                'company_name' => 'required',
                 'message' => 'required',
             ]);
 
-            $contactForm = new ContactForm();
-            $contactForm->full_name = $request->full_name;
+            $contactForm = new BusinessForm();
+            $contactForm->first_name = $request->first_name;
+            $contactForm->last_name = $request->last_name;
             $contactForm->email = $request->email;
+            $contactForm->company_name = $request->company_name;
+            $contactForm->phone_number = $request->phone_number;
             $contactForm->message = $request->message;
             $contactForm->save();
 
@@ -56,7 +61,7 @@ class ContactFormController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ContactForm $contactForm)
+    public function show(BusinessForm $forBusinessFrom)
     {
         //
     }
@@ -64,7 +69,7 @@ class ContactFormController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ContactForm $contactForm)
+    public function edit(BusinessForm $forBusinessFrom)
     {
         //
     }
@@ -72,7 +77,7 @@ class ContactFormController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ContactForm $contactForm)
+    public function update(Request $request, BusinessForm $forBusinessFrom)
     {
         //
     }
@@ -83,12 +88,12 @@ class ContactFormController extends Controller
     public function destroy($id)
     {
         try {
-            $business = ContactForm::find($id);
+            $business = BusinessForm::find($id);
             $business->delete();
-            return redirect()->route('admin.DashboardView')->with('success', 'Contact submit deleted successfully.');
+            return redirect()->route('admin.forBusinessView')->with('success', 'Business submit deleted successfully.');
         } catch (\Exception $e) {
             Log::info($e->getMessage());
-            return redirect()->back()->with('error', 'Error deleting contact submit.');
+            return redirect()->back()->with('error', 'Error deleting business submit.');
         }
     }
 }
