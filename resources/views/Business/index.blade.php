@@ -25,23 +25,27 @@
     <thead>
         <tr>
             <th>From</th>
+            <th>Company</th>
+            <th>Phone number</th>
             <th>Message</th>
             <th>Contact</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @if($allContactForms->count() > 0)
-            @foreach ($allContactForms as $contactForm)
+        @if($allBusinessForms->count() > 0)
+            @foreach ($allBusinessForms as $businessForm)
                 <tr>
-                    <td class="col-2">{{ $contactForm->full_name }}</td>
-                    <td class="col-5">{{ $contactForm->message }}</td>
+                    <td class="col-2">{{ $businessForm->first_name }} {{ $businessForm->last_name }}</td>
+                    <td class="col-3">{{ $businessForm->company_name }}</td>
+                    <td class="col-3">{{ $businessForm->phone_number }}</td>
+                    <td class="col-5">{{ $businessForm->message }}</td>
                     <td class="col-3">
-                        <a href="mailto:{{ $contactForm->email }}">{{ $contactForm->email }}</a>
+                        <a href="mailto:{{ $businessForm->email }}">{{ $businessForm->email }}</a>
                     </td>
 
                     <td class="col-2">
-                        <form action="{{ route('admin.deleteContactSubmit', $contactForm->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this submit?');" class="m-0 p-0" style="display: inline;">
+                        <form action="{{ route('admin.deleteBusinessSubmit', $businessForm->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this submit?');" class="m-0 p-0" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-sideBar">Delete</button>

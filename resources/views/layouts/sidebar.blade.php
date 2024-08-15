@@ -20,6 +20,12 @@ $contactPage = Contact::all();
             </a>
             <i class="fa-solid fa-chart-line"></i>
         </li>
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.forBusinessView') }}" class="nav-link link-dark {{ request()->routeIs('admin.forBusinessView') ? 'underline' : '' }}">
+                Business forms submits
+            </a>
+            <i class="fa-solid fa-chart-line"></i>
+        </li>
 
         <li class="nav-item d-flex align-items-center justify-content-between">
             @if($home->isEmpty())
