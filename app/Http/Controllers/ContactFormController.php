@@ -14,7 +14,7 @@ class ContactFormController extends Controller
     public function index()
     {
         $allContactForms = ContactForm::all();
-       return view('Dashboard.index', compact('allContactForms'));
+       return view('ContactUsSubmits.index', compact('allContactForms'));
     }
 
     /**

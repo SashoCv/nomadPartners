@@ -57,6 +57,7 @@
     </tbody>
 </table>
 
+
 @endsection
 
 @section('scripts')

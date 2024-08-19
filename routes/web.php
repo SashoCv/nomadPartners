@@ -63,14 +63,15 @@ Route::middleware(['admin'])->group(function () {
     Route::put('contact-edit/{id}', [ContactController::class, 'update'])->name("admin.contactUpdate");
 
 
-    Route::get('business', [BusinessFormController::class, 'index'])->name("admin.forBusinessView");
+    Route::get('business-submits', [BusinessFormController::class, 'index'])->name("admin.forBusinessView");
     Route::post('business', [BusinessFormController::class, 'store'])->name("admin.forBusinessPost");
     Route::delete('delete-business-submit/{id}', [BusinessFormController::class, 'destroy'])->name('admin.deleteBusinessSubmit');
 
 
-    Route::get('dashboard', [ContactFormController::class, 'index'])->name("admin.dashboardView");
+    Route::get('contact-submits', [ContactFormController::class, 'index'])->name("admin.contactUsSubmitView");
     Route::delete('delete-contact-submit/{id}', [ContactFormController::class, 'destroy'])->name('admin.deleteContactSubmit');
 
 
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");
 });
+    

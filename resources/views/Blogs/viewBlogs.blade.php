@@ -31,7 +31,7 @@
 @endsection
 
 @section('content')
-<h2 class="mb-5 pt-3 titleBlogs">Blogs</h2>
+    <h2 class="mb-5 pt-3 titleBlogs">Blogs</h2>
 
 <table class="table table-responsive">
     <thead>

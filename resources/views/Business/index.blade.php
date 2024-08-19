@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-<h2 class="mb-5 pt-3 titleBlogs">Visitor Messages</h2>
+    <h2 class="mb-5 ml-2 pt-3 titleBlogs">Visitor Messages</h2>
 
 <!-- Table for listing partners -->
 <table class="table">

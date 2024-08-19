@@ -201,7 +201,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3 w-50">Submit</button>
+        <button type="submit" class="btn btn-primary mb-3 w-50">Save</button>
     </form>
 </div>
 @endsection

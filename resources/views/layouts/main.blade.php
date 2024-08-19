@@ -12,17 +12,20 @@
     @yield('style')
 
     <style>
-        .mainContainer {
-            width: 100%;
-        }
-
         .content {
-            width: 100%;
-            margin-left: 260px;
-            margin-right: 30px;
-
+            margin-top: 50px;
         }
+        @media (min-width: 770px) {
+            .mainContainer {
+                width: 100%;
+            }
 
+            .content {
+                width: 100%;
+                margin-left: 260px;
+                margin-right: 30px;
+            }
+        }
     </style>
 
 </head>
