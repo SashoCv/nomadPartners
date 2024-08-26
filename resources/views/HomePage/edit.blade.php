@@ -76,6 +76,11 @@
         <div id="heroSection" class="section-content">
             <h2 class="section-heading">Hero Section</h2>
             <div class="form-group">
+                <label for="taglineHeroSection">Title Hero Section</label>
+                <input type="text" class="form-control" id="taglineHeroSection" name="taglineHeroSection" value="{{ $home->taglineHeroSection }}">
+            </div>
+
+            <div class="form-group">
                 <label for="titleHeroSection">Title Hero Section</label>
                 <input type="text" class="form-control" id="titleHeroSection" name="titleHeroSection" value="{{ $home->titleHeroSection }}">
             </div>

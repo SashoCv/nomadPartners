@@ -66,6 +66,12 @@ $contactPage = Contact::all();
             </a>
             <i class="fa-solid fa-handshake-simple"></i>
         </li>
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.teamMembersView') }}" class="nav-link link-dark {{ request()->routeIs('admin.teamMembersView') ? 'underline' : '' }}">
+                Team Members
+            </a>
+            <i class="fa-solid fa-handshake-simple"></i>
+        </li>
         @if($contactPage->isEmpty())
             <li class="nav-item d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.contactView') }}" class="nav-link link-dark">

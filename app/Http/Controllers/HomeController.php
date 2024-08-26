@@ -56,7 +56,8 @@ class HomeController extends Controller
     {
         try {
             $home = new Home();
-    
+
+            $home->taglineHeroSection = $request->input('taglineHeroSection');
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
@@ -108,60 +109,60 @@ class HomeController extends Controller
             $home->getStartedDescription = $request->input('getStartedDescription');
             $home->getStartedButton = $request->input('getStartedButton');
             $home->getStartedLink = $request->input('getStartedLink');
-    
+
             // Handle file uploads
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
                 $home->imageHeroSectionPath = $path;
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('livePicturePath')) {
                 $path = $request->file('livePicturePath')->store('liveImages', 'public');
                 $home->livePicturePath = $path;
                 $home->livePictureName = $request->file('livePicturePath')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('missionPicturePathOne')) {
                 $path = $request->file('missionPicturePathOne')->store('missionPictures', 'public');
                 $home->missionPicturePathOne = $path;
                 $home->missionPictureNameOne = $request->file('missionPicturePathOne')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('missionPicturePathTwo')) {
                 $path = $request->file('missionPicturePathTwo')->store('missionPictures', 'public');
                 $home->missionPicturePathTwo = $path;
                 $home->missionPictureNameTwo = $request->file('missionPicturePathTwo')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('missionPicturePathThree')) {
                 $path = $request->file('missionPicturePathThree')->store('missionPictures', 'public');
                 $home->missionPicturePathThree = $path;
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('missionPicturePathFour')) {
                 $path = $request->file('missionPicturePathFour')->store('missionPictures', 'public');
                 $home->missionPicturePathFour = $path;
                 $home->missionPictureNameFour = $request->file('missionPicturePathFour')->getClientOriginalName();
             }
-    
+
             if ($request->hasFile('whoWeArePicturePathAbout')) {
                 $path = $request->file('whoWeArePicturePathAbout')->store('aboutImages', 'public');
                 $home->whoWeArePicturePathAbout = $path;
                 $home->whoWeArePictureNameAbout = $request->file('whoWeArePicturePathAbout')->getClientOriginalName();
             }
 
-    
+
             $home->save();
-    
+
             return redirect()->route('admin.homeViewForUpdate')->with('success', 'Home page created successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Error creating home page');
         }
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -187,6 +188,7 @@ class HomeController extends Controller
     {
         try {
             $home = Home::find($id);
+            $home->taglineHeroSection = $request->input('taglineHeroSection');
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
