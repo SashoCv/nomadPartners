@@ -4391,3 +4391,12 @@ Did you mean one of these?
 #41 /Users/sashocvetanoski/Sites/blogsAdminPanel/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('/Users/sashocve...')
 #42 {main}
 "} 
+[2024-08-15 08:39:36] local.ERROR: There are no commands defined in the "dv" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"dv\" namespace. at /Users/sasho/Sites/nomad-partners/vendor/symfony/console/Application.php:669)
+[stacktrace]
+#0 /Users/sasho/Sites/nomad-partners/vendor/symfony/console/Application.php(720): Symfony\\Component\\Console\\Application->findNamespace('dv')
+#1 /Users/sasho/Sites/nomad-partners/vendor/symfony/console/Application.php(266): Symfony\\Component\\Console\\Application->find('dv:seed')
+#2 /Users/sasho/Sites/nomad-partners/vendor/symfony/console/Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/sasho/Sites/nomad-partners/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/sasho/Sites/nomad-partners/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
