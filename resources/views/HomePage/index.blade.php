@@ -63,6 +63,10 @@
         <div id="heroSection">
             <h2 class="section-heading">Hero Section</h2>
             <div class="form-group">
+                <label for="taglineHeroSection">Tagline Hero Section</label>
+                <input type="text" class="form-control" id="taglineHeroSection" name="taglineHeroSection">
+            </div>
+            <div class="form-group">
                 <label for="titleHeroSection">Title Hero Section</label>
                 <input type="text" class="form-control" id="titleHeroSection" name="titleHeroSection">
             </div>

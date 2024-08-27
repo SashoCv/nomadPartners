@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
+            $table->string('taglineHeroSection')->nullable();
             $table->string('titleHeroSection')->nullable();
             $table->string('subtitleHeroSection')->nullable();
             $table->string('buttonHeroSection')->nullable();
