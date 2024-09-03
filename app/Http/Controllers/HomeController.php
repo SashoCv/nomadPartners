@@ -57,7 +57,6 @@ class HomeController extends Controller
         try {
             $home = new Home();
 
-            $home->taglineHeroSection = $request->input('taglineHeroSection');
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
@@ -188,7 +187,6 @@ class HomeController extends Controller
     {
         try {
             $home = Home::find($id);
-            $home->taglineHeroSection = $request->input('taglineHeroSection');
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
