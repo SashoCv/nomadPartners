@@ -46,7 +46,6 @@ class PartnerController extends Controller
             $partner->namePartner = $request->namePartner;
             $partner->linkPartner = $request->linkPartner;
             $partner->home_id = $homeId;
-            $partner->subtitlePartner = $request->subtitlePartner;
             if ($request->hasFile('logoPathPartner')) {
                 Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
                 $name = Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
@@ -87,7 +86,6 @@ class PartnerController extends Controller
             $partner = Partner::findOrFail($id);
             $partner->namePartner = $request->namePartner;
             $partner->linkPartner = $request->linkPartner;
-            $partner->subtitlePartner = $request->subtitlePartner;
 
             if ($request->hasFile('logoPathPartner')) {
                 // Delete the old logo if it exists
