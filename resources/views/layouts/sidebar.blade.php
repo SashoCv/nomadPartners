@@ -66,11 +66,19 @@ $contactPage = Contact::all();
             </a>
             <i class="fa-solid fa-handshake-simple"></i>
         </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.servicesView') }}" class="nav-link link-dark {{ request()->routeIs('admin.servicesView') ? 'underline' : '' }}">
+                Services
+            </a>
+            <i class="fa-solid fa-table-cells"></i>
+        </li>
+
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.teamMembersView') }}" class="nav-link link-dark {{ request()->routeIs('admin.teamMembersView') ? 'underline' : '' }}">
                 Team Members
             </a>
-            <i class="fa-solid fa-handshake-simple"></i>
+            <i class="fa-solid fa-users"></i>
         </li>
         @if($contactPage->isEmpty())
             <li class="nav-item d-flex align-items-center justify-content-between">

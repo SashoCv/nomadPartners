@@ -10,7 +10,9 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceBoxController;
+use App\Http\Controllers\BoxAboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +77,20 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('contact-submits', [ContactFormController::class, 'index'])->name("admin.contactUsSubmitView");
     Route::delete('delete-contact-submit/{id}', [ContactFormController::class, 'destroy'])->name('admin.deleteContactSubmit');
+
+
+    Route::get('services', [ServiceController::class, 'index'])->name("admin.servicesView");
+    Route::put('services/update/{id}', [ServiceController::class, 'update'])->name("services.update");
+    Route::post('servicesBox/create', [ServiceBoxController::class, 'store'])->name("servicesBox.create");
+    Route::get('servicesBox/edit/{id}', [ServiceBoxController::class, 'edit'])->name("servicesBox.edit");
+    Route::put('servicesBox/update/{id}', [ServiceBoxController::class, 'update'])->name("servicesBox.update");
+    Route::delete('servicesBox/delete/{id}', [ServiceBoxController::class, 'destroy'])->name("servicesBox.destroy");
+
+
+    Route::post('about-us-box-store', [BoxAboutUsController::class, 'store'])->name("admin.boxAboutUsPost");
+    Route::put('about-us-box-update', [BoxAboutUsController::class, 'update'])->name("admin.boxAboutUsUpdate");
+    Route::delete('about-us-box-delete/{id}', [BoxAboutUsController::class, 'destroy'])->name("admin.deleteBoxAboutUs");
+    Route::get('about-us-box-edit/{id}', [BoxAboutUsController::class, 'edit'])->name("admin.editBoxAboutUs");
 
 
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");

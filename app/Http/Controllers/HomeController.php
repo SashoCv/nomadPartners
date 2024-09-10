@@ -60,66 +60,63 @@ class HomeController extends Controller
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
-            $home->testimonialTitleOne = $request->input('testimonialTitleOne');
-            $home->testimonialContentOne = $request->input('testimonialContentOne');
-            $home->linkTestimonialOne = $request->input('linkTestimonialOne');
-            $home->titleTestimonialTwo = $request->input('titleTestimonialTwo');
-            $home->contentTestimonialTwo = $request->input('contentTestimonialTwo');
-            $home->linkTestimonialTwo = $request->input('linkTestimonialTwo');
-            $home->titleTestimonialThree = $request->input('titleTestimonialThree');
-            $home->contentTestimonialThree = $request->input('contentTestimonialThree');
-            $home->linkTestimonialThree = $request->input('linkTestimonialThree');
+
+
+            $home->infoBoxTitleOne = $request->input('infoBoxTitleOne');
+            $home->infoBoxContentOne = $request->input('infoBoxContentOne');
+            $home->buttonBoxTextOne = $request->input('buttonBoxTextOne');
+
+            $home->infoBoxTitleTwo = $request->input('infoBoxTitleTwo');
+            $home->infoBoxContentTwo = $request->input('infoBoxContentTwo');
+            $home->buttonBoxTextTwo = $request->input('buttonBoxTextTwo');
+
+            $home->infoBoxTitleThree = $request->input('infoBoxTitleThree');
+            $home->infoBoxContentThree = $request->input('infoBoxContentThree');
+            $home->buttonBoxTextThree = $request->input('buttonBoxTextThree');
+
+
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
             $home->buttonTextAbout = $request->input('buttonTextAbout');
-            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
-            $home->whoWeAreTitleAbout = $request->input('whoWeAreTitleAbout');
-            $home->whoWeAreContentAbout = $request->input('whoWeAreContentAbout');
-            $home->liveTitle = $request->input('liveTitle');
-            $home->liveContent = $request->input('liveContent');
-            $home->buttonText1 = $request->input('buttonText1');
-            $home->buttonLink1 = $request->input('buttonLink1');
-            $home->buttonText2 = $request->input('buttonText2');
-            $home->buttonLink2 = $request->input('buttonLink2');
-            $home->chooseUsTitle = $request->input('chooseUsTitle');
-            $home->chooseUsContent = $request->input('chooseUsContent');
-            $home->listTitleOne = $request->input('listTitleOne');
-            $home->listContentOne = $request->input('listContentOne');
-            $home->listTitleTwo = $request->input('listTitleTwo');
-            $home->listContentTwo = $request->input('listContentTwo');
-            $home->listTitleThree = $request->input('listTitleThree');
-            $home->listContentThree = $request->input('listContentThree');
-            $home->listTitleFour = $request->input('listTitleFour');
-            $home->listContentFour = $request->input('listContentFour');
+
+
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
-            $home->partnersTitle = $request->input('partnersTitle');
-            $home->partnersSubtitle = $request->input('partnersSubtitle');
-            $home->statsTitleOne = $request->input('statsTitleOne');
-            $home->statsNumberOne = $request->input('statsNumberOne');
-            $home->statsTitleTwo = $request->input('statsTitleTwo');
-            $home->statsNumberTwo = $request->input('statsNumberTwo');
-            $home->statsTitleThree = $request->input('statsTitleThree');
-            $home->statsNumberThree = $request->input('statsNumberThree');
-            $home->statsTitleFour = $request->input('statsTitleFour');
-            $home->statsNumberFour = $request->input('statsNumberFour');
-            $home->getStartedTitle = $request->input('getStartedTitle');
-            $home->getStartedDescription = $request->input('getStartedDescription');
-            $home->getStartedButton = $request->input('getStartedButton');
-            $home->getStartedLink = $request->input('getStartedLink');
+            $home->missionStatsNumberOne = $request->input('missionStatsNumberOne');
+            $home->missionStatsNumberTwo = $request->input('missionStatsNumberTwo');
+            $home->missionStatsNumberThree = $request->input('missionStatsNumberThree');
+            $home->missionStatsTitleOne = $request->input('missionStatsTitleOne');
+            $home->missionStatsTitleTwo = $request->input('missionStatsTitleTwo');
+            $home->missionStatsTitleThree = $request->input('missionStatsTitleThree');
 
-            // Handle file uploads
+            $home->bookYourAppointmentTitle = $request->input('bookYourAppointmentTitle');
+            $home->bookYourAppointmentContent = $request->input('bookYourAppointmentContent');
+            $home->bookYourAppointmentButton = $request->input('bookYourAppointmentButton');
+
+
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
                 $home->imageHeroSectionPath = $path;
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
             }
 
-            if ($request->hasFile('livePicturePath')) {
-                $path = $request->file('livePicturePath')->store('liveImages', 'public');
-                $home->livePicturePath = $path;
-                $home->livePictureName = $request->file('livePicturePath')->getClientOriginalName();
+            if($request->hasFile('infoBoxImageOne')) {
+                $path = $request->file('infoBoxIconOne')->store('infoBoxImages', 'public');
+                $home->infoBoxImageOne = $path;
+                $home->infoBoxImageNameOne = $request->file('infoBoxIconOne')->getClientOriginalName();
+            }
+
+            if($request->hasFile('infoBoxImageTwo')) {
+                $path = $request->file('infoBoxIconTwo')->store('infoBoxImages', 'public');
+                $home->infoBoxImageTwo = $path;
+                $home->infoBoxImageNameTwo = $request->file('infoBoxIconTwo')->getClientOriginalName();
+            }
+
+            if($request->hasFile('infoBoxImageThree')) {
+                $path = $request->file('infoBoxIconThree')->store('infoBoxImages', 'public');
+                $home->infoBoxImageThree = $path;
+                $home->infoBoxImageNameThree = $request->file('infoBoxIconThree')->getClientOriginalName();
             }
 
             if ($request->hasFile('missionPicturePathOne')) {
@@ -138,18 +135,6 @@ class HomeController extends Controller
                 $path = $request->file('missionPicturePathThree')->store('missionPictures', 'public');
                 $home->missionPicturePathThree = $path;
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
-            }
-
-            if ($request->hasFile('missionPicturePathFour')) {
-                $path = $request->file('missionPicturePathFour')->store('missionPictures', 'public');
-                $home->missionPicturePathFour = $path;
-                $home->missionPictureNameFour = $request->file('missionPicturePathFour')->getClientOriginalName();
-            }
-
-            if ($request->hasFile('whoWeArePicturePathAbout')) {
-                $path = $request->file('whoWeArePicturePathAbout')->store('aboutImages', 'public');
-                $home->whoWeArePicturePathAbout = $path;
-                $home->whoWeArePictureNameAbout = $request->file('whoWeArePicturePathAbout')->getClientOriginalName();
             }
 
 
@@ -176,8 +161,8 @@ class HomeController extends Controller
      */
     public function edit(Home $home)
     {
-        $home = Home::first();
-        return view('HomePage.edit', compact('home'));
+        $homePage = Home::first();
+        return view('HomePage.edit', compact('homePage'));
     }
 
     /**
@@ -186,69 +171,65 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $home = Home::find($id);
+            $home = Home::findOrFail($id);
+
             $home->titleHeroSection = $request->input('titleHeroSection');
             $home->subtitleHeroSection = $request->input('subtitleHeroSection');
             $home->buttonHeroSection = $request->input('buttonHeroSection');
-            $home->testimonialTitleOne = $request->input('testimonialTitleOne');
-            $home->testimonialContentOne = $request->input('testimonialContentOne');
-            $home->linkTestimonialOne = $request->input('linkTestimonialOne');
-            $home->titleTestimonialTwo = $request->input('titleTestimonialTwo');
-            $home->contentTestimonialTwo = $request->input('contentTestimonialTwo');
-            $home->linkTestimonialTwo = $request->input('linkTestimonialTwo');
-            $home->titleTestimonialThree = $request->input('titleTestimonialThree');
-            $home->contentTestimonialThree = $request->input('contentTestimonialThree');
-            $home->linkTestimonialThree = $request->input('linkTestimonialThree');
+
+            $home->infoBoxTitleOne = $request->input('infoBoxTitleOne');
+            $home->infoBoxContentOne = $request->input('infoBoxContentOne');
+            $home->buttonBoxTextOne = $request->input('buttonBoxTextOne');
+
+            $home->infoBoxTitleTwo = $request->input('infoBoxTitleTwo');
+            $home->infoBoxContentTwo = $request->input('infoBoxContentTwo');
+            $home->buttonBoxTextTwo = $request->input('buttonBoxTextTwo');
+
+            $home->infoBoxTitleThree = $request->input('infoBoxTitleThree');
+            $home->infoBoxContentThree = $request->input('infoBoxContentThree');
+            $home->buttonBoxTextThree = $request->input('buttonBoxTextThree');
+
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
             $home->buttonTextAbout = $request->input('buttonTextAbout');
-            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
-            $home->whoWeAreTitleAbout = $request->input('whoWeAreTitleAbout');
-            $home->whoWeAreContentAbout = $request->input('whoWeAreContentAbout');
-            $home->liveTitle = $request->input('liveTitle');
-            $home->liveContent = $request->input('liveContent');
-            $home->buttonText1 = $request->input('buttonText1');
-            $home->buttonLink1 = $request->input('buttonLink1');
-            $home->buttonText2 = $request->input('buttonText2');
-            $home->buttonLink2 = $request->input('buttonLink2');
-            $home->chooseUsTitle = $request->input('chooseUsTitle');
-            $home->chooseUsContent = $request->input('chooseUsContent');
-            $home->listTitleOne = $request->input('listTitleOne');
-            $home->listContentOne = $request->input('listContentOne');
-            $home->listTitleTwo = $request->input('listTitleTwo');
-            $home->listContentTwo = $request->input('listContentTwo');
-            $home->listTitleThree = $request->input('listTitleThree');
-            $home->listContentThree = $request->input('listContentThree');
-            $home->listTitleFour = $request->input('listTitleFour');
-            $home->listContentFour = $request->input('listContentFour');
+
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
-            $home->partnersTitle = $request->input('partnersTitle');
-            $home->partnersSubtitle = $request->input('partnersSubtitle');
-            $home->statsTitleOne = $request->input('statsTitleOne');
-            $home->statsNumberOne = $request->input('statsNumberOne');
-            $home->statsTitleTwo = $request->input('statsTitleTwo');
-            $home->statsNumberTwo = $request->input('statsNumberTwo');
-            $home->statsTitleThree = $request->input('statsTitleThree');
-            $home->statsNumberThree = $request->input('statsNumberThree');
-            $home->statsTitleFour = $request->input('statsTitleFour');
-            $home->statsNumberFour = $request->input('statsNumberFour');
-            $home->getStartedTitle = $request->input('getStartedTitle');
-            $home->getStartedDescription = $request->input('getStartedDescription');
-            $home->getStartedButton = $request->input('getStartedButton');
-            $home->getStartedLink = $request->input('getStartedLink');
+            $home->missionStatsNumberOne = $request->input('missionStatsNumberOne');
+            $home->missionStatsNumberTwo = $request->input('missionStatsNumberTwo');
+            $home->missionStatsNumberThree = $request->input('missionStatsNumberThree');
+            $home->missionStatsTitleOne = $request->input('missionStatsTitleOne');
+            $home->missionStatsTitleTwo = $request->input('missionStatsTitleTwo');
+            $home->missionStatsTitleThree = $request->input('missionStatsTitleThree');
 
+            $home->bookYourAppointmentTitle = $request->input('bookYourAppointmentTitle');
+            $home->bookYourAppointmentContent = $request->input('bookYourAppointmentContent');
+            $home->bookYourAppointmentButton = $request->input('bookYourAppointmentButton');
+
+            // Handle file uploads
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
                 $home->imageHeroSectionPath = $path;
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
             }
 
-            if ($request->hasFile('livePicturePath')) {
-                $path = $request->file('livePicturePath')->store('liveImages', 'public');
-                $home->livePicturePath = $path;
-                $home->livePictureName = $request->file('livePicturePath')->getClientOriginalName();
+            if ($request->hasFile('infoBoxImageOne')) {
+                $path = $request->file('infoBoxImageOne')->store('infoBoxImages', 'public');
+                $home->infoBoxImageOne = $path;
+                $home->infoBoxImageNameOne = $request->file('infoBoxImageOne')->getClientOriginalName();
+            }
+
+            if ($request->hasFile('infoBoxImageTwo')) {
+                $path = $request->file('infoBoxImageTwo')->store('infoBoxImages', 'public');
+                $home->infoBoxImageTwo = $path;
+                $home->infoBoxImageNameTwo = $request->file('infoBoxImageTwo')->getClientOriginalName();
+            }
+
+            if ($request->hasFile('infoBoxImageThree')) {
+                $path = $request->file('infoBoxImageThree')->store('infoBoxImages', 'public');
+                $home->infoBoxImageThree = $path;
+                $home->infoBoxImageNameThree = $request->file('infoBoxImageThree')->getClientOriginalName();
             }
 
             if ($request->hasFile('missionPicturePathOne')) {
@@ -269,18 +250,7 @@ class HomeController extends Controller
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
 
-            if ($request->hasFile('missionPicturePathFour')) {
-                $path = $request->file('missionPicturePathFour')->store('images');
-                $home->missionPictureNameFour = $request->file('missionPicturePathFour')->getClientOriginalName();
-                $home->missionPicturePathFour = $path;
-            }
-
-            if ($request->hasFile('whoWeArePicturePathAbout')) {
-                $path = $request->file('whoWeArePicturePathAbout')->store('aboutImages', 'public');
-                $home->whoWeArePicturePathAbout = $path;
-                $home->whoWeArePictureNameAbout = $request->file('whoWeArePicturePathAbout')->getClientOriginalName();
-            }
-
+            // Save the updated record
             $home->save();
 
             return redirect()->route('admin.homeViewForUpdate')->with('success', 'Home page updated successfully');

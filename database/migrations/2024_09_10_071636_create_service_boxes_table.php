@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_us', function (Blueprint $table) {
+        Schema::create('service_boxes', function (Blueprint $table) {
             $table->id();
-            $table->string('titleHeroAboutUs')->nullable();
-            $table->text('subtitleHeroAboutUs')->nullable();
-
+            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->string('icon');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us');
+        Schema::dropIfExists('service_boxes');
     }
 };

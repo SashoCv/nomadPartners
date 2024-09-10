@@ -13,60 +13,59 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-            $table->string('taglineHeroSection')->nullable();
+            // Hero Section
             $table->string('titleHeroSection')->nullable();
             $table->string('subtitleHeroSection')->nullable();
             $table->string('buttonHeroSection')->nullable();
-            $table->string('imageHeroSectionName')->nullable();
             $table->string('imageHeroSectionPath')->nullable();
-            $table->string('testimonialTitleOne')->nullable();
-            $table->string('testimonialContentOne')->nullable();
-            $table->string('linkTestimonialOne')->nullable();
-            $table->string('titleTestimonialTwo')->nullable();
-            $table->string('contentTestimonialTwo')->nullable();
-            $table->string('linkTestimonialTwo')->nullable();
-            $table->string('titleTestimonialThree')->nullable();
-            $table->string('contentTestimonialThree')->nullable();
-            $table->string('linkTestimonialThree')->nullable();
+            $table->string('imageHeroSectionName')->nullable();
+
+            // Info Cards Section
+            $table->string('infoBoxTitleOne')->nullable();
+            $table->text('infoBoxContentOne')->nullable();
+            $table->string('buttonBoxTextOne')->nullable();
+            $table->string('infoBoxImageOne')->nullable();
+            $table->string('infoBoxImageNameOne')->nullable();
+
+            $table->string('infoBoxTitleTwo')->nullable();
+            $table->text('infoBoxContentTwo')->nullable();
+            $table->string('buttonBoxTextTwo')->nullable();
+            $table->string('infoBoxImageTwo')->nullable();
+            $table->string('infoBoxImageNameTwo')->nullable();
+
+            $table->string('infoBoxTitleThree')->nullable();
+            $table->text('infoBoxContentThree')->nullable();
+            $table->string('buttonBoxTextThree')->nullable();
+            $table->string('infoBoxImageThree')->nullable();
+            $table->string('infoBoxImageNameThree')->nullable();
+
+            // About Section
             $table->string('titleAbout')->nullable();
             $table->string('subtitleAbout')->nullable();
+            $table->text('contentAbout')->nullable();
             $table->string('buttonTextAbout')->nullable();
-            $table->string('buttonLinkAbout')->nullable();
-            $table->string('contentAbout')->nullable();
-            $table->string('liveTitle')->nullable();
-            $table->string('liveContent')->nullable();
-            $table->string('livePictureName')->nullable();
-            $table->string('livePicturePath')->nullable();
-            $table->string('buttonText1')->nullable();
-            $table->string('buttonLink1')->nullable();
-            $table->string('buttonText2')->nullable();
-            $table->string('buttonLink2')->nullable();
-            $table->string('chooseUsTitle')->nullable();
-            $table->string('chooseUsContent')->nullable();
-            $table->string('listTitleOne')->nullable();
-            $table->string('listContentOne')->nullable();
-            $table->string('listTitleTwo')->nullable();
-            $table->string('listContentTwo')->nullable();
-            $table->string('listTitleThree')->nullable();
-            $table->string('listContentThree')->nullable();
-            $table->string('listTitleFour')->nullable();
-            $table->string('listContentFour')->nullable();
+
+            // Mission Section
             $table->string('missionTitle')->nullable();
-            $table->string('missionContent')->nullable();
-            $table->string('missionPictureNameOne')->nullable();
+            $table->text('missionContent')->nullable();
+            $table->string('missionStatsNumberOne')->nullable();
+            $table->string('missionStatsNumberTwo')->nullable();
+            $table->string('missionStatsNumberThree')->nullable();
+            $table->string('missionStatsTitleOne')->nullable();
+            $table->string('missionStatsTitleTwo')->nullable();
+            $table->string('missionStatsTitleThree')->nullable();
             $table->string('missionPicturePathOne')->nullable();
-            $table->string('missionPictureNameTwo')->nullable();
+            $table->string('missionPictureNameOne')->nullable();
             $table->string('missionPicturePathTwo')->nullable();
-            $table->string('missionPictureNameThree')->nullable();
+            $table->string('missionPictureNameTwo')->nullable();
             $table->string('missionPicturePathThree')->nullable();
-            $table->string('missionPictureNameFour')->nullable();
-            $table->string('missionPicturePathFour')->nullable();
-            $table->string('getStartedTitle')->nullable();
-            $table->string('getStartedDescription')->nullable();
-            $table->string('getStartedButton')->nullable();
-            $table->string('getStartedLink')->nullable();
-            $table->string('partnersTitle')->nullable();
-            $table->string('partnersSubtitle')->nullable();
+            $table->string('missionPictureNameThree')->nullable();
+
+            // Book Your Appointment Section
+            $table->string('bookYourAppointmentTitle')->nullable();
+            $table->text('bookYourAppointmentContent')->nullable();
+            $table->string('bookYourAppointmentButton')->nullable();
+
             $table->timestamps();
         });
     }

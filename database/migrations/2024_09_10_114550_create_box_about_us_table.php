@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_us', function (Blueprint $table) {
+        Schema::create('box_about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('titleHeroAboutUs')->nullable();
-            $table->text('subtitleHeroAboutUs')->nullable();
-
+            $table->foreignId('about_us_id')->constrained('about_us')->onDelete('cascade');
+            $table->string('titleBoxAboutUs');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us');
+        Schema::dropIfExists('box_about_us');
     }
 };
