@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceBox;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -12,8 +13,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::with('serviceBoxes')->first();
-        return view('Services.index', compact('services'));
+        $services = Service::first();
+        if($services){
+            $servicesBoxes = ServiceBox::where('service_id', $services->id)->get();
+        } else {
+            $servicesBoxes = [];
+        }
+        return view('Services.index', compact(['services', 'servicesBoxes']));
     }
 
     /**

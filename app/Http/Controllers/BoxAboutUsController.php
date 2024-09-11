@@ -64,8 +64,11 @@ class BoxAboutUsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BoxAboutUs $boxAboutUs)
+    public function destroy($id)
     {
-        //
+        $boxAboutUs = BoxAboutUs::find($id);
+        $boxAboutUs->delete();
+
+        return redirect()->route('admin.aboutUsViewForUpdate')->with('success', 'Box about us deleted successfully');
     }
 }

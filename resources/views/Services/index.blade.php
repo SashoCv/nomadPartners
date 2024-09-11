@@ -69,6 +69,7 @@
                             <h5 class="modal-title" id="editMainServiceModalLabel">Edit Main Service</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        @if($services)
                         <div class="modal-body">
                             <form action="{{ route('services.update', $services->id) }}" method="post">
                                 @csrf
@@ -78,6 +79,7 @@
                                 <button class="btn btn-primary">Update Service</button>
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -93,12 +95,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if($services->serviceBoxes->isEmpty())
+                @if($servicesBoxes !== [])
                     <tr>
                         <td colspan="4">No services found</td>
                     </tr>
                 @else
-                    @foreach($services->serviceBoxes as $box)
+                    @foreach($servicesBoxes as $box)
                         <tr class="w-100">
                             <td>{{ $box->title }}</td>
                             <td>{{ $box->description }}</td>
@@ -114,7 +116,6 @@
                                 </form>
                             </td>
                         </tr>
-
                         <!-- Modal for Editing Service Box -->
                         <div class="modal fade" id="editServiceBoxModal{{ $box->id }}" tabindex="-1" aria-labelledby="editServiceBoxModalLabel{{ $box->id }}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -144,6 +145,7 @@
         </div>
 
         <!-- Add Service Box Tab -->
+        @if($services)
         <div id="addService" class="tab-pane fade">
             <form action="{{ route('servicesBox.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -154,5 +156,6 @@
                 <button class="btn btn-primary mb-3">Add Service Box</button>
             </form>
         </div>
+        @endif
     </div>
 @endsection

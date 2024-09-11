@@ -64,7 +64,7 @@ class AboutUsController extends Controller
     {
         try {
             $aboutUs = AboutUs::first();
-            $boxes = $aboutUs->boxAboutUs;
+            $boxes = $aboutUs->boxAboutUs ?? [];
             return view('AboutUs.edit', compact(['aboutUs', 'boxes']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
