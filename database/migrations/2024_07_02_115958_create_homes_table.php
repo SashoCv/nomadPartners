@@ -48,9 +48,9 @@ return new class extends Migration
             // Mission Section
             $table->string('missionTitle')->nullable();
             $table->text('missionContent')->nullable();
-            $table->string('missionStatsNumberOne')->nullable();
-            $table->string('missionStatsNumberTwo')->nullable();
-            $table->string('missionStatsNumberThree')->nullable();
+            $table->string('missionStatsTextOne')->nullable();
+            $table->string('missionStatsTextTwo')->nullable();
+            $table->string('missionStatsTextThree')->nullable();
             $table->string('missionStatsTitleOne')->nullable();
             $table->string('missionStatsTitleTwo')->nullable();
             $table->string('missionStatsTitleThree')->nullable();

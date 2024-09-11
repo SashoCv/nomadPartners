@@ -75,27 +75,65 @@
             <!-- Info Cards Section -->
             <div id="testimonialSection" class="collapse">
                 <h2 class="section-heading">Info Cards</h2>
-                @for ($i = 1; $i <= 3; $i++)
                     <div class="form-group">
-                        <label for="infoBoxTitle{{ $i }}">Info Card Title {{ $i }}</label>
-                        <input type="text" class="form-control" id="infoBoxTitle{{ $i }}" name="infoBoxTitle{{ $i }}" value="{{ old('infoBoxTitle' . $i, $homePage->{'infoBoxTitle' . $i}) }}">
+                        <label for="infoBoxTitleOne">Info Card Title One</label>
+                        <input type="text" class="form-control" id="infoBoxTitleOne" name="infoBoxTitleOne" value="{{ old('infoBoxTitleOne' , $homePage->{'infoBoxTitleOne'}) }}">
                     </div>
                     <div class="form-group">
-                        <label for="infoBoxContent{{ $i }}">Info Card Content {{ $i }}</label>
-                        <textarea class="form-control" id="infoBoxContent{{ $i }}" name="infoBoxContent{{ $i }}">{{ old('infoBoxContent' . $i, $homePage->{'infoBoxContent' . $i}) }}</textarea>
+                        <label for="infoBoxContentOne">Info Card Content One</label>
+                        <textarea class="form-control" id="infoBoxContentOne" name="infoBoxContentOne">{{ old('infoBoxContentOne', $homePage->{'infoBoxContentOne'}) }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="buttonBoxText{{ $i }}">Button Info {{ $i }}</label>
-                        <input type="text" class="form-control" id="buttonBoxText{{ $i }}" name="buttonBoxText{{ $i }}" value="{{ old('buttonBoxText' . $i, $homePage->{'buttonBoxText' . $i}) }}">
+                        <label for="buttonBoxTextOne">Button Info One</label>
+                        <input type="text" class="form-control" id="buttonBoxTextOne" name="buttonBoxTextOne" value="{{ old('buttonBoxTextOne', $homePage->{'buttonBoxTextOne'}) }}">
                     </div>
                     <div class="form-group">
-                        <label for="infoBoxImage{{ $i }}">Info Card Image {{ $i }}</label>
-                        <input type="file" class="form-control-file" id="infoBoxImage{{ $i }}" name="infoBoxImage{{ $i }}">
-                        @if ($homePage->{'infoBoxImage' . $i})
-                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImage' . $i}) }}" alt="Info Card Image {{ $i }}" style="max-width: 200px; margin-top: 10px;">
-                        @endif
+                        <label for="infoBoxImageOne">Info Card Image One</label>
+                        <input type="file" class="form-control-file" id="infoBoxImageOne" name="infoBoxImageOne">
+                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageOne'}) }}" alt="Info Card Image One" style="max-width: 200px; margin-top: 10px;">
                     </div>
-                @endfor
+
+                    <div class="form-group">
+                        <label for="infoBoxTitleTwo">Info Card Title Two</label>
+                        <input type="text" class="form-control" id="infoBoxTitleTwo" name="infoBoxTitleTwo" value="{{ old('infoBoxTitleTwo' , $homePage->{'infoBoxTitleTwo'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="infoBoxContentTwo">Info Card Content Two</label>
+                        <textarea class="form-control" id="infoBoxContentTwo" name="infoBoxContentTwo">{{ old('infoBoxContentTwo', $homePage->{'infoBoxContentTwo'}) }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buttonBoxTextTwo">Button Info Two</label>
+                        <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="infoBoxImageTwo">Info Card Image Two</label>
+                        <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">
+                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageTwo'}) }}" alt="Info Card Image Two" style="max-width: 200px; margin-top: 10px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="infoBoxTitleThree">Info Card Title Three</label>
+                        <input type="text" class="form-control" id="infoBoxTitleThree" name="infoBoxTitleThree" value="{{ old('infoBoxTitleThree' , $homePage->{'infoBoxTitleThree'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="infoBoxContentThree">Info Card Content Three</label>
+                        <textarea class="form-control" id="infoBoxContentThree" name="infoBoxContentThree">{{ old('infoBoxContentThree', $homePage->{'infoBoxContentThree'}) }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buttonBoxTextThree">Button Info Three</label>
+                        <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="infoBoxImageThree">Info Card Image Three</label>
+                        <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">
+                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageThree'}) }}" alt="Info Card Image Three" style="max-width: 200px; margin-top: 10px;">
+                    </div>
             </div>
 
             <!-- About Section -->
@@ -130,23 +168,57 @@
                     <label for="missionContent">Mission Content</label>
                     <textarea class="form-control" id="missionContent" name="missionContent">{{ old('missionContent', $homePage->missionContent) }}</textarea>
                 </div>
-                @for ($i = 1; $i <= 3; $i++)
                     <div class="form-group">
-                        <label for="missionPicturePath{{ $i }}">Mission Icon {{ $i }}</label>
-                        <input type="file" class="form-control-file" id="missionPicturePath{{ $i }}" name="missionPicturePath{{ $i }}">
-                        @if ($homePage->{'missionPicturePath' . $i})
-                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePath' . $i}) }}" alt="Mission Icon {{ $i }}" style="max-width: 200px; margin-top: 10px;">
+                        <label for="missionPicturePathOne">Mission Icon One</label>
+                        <input type="file" class="form-control-file" id="missionPicturePathOne" name="missionPicturePathOne">
+                        @if ($homePage->{'missionPicturePathOne'})
+                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathOne'}) }}" alt="Mission Icon One" style="max-width: 200px; margin-top: 10px;">
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="missionStatsNumber{{ $i }}">Mission Stats Number {{ $i }}</label>
-                        <input type="text" class="form-control" id="missionStatsNumber{{ $i }}" name="missionStatsNumber{{ $i }}" value="{{ old('missionStatsNumber' . $i, $homePage->{'missionStatsNumber' . $i}) }}">
+                        <label for="missionStatsTitleOne">Mission Stats Title One</label>
+                        <input type="text" class="form-control" id="missionStatsTitleOne" name="missionStatsTitleOne" value="{{ old('missionStatsTitleOne', $homePage->{'missionStatsTitleOne'}) }}">
                     </div>
                     <div class="form-group">
-                        <label for="missionStatsText{{ $i }}">Mission Stats Text {{ $i }}</label>
-                        <input type="text" class="form-control" id="missionStatsText{{ $i }}" name="missionStatsText{{ $i }}" value="{{ old('missionStatsText' . $i, $homePage->{'missionStatsText' . $i}) }}">
+                        <label for="missionStatsTextOne">Mission Stats Text One</label>
+                        <input type="text" class="form-control" id="missionStatsTextOne" name="missionStatsTextOne" value="{{ old('missionStatsTextOne', $homePage->{'missionStatsTextOne'}) }}">
                     </div>
-                @endfor
+
+                    <div class="form-group">
+                        <label for="missionPicturePathTwo">Mission Icon Two</label>
+                        <input type="file" class="form-control-file" id="missionPicturePathTwo" name="missionPicturePathTwo">
+                        @if ($homePage->{'missionPicturePathTwo'})
+                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathTwo'}) }}" alt="Mission Icon Two" style="max-width: 200px; margin-top: 10px;">
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missionStatsTitleTwo">Mission Stats Title Two</label>
+                        <input type="text" class="form-control" id="missionStatsTitleTwo" name="missionStatsTitleTwo" value="{{ old('missionStatsTitleTwo', $homePage->{'missionStatsTitleTwo'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missionStatsTextTwo">Mission Stats Text Two</label>
+                        <input type="text" class="form-control" id="missionStatsTextTwo" name="missionStatsTextTwo" value="{{ old('missionStatsTextTwo', $homePage->{'missionStatsTextTwo'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missionPicturePathThree">Mission Icon Three</label>
+                        <input type="file" class="form-control-file" id="missionPicturePathThree" name="missionPicturePathThree">
+                        @if ($homePage->{'missionPicturePathThree'})
+                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathThree'}) }}" alt="Mission Icon Three" style="max-width: 200px; margin-top: 10px;">
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missionStatsTitleThree">Mission Stats Title Three</label>
+                        <input type="text" class="form-control" id="missionStatsTitleThree" name="missionStatsTitleThree" value="{{ old('missionStatsTitleThree', $homePage->{'missionStatsTitleThree'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="missionStatsTextThree">Mission Stats Text Three</label>
+                        <input type="text" class="form-control" id="missionStatsTextThree" name="missionStatsTextThree" value="{{ old('missionStatsTextThree', $homePage->{'missionStatsTextThree'}) }}">
+                    </div>
             </div>
 
             <!-- Book Your Appointment Section -->
@@ -157,12 +229,12 @@
                     <input type="text" class="form-control" id="bookYourAppointmentTitle" name="bookYourAppointmentTitle" value="{{ old('bookYourAppointmentTitle', $homePage->bookYourAppointmentTitle) }}">
                 </div>
                 <div class="form-group">
-                    <label for="bookYourAppointmentSubtitle">Subtitle</label>
-                    <input type="text" class="form-control" id="bookYourAppointmentSubtitle" name="bookYourAppointmentSubtitle" value="{{ old('bookYourAppointmentSubtitle', $homePage->bookYourAppointmentSubtitle) }}">
+                    <label for="bookYourAppointmentContent	">Subtitle</label>
+                    <input type="text" class="form-control" id="bookYourAppointmentContent" name="bookYourAppointmentContent" value="{{ old('bookYourAppointmentContent', $homePage->bookYourAppointmentContent) }}">
                 </div>
                 <div class="form-group">
-                    <label for="bookYourAppointmentButtonText">Button Text</label>
-                    <input type="text" class="form-control" id="bookYourAppointmentButtonText" name="bookYourAppointmentButtonText" value="{{ old('bookYourAppointmentButtonText', $homePage->bookYourAppointmentButtonText) }}">
+                    <label for="bookYourAppointmentButton">Button Text</label>
+                    <input type="text" class="form-control" id="bookYourAppointmentButton" name="bookYourAppointmentButton" value="{{ old('bookYourAppointmentButton', $homePage->bookYourAppointmentButton) }}">
                 </div>
                 <div class="form-group">
                     <label for="bookYourAppointmentImage">Image</label>

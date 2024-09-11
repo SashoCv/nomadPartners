@@ -83,9 +83,9 @@ class HomeController extends Controller
 
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
-            $home->missionStatsNumberOne = $request->input('missionStatsNumberOne');
-            $home->missionStatsNumberTwo = $request->input('missionStatsNumberTwo');
-            $home->missionStatsNumberThree = $request->input('missionStatsNumberThree');
+            $home->missionStatsTextOne = $request->input('missionStatsTextOne');
+            $home->missionStatsTextTwo = $request->input('missionStatsTextTwo');
+            $home->missionStatsTextThree = $request->input('missionStatsTextThree');
             $home->missionStatsTitleOne = $request->input('missionStatsTitleOne');
             $home->missionStatsTitleTwo = $request->input('missionStatsTitleTwo');
             $home->missionStatsTitleThree = $request->input('missionStatsTitleThree');
@@ -196,9 +196,9 @@ class HomeController extends Controller
 
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
-            $home->missionStatsNumberOne = $request->input('missionStatsNumberOne');
-            $home->missionStatsNumberTwo = $request->input('missionStatsNumberTwo');
-            $home->missionStatsNumberThree = $request->input('missionStatsNumberThree');
+            $home->missionStatsTextOne = $request->input('missionStatsTextOne');
+            $home->missionStatsTextTwo = $request->input('missionStatsTextTwo');
+            $home->missionStatsTextThree = $request->input('missionStatsTextThree');
             $home->missionStatsTitleOne = $request->input('missionStatsTitleOne');
             $home->missionStatsTitleTwo = $request->input('missionStatsTitleTwo');
             $home->missionStatsTitleThree = $request->input('missionStatsTitleThree');
