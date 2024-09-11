@@ -95,7 +95,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if($servicesBoxes !== [])
+                @if(!$servicesBoxes)
                     <tr>
                         <td colspan="4">No services found</td>
                     </tr>
@@ -108,12 +108,14 @@
                                 <img src="{{ asset('storage/' . $box->icon) }}" alt="no icon" style="max-width: 50px;">
                             </td>
                             <td>
+                                <div class="d-flex" style="gap:10px">
                                 <button class="btn btn-primary" style="display: inline" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal{{ $box->id }}">Edit</button>
                                 <form action="{{ route('servicesBox.destroy', $box->id) }}" method="post" style="display: inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                         <!-- Modal for Editing Service Box -->
@@ -130,7 +132,7 @@
                                             @method('PUT')
                                             <input type="hidden" name="service_id" value="{{ $services->id }}">
                                             <input type="text" name="title" class="form-control mb-3" value="{{ $box->title }}" placeholder="Name Service">
-                                            <input type="text" name="description" class="form-control mb-3" value="{{ $box->description }}" placeholder="Subtitle Service">
+                                            <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service">{{ $box->description }}</textarea>
                                             <input type="file" name="iconForEdit" class="form-control mb-3" value="{{$box->icon}}">
                                             <button class="btn btn-primary">Update Service Box</button>
                                         </form>
@@ -151,7 +153,7 @@
                 @csrf
                 <input type="hidden" name="service_id" value="{{ $services->id }}">
                 <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
-                <input type="text" name="description" class="form-control mb-3" placeholder="Subtitle Service">
+                <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
                 <input type="file" name="iconForStore" class="form-control mb-3">
                 <button class="btn btn-primary mb-3">Add Service Box</button>
             </form>

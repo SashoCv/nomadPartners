@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,4 +52,8 @@ Route::post('contact', [ContactFormController::class, 'store']);
 
 // CONTACT
 Route::post('business', [BusinessFormController::class, 'store']);
+
+
+// Services
+Route::get('services', [ServiceController::class, 'getServicesApi']);
 

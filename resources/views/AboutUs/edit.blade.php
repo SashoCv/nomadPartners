@@ -92,15 +92,15 @@
                     <label for="titleHeroAboutUs">Title Hero About Us</label>
                     <input type="text" class="form-control" id="titleHeroAboutUs" name="titleHeroAboutUs" value="{{ $aboutUs->titleHeroAboutUs }}">
                 </div>
-                <div class="form-group">
-                    <label for="subtitleHeroAboutUs">Subtitle Hero About Us</label>
-                    <input type="text" class="form-control" id="subtitleHeroAboutUs" name="subtitleHeroAboutUs" value="{{ $aboutUs->subtitleHeroAboutUs }}">
-                </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Update</button>
+            <div class="form-group w-100 mb-3">
+                <label for="blogContent">Content</label>
+                <textarea id="blogContent" name="subtitleHeroAboutUs" class="form-control" placeholder="Enter your content here">{{ $aboutUs->subtitleHeroAboutUs }}</textarea>
             </div>
 
+                <button type="submit" class="btn btn-primary mt-3">Update</button>
         </form>
+        </div>
     </div>
 
 
@@ -125,6 +125,22 @@
             showSection();
 
             window.addEventListener('hashchange', showSection);
+
+            const csrfToken = '{{ csrf_token() }}';
+
+            ClassicEditor
+                .create(document.querySelector('#blogContent'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
 @endsection
