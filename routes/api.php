@@ -54,6 +54,6 @@ Route::post('contact', [ContactFormController::class, 'store']);
 Route::post('business', [BusinessFormController::class, 'store']);
 
 
-// Services
+// ServicesSection
 Route::get('services', [ServiceController::class, 'getServicesApi']);
 
