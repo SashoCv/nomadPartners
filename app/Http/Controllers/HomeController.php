@@ -25,9 +25,6 @@ class HomeController extends Controller
             $latestFourBlogs = Blog::latest()->take(4)->get();
             $allPartners = Partner::all();
 
-            // Some modification on the data that we need on the FE.
-            $home = $this->transformHomeData($home);
-
             return response()->json([
                 'status' => 200,
                 'home' => $home,
