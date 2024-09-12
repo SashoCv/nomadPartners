@@ -28,6 +28,7 @@
             <th>Position</th>
             <th>Image</th>
             <th>Description</th>
+            <th>Order</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -40,6 +41,7 @@
                     <img src="{{ Storage::url($team_member->imagePath) }}" alt="Team Member Image" width="100%">
                 </td>
                 <td>{{ $team_member->description }}</td>
+                <td>{{ $team_member->order }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTeamMemberModal" data-id="{{ $team_member->id }}" data-name="{{ $team_member->full_name }}" data-position="{{ $team_member->position }}" data-description="{{ $team_member->description }}" data-image="{{ Storage::url($team_member->imagePath) }}">
                         Edit
@@ -89,6 +91,11 @@
                             <input type="text" class="form-control" id="teamMemberDescription" name="description">
                         </div>
 
+                        <div class="form-group">
+                            <label for="teamMemberOrder">Team Member Order</label>
+                            <input type="number" class="form-control" id="teamMemberOrder" name="order">
+                        </div>
+
                         <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
                     </form>
                 </div>
@@ -127,6 +134,11 @@
                         <div class="form-group">
                             <label for="editTeamMemberDescription">Team Member Description</label>
                             <input type="text" class="form-control" id="editTeamMemberDescription" name="description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editTeamMemberOrder">Team Member Order</label>
+                            <input type="number" class="form-control" id="editTeamMemberOrder" name="order">
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-3 w-100">Save Changes</button>

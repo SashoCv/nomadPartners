@@ -47,6 +47,7 @@ class TeamMembersController extends Controller
             $team_member->full_name = $request->full_name;
             $team_member->position = $request->position;
             $team_member->description = $request->description;
+            $team_member->order = $request->order;
 
             if ($request->hasFile('imagePath')) {
                 $name = Storage::disk('public')->put('team_members', $request->file('imagePath'));
@@ -99,6 +100,7 @@ class TeamMembersController extends Controller
             $team_member->full_name = $request->full_name;
             $team_member->position = $request->position;
             $team_member->description = $request->description;
+            $team_member->order = $request->order;
 
             if ($request->hasFile('imagePath')) {
                 // Delete the old image if it exists
