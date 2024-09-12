@@ -29,7 +29,7 @@ class TeamMembersController extends Controller
     public function getTeamMembersApi()
         {
         try {
-            $team_members = TeamMembers::all();
+            $team_members = TeamMembers::orderBy('order', 'asc')->get();
             return response()->json($team_members);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
