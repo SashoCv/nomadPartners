@@ -204,6 +204,30 @@ class HomeController extends Controller
             $home->bookYourAppointmentContent = $request->input('bookYourAppointmentContent');
             $home->bookYourAppointmentButton = $request->input('bookYourAppointmentButton');
 
+            $home->serviceTitle = $request->input('serviceTitle');
+            $home->serviceContent = $request->input('serviceContent');
+            $home->serviceStatsNumberOne = $request->input('serviceStatsNumberOne');
+            $home->serviceStatsTextOne = $request->input('serviceStatsTextOne');
+            $home->serviceStatsNumberTwo = $request->input('serviceStatsNumberTwo');
+            $home->serviceStatsTextTwo = $request->input('serviceStatsTextTwo');
+            $home->serviceStatsNumberThree = $request->input('serviceStatsNumberThree');
+            $home->serviceStatsTextThree = $request->input('serviceStatsTextThree');
+
+//            $table->string('serviceTitle')->nullable();
+//            $table->string('serviceContent')->nullable();
+//            $table->string('serviceImageStatsOnePath')->nullable();
+//            $table->string('serviceImageStatsOneName')->nullable();
+//            $table->string('serviceStatsNumberOne')->nullable();
+//            $table->string('serviceStatsTextOne')->nullable();
+//            $table->string('serviceImageStatsTwoPath')->nullable();
+//            $table->string('serviceImageStatsTwoName')->nullable();
+//            $table->string('serviceStatsNumberTwo')->nullable();
+//            $table->string('serviceStatsTextTwo')->nullable();
+//            $table->string('serviceImageStatsThreePath')->nullable();
+//            $table->string('serviceImageStatsThreeName')->nullable();
+//            $table->string('serviceStatsNumberThree')->nullable();
+//            $table->string('serviceStatsTextThree')->nullable();
+
             // Handle file uploads
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
@@ -246,6 +270,31 @@ class HomeController extends Controller
                 $home->missionPicturePathThree = $path;
                 $home->missionPictureNameThree = $request->file('missionPicturePathThree')->getClientOriginalName();
             }
+
+            if ($request->hasFile('missionMainImage')) {
+                $path = $request->file('missionMainImage')->store('missionMainImage', 'public');
+                $home->missionMainImagePath = $path;
+                $home->missionMainImageName = $request->file('missionMainImage')->getClientOriginalName();
+            }
+
+            if ($request->hasFile('serviceImageStatsOne')) {
+                $path = $request->file('serviceImageStatsOne')->store('serviceImages', 'public');
+                $home->serviceImageStatsOnePath = $path;
+                $home->serviceImageStatsOneName = $request->file('serviceImageStatsOne')->getClientOriginalName();
+            }
+
+            if ($request->hasFile('serviceImageStatsTwo')) {
+                $path = $request->file('serviceImageStatsTwo')->store('serviceImages', 'public');
+                $home->serviceImageStatsTwoPath = $path;
+                $home->serviceImageStatsTwoName = $request->file('serviceImageStatsTwo')->getClientOriginalName();
+            }
+
+            if ($request->hasFile('serviceImageStatsThree')) {
+                $path = $request->file('serviceImageStatsThree')->store('serviceImages', 'public');
+                $home->serviceImageStatsThreePath = $path;
+                $home->serviceImageStatsThreeName = $request->file('serviceImageStatsThree')->getClientOriginalName();
+            }
+
 
             // Save the updated record
             $home->save();

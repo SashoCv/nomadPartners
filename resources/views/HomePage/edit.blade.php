@@ -40,6 +40,9 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#bookYourAppointment" role="button" aria-expanded="false" aria-controls="bookYourAppointment">Book Your Appointment</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#service" role="button" aria-expanded="false" aria-controls="service">Services</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -161,6 +164,13 @@
             <div id="missionSection" class="collapse">
                 <h2 class="section-heading">Mission Section</h2>
                 <div class="form-group">
+                    <label for="missionSubtitle">Mission Main Image</label>
+                    <input type="file" class="form-control" id="missionSubtitle" name="missionMainImage">
+                    @if ($homePage->{'missionMainImagePath'})
+                        <img src="{{ asset('storage/' . $homePage->{'missionMainImagePath'}) }}" alt="Main Image" style="max-width: 200px; margin-top: 10px;">
+                    @endif
+                </div>
+                <div class="form-group">
                     <label for="missionTitle">Mission Title</label>
                     <input type="text" class="form-control" id="missionTitle" name="missionTitle" value="{{ old('missionTitle', $homePage->missionTitle) }}">
                 </div>
@@ -245,6 +255,65 @@
                 </div>
             </div>
 
+            <!-- Services Section -->
+            <div id="service" class="collapse">
+                <h2 class="section-heading">Services</h2>
+                <div class="form-group">
+                    <label for="serviceTitle">Title</label>
+                        <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" value="{{ old('serviceTitle', $homePage->serviceTitle) }}">
+                </div>
+                <div class="form-group" >
+                    <label for="serviceContent">Content</label>
+                    <textarea class="form-control" id="serviceContent" name="serviceContent">{{ old('serviceContent', $homePage->serviceContent) }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="serviceImage">Image For Stats One</label>
+                    <input type="file" class="form-control-file" id="serviceImage" name="serviceImageStatsOne">
+                    @if ($homePage->serviceImageStatsOnePath)
+                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsOnePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="serviceStatsNumberOne">Stats Number One</label>
+                    <input type="text" class="form-control" id="serviceStatsNumberOne" name="serviceStatsNumberOne" value="{{ old('serviceStatsNumberOne', $homePage->serviceStatsNumberOne) }}">
+                </div>
+                <div class="form-group" >
+                    <label for="serviceStatsTextOne">Stats Text One</label>
+                    <input type="text" class="form-control" id="serviceStatsTextOne" name="serviceStatsTextOne" value="{{ old('serviceStatsTextOne', $homePage->serviceStatsTextOne) }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceImageStatsTwo">Image For Stats Two</label>
+                    <input type="file" class="form-control-file" id="serviceImageStatsTwo" name="serviceImageStatsTwo">
+                    @if ($homePage->serviceImageStatsTwoPath)
+                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsTwoPath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="serviceStatsNumberTwo">Stats Number Two </label>
+                    <input type="text" class="form-control" id="serviceStatsNumberTwo" name="serviceStatsNumberTwo" value="{{ old('serviceStatsNumberTwo', $homePage->serviceStatsNumberTwo) }}">
+                </div>
+                <div class="form-group">
+                    <label for="serviceStatsTextTwo">Stats Text Two</label>
+                    <input type="text" class="form-control" id="serviceStatsTextTwo" name="serviceStatsTextTwo" value="{{ old('serviceStatsTextTwo', $homePage->serviceStatsTextTwo) }}">
+                </div>
+                <div class="form-group">
+                    <label for="serviceImageStatsThree">Image For Stats Three</label>
+                    <input type="file" class="form-control-file" id="serviceImageStatsThree" name="serviceImageStatsThree">
+                    @if ($homePage->serviceImageStatsThreePath)
+                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsThreePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="serviceStatsNumberThree">Stats Number Three</label>
+                    <input type="text" class="form-control" id="serviceStatsNumberThree" name="serviceStatsNumberThree" value="{{ old('serviceStatsNumberThree', $homePage->serviceStatsNumberThree) }}">
+                </div>
+                <div class="form-group">
+                    <label for="serviceStatsTextThree">Stats Text Three</label>
+                    <input type="text" class="form-control" id="serviceStatsTextThree" name="serviceStatsTextThree" value="{{ old('serviceStatsTextThree', $homePage->serviceStatsTextThree) }}">
+                </div>
+
+            </div>
             <button type="submit" class="btn btn-primary mt-4">Update</button>
         </form>
     </div>
