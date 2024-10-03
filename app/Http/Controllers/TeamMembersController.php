@@ -15,7 +15,7 @@ class TeamMembersController extends Controller
     public function index()
     {
         try {
-            $team_members = TeamMembers::all();
+            $team_members = TeamMembers::oderBy('order', 'asc')->get();
             return view('TeamMembers.index', compact('team_members'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
