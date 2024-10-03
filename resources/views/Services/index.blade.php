@@ -66,7 +66,7 @@
                 <thead>
                 <tr>
                     <th>Name Service</th>
-                    <th>Subtitle Service</th>
+                    <th>Text Service</th>
                     <th>Icon</th>
                     <th>Actions</th>
                 </tr>
