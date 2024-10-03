@@ -120,7 +120,7 @@
                         </tr>
                         <!-- Modal for Editing Service Box -->
                         <div class="modal fade" id="editServiceBoxModal{{ $box->id }}" tabindex="-1" aria-labelledby="editServiceBoxModalLabel{{ $box->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" style="max-width: 800px;">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editServiceBoxModalLabel{{ $box->id }}">Edit Service Box</h5>
