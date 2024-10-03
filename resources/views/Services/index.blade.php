@@ -66,8 +66,6 @@
                 <thead>
                 <tr>
                     <th>Name Service</th>
-                    <th>Text Service</th>
-                    <th>Icon</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -80,10 +78,6 @@
                     @foreach($servicesBoxes as $box)
                         <tr class="w-100">
                             <td>{{ $box->title }}</td>
-                            <td>{{ $box->description }}</td>
-                            <td>
-                                <img src="{{ asset('storage/' . $box->icon) }}" alt="no icon" style="max-width: 50px;">
-                            </td>
                             <td>
                                 <div class="d-flex" style="gap:10px">
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal" data-title="{{ $box->title }}" data-description="{{ $box->description }}" data-id="{{ $box->id }}">Edit</button>
