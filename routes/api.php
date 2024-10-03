@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceBoxController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -56,4 +57,8 @@ Route::post('business', [BusinessFormController::class, 'store']);
 
 // ServicesSection
 Route::get('services', [ServiceController::class, 'getServicesApi']);
+
+// ServiceBox
+
+Route::get('service-boxes/{id}', [ServiceBoxController::class, 'show']);
 

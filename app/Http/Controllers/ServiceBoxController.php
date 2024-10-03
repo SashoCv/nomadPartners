@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\ServiceBox;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -49,9 +50,15 @@ class ServiceBoxController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ServiceBox $serviceBox)
+    public function show($id)
     {
-        //
+        $serviceBox = ServiceBox::find($id);
+        $contact = Contact::first('emailContact', 'phoneContact');
+
+        return response()->json([
+            'serviceBox' => $serviceBox,
+            'contact' => $contact
+        ]);
     }
 
     /**
