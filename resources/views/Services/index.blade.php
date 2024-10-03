@@ -27,7 +27,7 @@
             <a class="nav-link active" data-bs-toggle="tab" href="#serviceList">Service List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#addService">Add Service Box</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#addService">Add Service Page</a>
         </li>
     </ul>
 
@@ -110,7 +110,7 @@
                     <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
                     <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
                     <input type="file" name="iconForStore" class="form-control mb-3 mt-3">
-                    <button class="btn btn-primary mb-3">Add Service Box</button>
+                    <button class="btn btn-primary mb-3">Add Service Page</button>
                 </form>
             </div>
         @endif
@@ -121,7 +121,7 @@
         <div class="modal-dialog" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editServiceBoxModalLabel">Edit Service Box</h5>
+                    <h5 class="modal-title" id="editServiceBoxModalLabel">Edit Service Page</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
