@@ -132,7 +132,7 @@
                         <input type="text" name="title" class="form-control mb-3" placeholder="Name Service" id="serviceBoxTitle">
                         <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service" id="serviceBoxDescriptionModal"></textarea>
                         <input type="file" name="iconForEdit" class="form-control mb-3 mt-3">
-                        <button class="btn btn-primary">Update Service Box</button>
+                        <button class="btn btn-primary">Update Service Page</button>
                     </form>
                 </div>
             </div>
