@@ -261,6 +261,7 @@
                     .catch(error => {
                         console.error(error);
                     });
+                location.reload();
             });
         });
     </script>
