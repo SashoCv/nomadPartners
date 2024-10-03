@@ -27,7 +27,6 @@
             <th>Full Name</th>
             <th>Position</th>
             <th>Image</th>
-            <th>Description</th>
             <th>Order</th>
             <th>Actions</th>
         </tr>
@@ -40,14 +39,12 @@
                 <td style="width: 100px; height: 100px">
                     <img src="{{ Storage::url($team_member->imagePath) }}" alt="Team Member Image" width="100%">
                 </td>
-                <td>{{ $team_member->description }}</td>
                 <td>{{ $team_member->order }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTeamMemberModal"
                             data-id="{{ $team_member->id }}"
                             data-name="{{ $team_member->full_name }}"
                             data-position="{{ $team_member->position }}"
-                            data-description="{{ $team_member->description }}"
                             data-image="{{ Storage::url($team_member->imagePath) }}"
                             data-order="{{ $team_member->order }}">
                         Edit
@@ -93,11 +90,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="teamMemberDescription">Team Member Description</label>
-                            <input type="text" class="form-control" id="teamMemberDescription" name="description">
-                        </div>
-
-                        <div class="form-group">
                             <label for="teamMemberOrder">Team Member Order</label>
                             <input type="number" class="form-control" id="teamMemberOrder" name="order">
                         </div>
@@ -135,11 +127,6 @@
                             <label for="editTeamMemberImage">Team Member Image</label>
                             <input type="file" class="form-control-file" id="editTeamMemberImage" name="imagePath">
                             <img id="editImagePreview" src="" alt="Current Image" style="margin-top: 10px; width: 100px; height: auto;">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editTeamMemberDescription">Team Member Description</label>
-                            <input type="text" class="form-control" id="editTeamMemberDescription" name="description">
                         </div>
 
                         <div class="form-group">
@@ -199,7 +186,6 @@
             var teamMemberId = button.data('id');
             var teamMemberName = button.data('name');
             var teamMemberPosition = button.data('position');
-            var teamMemberDescription = button.data('description');
             var teamMemberImage = button.data('image');
             var teamMemberOrder = button.data('order');
 
@@ -209,7 +195,6 @@
             form.attr('action', '{{ url("team-members") }}/' + teamMemberId);
             form.find('#editTeamMemberName').val(teamMemberName);
             form.find('#editTeamMemberPosition').val(teamMemberPosition);
-            form.find('#editTeamMemberDescription').val(teamMemberDescription);
             form.find('#editImagePreview').attr('src', teamMemberImage);
             form.find('#editTeamMemberOrder').val(teamMemberOrder);
         });
