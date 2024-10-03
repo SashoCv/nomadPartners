@@ -53,7 +53,7 @@ class ServiceBoxController extends Controller
     public function show($id)
     {
         $serviceBox = ServiceBox::find($id);
-        $contact = Contact::first('emailContact', 'phoneContact');
+        $contact = Contact::all('emailContact', 'phoneContact');
 
         return response()->json([
             'serviceBox' => $serviceBox,
