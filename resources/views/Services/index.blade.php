@@ -179,24 +179,6 @@
                 formAction.action = formAction.action.replace('placeholder_id', id); // Update the form action URL
             });
 
-            // Initialize CKEditor for service box description in edit modal
-            editModal.addEventListener('shown.bs.modal', function() {
-                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
-                ClassicEditor
-                    .create(descriptionInput, {
-                        ckfinder: {
-                            uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
-                        },
-                        toolbar: [
-                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                            'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
-                        ],
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            });
-
             // Destroy CKEditor instance when modal is hidden
             editModal.addEventListener('hidden.bs.modal', function() {
                 const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
@@ -206,6 +188,9 @@
                             console.error(error);
                         });
                 }
+                // Reset modal content
+                editModal.querySelector('#serviceBoxTitle').value = '';
+                editModal.querySelector('#serviceBoxDescriptionModal').value = '';
             });
         });
     </script>
