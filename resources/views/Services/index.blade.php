@@ -61,29 +61,6 @@
                 </tbody>
             </table>
 
-            <!-- Modal for Editing Main Service -->
-            <div class="modal fade" id="editMainServiceModal" tabindex="-1" aria-labelledby="editMainServiceModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editMainServiceModalLabel">Edit Main Service</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        @if($services)
-                            <div class="modal-body">
-                                <form action="{{ route('services.update', $services->id) }}" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="text" name="title" class="form-control mb-3" value="{{ $services->title }}" placeholder="Name Service">
-                                    <textarea name="description" class="form-control mb-3" placeholder="Description Service">{{ $services->description }}</textarea>
-                                    <button class="btn btn-primary">Update Service</button>
-                                </form>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
             <!-- Table for listing service boxes -->
             <table class="table">
                 <thead>
@@ -109,7 +86,7 @@
                             </td>
                             <td>
                                 <div class="d-flex" style="gap:10px">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal{{ $box->id }}">Edit</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal" data-title="{{ $box->title }}" data-description="{{ $box->description }}" data-id="{{ $box->id }}">Edit</button>
                                     <form action="{{ route('servicesBox.destroy', $box->id) }}" method="post" style="display: inline">
                                         @csrf
                                         @method('DELETE')
@@ -118,28 +95,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <!-- Modal for Editing Service Box -->
-                        <div class="modal fade" id="editServiceBoxModal{{ $box->id }}" tabindex="-1" aria-labelledby="editServiceBoxModalLabel{{ $box->id }}" aria-hidden="true" data-bs-backdrop="static">
-                            <div class="modal-dialog" style="max-width: 800px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editServiceBoxModalLabel{{ $box->id }}">Edit Service Box</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('servicesBox.update', $box->id) }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="service_id" value="{{ $services->id }}">
-                                            <input type="text" name="title" class="form-control mb-3" value="{{ $box->title }}" placeholder="Name Service">
-                                            <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service">{{ $box->description }}</textarea>
-                                            <input type="file" name="iconForEdit" class="form-control mb-3">
-                                            <button class="btn btn-primary">Update Service Box</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     @endforeach
                 @endif
                 </tbody>
@@ -159,6 +114,29 @@
                 </form>
             </div>
         @endif
+    </div>
+
+    <!-- Modal for Editing Service Box -->
+    <div class="modal fade" id="editServiceBoxModal" tabindex="-1" aria-labelledby="editServiceBoxModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editServiceBoxModalLabel">Edit Service Box</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('servicesBox.update', 'placeholder_id') }}" method="post" enctype="multipart/form-data" id="editServiceBoxForm">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="service_id" value="{{ $services->id }}">
+                        <input type="text" name="title" class="form-control mb-3" placeholder="Name Service" id="serviceBoxTitle">
+                        <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service" id="serviceBoxDescriptionModal"></textarea>
+                        <input type="file" name="iconForEdit" class="form-control mb-3">
+                        <button class="btn btn-primary">Update Service Box</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -183,54 +161,51 @@
                     console.error(error);
                 });
 
-            // Initialize CKEditor for service box description in edit modals
-            document.querySelectorAll('[id^="editServiceBoxModal"]').forEach(modal => {
-                modal.addEventListener('shown.bs.modal', function() {
-                    const textarea = modal.querySelector('textarea[name="description"]');
+            // Initialize CKEditor for service box description in edit modal
+            const editModal = document.getElementById('editServiceBoxModal');
+            editModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const title = button.getAttribute('data-title'); // Extract info from data-* attributes
+                const description = button.getAttribute('data-description');
+                const id = button.getAttribute('data-id');
 
-                    // Destroy previous CKEditor instance if it exists
-                    if (textarea.classList.contains('ck-editor__editable')) {
-                        ClassicEditor.instances[textarea.id].destroy()
-                            .then(() => {
-                                ClassicEditor.create(textarea, {
-                                    ckfinder: {
-                                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
-                                    },
-                                    toolbar: [
-                                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
-                                    ],
-                                });
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
-                    } else {
-                        ClassicEditor.create(textarea, {
-                            ckfinder: {
-                                uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
-                            },
-                            toolbar: [
-                                'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                                'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
-                            ],
-                        })
-                            .catch(error => {
-                                console.error(error);
-                            });
-                    }
-                });
+                // Update the modal's content
+                const titleInput = editModal.querySelector('#serviceBoxTitle');
+                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
+                const formAction = editModal.querySelector('#editServiceBoxForm');
 
-                // Destroy CKEditor instance when modal is hidden
-                modal.addEventListener('hidden.bs.modal', function() {
-                    const textarea = modal.querySelector('textarea[name="description"]');
-                    if (textarea.classList.contains('ck-editor__editable')) {
-                        ClassicEditor.instances[textarea.id].destroy()
-                            .catch(error => {
-                                console.error(error);
-                            });
-                    }
-                });
+                titleInput.value = title;
+                descriptionInput.value = description;
+                formAction.action = formAction.action.replace('placeholder_id', id); // Update the form action URL
+            });
+
+            // Initialize CKEditor for service box description in edit modal
+            editModal.addEventListener('shown.bs.modal', function() {
+                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
+                ClassicEditor
+                    .create(descriptionInput, {
+                        ckfinder: {
+                            uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                        },
+                        toolbar: [
+                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                            'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                        ],
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+
+            // Destroy CKEditor instance when modal is hidden
+            editModal.addEventListener('hidden.bs.modal', function() {
+                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
+                if (descriptionInput.classList.contains('ck-editor__editable')) {
+                    ClassicEditor.instances[descriptionInput.id].destroy()
+                        .catch(error => {
+                            console.error(error);
+                        });
+                }
             });
         });
     </script>
