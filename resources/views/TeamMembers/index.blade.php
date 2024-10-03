@@ -43,7 +43,13 @@
                 <td>{{ $team_member->description }}</td>
                 <td>{{ $team_member->order }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTeamMemberModal" data-id="{{ $team_member->id }}" data-name="{{ $team_member->full_name }}" data-position="{{ $team_member->position }}" data-description="{{ $team_member->description }}" data-image="{{ Storage::url($team_member->imagePath) }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTeamMemberModal"
+                            data-id="{{ $team_member->id }}"
+                            data-name="{{ $team_member->full_name }}"
+                            data-position="{{ $team_member->position }}"
+                            data-description="{{ $team_member->description }}"
+                            data-image="{{ Storage::url($team_member->imagePath) }}"
+                            data-order="{{ $team_member->order }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-team-member="{{ $team_member->full_name }}" data-action="{{ route('admin.deleteTeamMember', $team_member->id) }}">
