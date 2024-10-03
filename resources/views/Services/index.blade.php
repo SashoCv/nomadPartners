@@ -119,7 +119,7 @@
                             </td>
                         </tr>
                         <!-- Modal for Editing Service Box -->
-                        <div class="modal fade" id="editServiceBoxModal{{ $box->id }}" tabindex="-1" aria-labelledby="editServiceBoxModalLabel{{ $box->id }}" aria-hidden="true">
+                        <div class="modal fade" id="editServiceBoxModal{{ $box->id }}" tabindex="-1" aria-labelledby="editServiceBoxModalLabel{{ $box->id }}" aria-hidden="true" data-bs-backdrop="static">
                             <div class="modal-dialog" style="max-width: 800px;">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -186,9 +186,25 @@
             // Initialize CKEditor for service box description in edit modals
             document.querySelectorAll('[id^="editServiceBoxModal"]').forEach(modal => {
                 modal.addEventListener('shown.bs.modal', function() {
-                    const descriptionId = modal.querySelector('textarea').id; // Get the ID of the textarea
-                    ClassicEditor
-                        .create(modal.querySelector(`textarea[name="description"]`), {
+                    const textarea = modal.querySelector('textarea[name="description"]');
+                    if (textarea.classList.contains('ck-editor__editable')) {
+                        ClassicEditor.instances[textarea.id].destroy()
+                            .then(() => {
+                                ClassicEditor.create(textarea, {
+                                    ckfinder: {
+                                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                                    },
+                                    toolbar: [
+                                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                                    ],
+                                });
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    } else {
+                        ClassicEditor.create(textarea, {
                             ckfinder: {
                                 uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
                             },
@@ -197,9 +213,10 @@
                                 'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
                             ],
                         })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
                 });
             });
         });
