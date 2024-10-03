@@ -97,13 +97,13 @@ $contactPage = Contact::all();
         @endif
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.contactUsSubmitView') }}" class="nav-link link-dark {{ request()->routeIs('admin.contactUsSubmitView') ? 'underline' : '' }}">
-                Contact Us form submits
+                Contact Us
             </a>
             <i class="fa-solid fa-chart-line"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.forBusinessView') }}" class="nav-link link-dark {{ request()->routeIs('admin.forBusinessView') ? 'underline' : '' }}">
-                Business form submits
+                Our Business
             </a>
             <i class="fa-solid fa-chart-line"></i>
         </li>

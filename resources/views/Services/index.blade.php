@@ -124,7 +124,7 @@
 
                     <!-- Description Field -->
                     <div class="form-group mb-3">
-                        <label for="serviceBoxDescription">Service Subtitle</label>
+                        <label for="serviceBoxDescription">Service Text</label>
                         <textarea id="serviceBoxDescription" name="description" class="form-control" placeholder="Enter a short description of the service"></textarea>
                     </div>
 
