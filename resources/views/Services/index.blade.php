@@ -185,7 +185,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -247,22 +246,22 @@
                 titleInput.value = title;
                 descriptionInput.value = description;
                 formAction.action = formAction.action.replace('placeholder_id', id);
-            });
 
-            // Initialize CKEditor for service box description in the modal
-            ClassicEditor
-                .create(document.querySelector('#serviceBoxDescriptionModal'), {
-                    ckfinder: {
-                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
-                    },
-                    toolbar: [
-                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
-                    ],
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+                // Initialize CKEditor for service box description in the modal
+                ClassicEditor
+                    .create(descriptionInput, {
+                        ckfinder: {
+                            uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                        },
+                        toolbar: [
+                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                            'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                        ],
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
         });
     </script>
 @endsection
