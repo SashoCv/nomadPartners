@@ -153,11 +153,34 @@
                 @csrf
                 <input type="hidden" name="service_id" value="{{ $services->id }}">
                 <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
-                <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
+                <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service">{{ $box->description }}</textarea>
                 <input type="file" name="iconForStore" class="form-control mb-3">
                 <button class="btn btn-primary mb-3">Add Service Box</button>
             </form>
         </div>
         @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const csrfToken = '{{ csrf_token() }}';
+
+            ClassicEditor
+                .create(document.querySelector('#serviceBoxDescription'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
 @endsection
