@@ -25,9 +25,7 @@
         <thead>
         <tr>
             <th>Name Partner</th>
-            <th>Subtitle Partner</th>
             <th>Logo Partner</th>
-            <th>Link Partner</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -35,19 +33,18 @@
         @foreach ($partners as $partner)
             <tr>
                 <td>{{ $partner->namePartner }}</td>
-                <td>{{ $partner->subtitlePartner }}</td>
                 <td style="width: 100px; height: 100px">
                     <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" width="100%">
                 </td>
-                <td><a href="{{ $partner->linkPartner }}" target="_blank">{{ $partner->linkPartner }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-link="{{ $partner->linkPartner }}" data-subtitle="{{ $partner->subtitlePartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-partner="{{ $partner->namePartner }}" data-action="{{ route('admin.deletePartner', $partner->id) }}">
                         Delete
                     </button>
                 </td>
+            </tr>
         @endforeach
         </tbody>
     </table>
@@ -70,22 +67,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="namePartner">Name Partner</label>
-                            <input type="text" class="form-control" id="namePartner" name="namePartner">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subtitlePartner">Subtitle Partner</label>
-                            <input type="text" class="form-control" id="subtitlePartner" name="subtitlePartner">
+                            <input type="text" class="form-control" id="namePartner" name="namePartner" required>
                         </div>
 
                         <div class="form-group">
                             <label for="logoPathPartner">Logo Partner</label>
-                            <input type="file" class="form-control-file" id="logoPathPartner" name="logoPathPartner">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="linkPartner">Link Partner</label>
-                            <input type="text" class="form-control" id="linkPartner" name="linkPartner">
+                            <input type="file" class="form-control-file" id="logoPathPartner" name="logoPathPartner" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
@@ -109,23 +96,13 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="editNamePartner">Name Partner</label>
-                            <input type="text" class="form-control" id="editNamePartner" name="namePartner">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editSubtitlePartner">Name Partner</label>
-                            <input type="text" class="form-control" id="editSubtitlePartner" name="subtitlePartner">
+                            <input type="text" class="form-control" id="editNamePartner" name="namePartner" required>
                         </div>
 
                         <div class="form-group">
                             <label for="editLogoPathPartner">Logo Partner</label>
                             <input type="file" class="form-control-file" id="editLogoPathPartner" name="logoPathPartner">
                             <img id="editLogoPreview" src="" alt="Current Logo" style="margin-top: 10px; width: 100px; height: auto;">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editLinkPartner">Link Partner</label>
-                            <input type="text" class="form-control" id="editLinkPartner" name="linkPartner">
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-3 w-100">Save Changes</button>
@@ -179,16 +156,12 @@
             var button = $(event.relatedTarget);
             var partnerId = button.data('id');
             var partnerName = button.data('name');
-            var partnerLink = button.data('link');
             var partnerLogo = button.data('logo');
-            var partnerSubtitle = button.data('subtitle');
 
             var modal = $(this);
             var form = modal.find('#editPartnerForm');
             form.attr('action', '{{ url("partners") }}/' + partnerId);
             form.find('#editNamePartner').val(partnerName);
-            form.find('#editSubtitlePartner').val(partnerSubtitle);
-            form.find('#editLinkPartner').val(partnerLink);
             form.find('#editLogoPreview').attr('src', partnerLogo);
         });
     </script>
