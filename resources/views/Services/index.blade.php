@@ -70,15 +70,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         @if($services)
-                        <div class="modal-body">
-                            <form action="{{ route('services.update', $services->id) }}" method="post">
-                                @csrf
-                                @method('PUT')
-                                <input type="text" name="title" class="form-control mb-3" value="{{ $services->title }}" placeholder="Name Service">
-                                <input type="text" name="description" class="form-control mb-3" value="{{ $services->description }}" placeholder="Description Service">
-                                <button class="btn btn-primary">Update Service</button>
-                            </form>
-                        </div>
+                            <div class="modal-body">
+                                <form action="{{ route('services.update', $services->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="title" class="form-control mb-3" value="{{ $services->title }}" placeholder="Name Service">
+                                    <textarea name="description" class="form-control mb-3" placeholder="Description Service">{{ $services->description }}</textarea>
+                                    <button class="btn btn-primary">Update Service</button>
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -109,12 +109,12 @@
                             </td>
                             <td>
                                 <div class="d-flex" style="gap:10px">
-                                <button class="btn btn-primary" style="display: inline" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal{{ $box->id }}">Edit</button>
-                                <form action="{{ route('servicesBox.destroy', $box->id) }}" method="post" style="display: inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal{{ $box->id }}">Edit</button>
+                                    <form action="{{ route('servicesBox.destroy', $box->id) }}" method="post" style="display: inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -133,7 +133,7 @@
                                             <input type="hidden" name="service_id" value="{{ $services->id }}">
                                             <input type="text" name="title" class="form-control mb-3" value="{{ $box->title }}" placeholder="Name Service">
                                             <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service">{{ $box->description }}</textarea>
-                                            <input type="file" name="iconForEdit" class="form-control mb-3" value="{{$box->icon}}">
+                                            <input type="file" name="iconForEdit" class="form-control mb-3">
                                             <button class="btn btn-primary">Update Service Box</button>
                                         </form>
                                     </div>
@@ -148,16 +148,16 @@
 
         <!-- Add Service Box Tab -->
         @if($services)
-        <div id="addService" class="tab-pane fade">
-            <form action="{{ route('servicesBox.create') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="service_id" value="{{ $services->id }}">
-                <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
-                <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service">{{ $box->description }}</textarea>
-                <input type="file" name="iconForStore" class="form-control mb-3">
-                <button class="btn btn-primary mb-3">Add Service Box</button>
-            </form>
-        </div>
+            <div id="addService" class="tab-pane fade">
+                <form action="{{ route('servicesBox.create') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="service_id" value="{{ $services->id }}">
+                    <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
+                    <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
+                    <input type="file" name="iconForStore" class="form-control mb-3">
+                    <button class="btn btn-primary mb-3">Add Service Box</button>
+                </form>
+            </div>
         @endif
     </div>
 @endsection
@@ -168,6 +168,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const csrfToken = '{{ csrf_token() }}';
 
+            // Initialize CKEditor for service box description textarea
             ClassicEditor
                 .create(document.querySelector('#serviceBoxDescription'), {
                     ckfinder: {
@@ -181,6 +182,26 @@
                 .catch(error => {
                     console.error(error);
                 });
+
+            // Initialize CKEditor for service box description in edit modals
+            document.querySelectorAll('[id^="editServiceBoxModal"]').forEach(modal => {
+                modal.addEventListener('shown.bs.modal', function() {
+                    const descriptionId = modal.querySelector('textarea').id; // Get the ID of the textarea
+                    ClassicEditor
+                        .create(modal.querySelector(`textarea[name="description"]`), {
+                            ckfinder: {
+                                uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                            },
+                            toolbar: [
+                                'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                                'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                            ],
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                });
+            });
         });
     </script>
 @endsection
