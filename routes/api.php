@@ -59,6 +59,6 @@ Route::post('business', [BusinessFormController::class, 'store']);
 Route::get('services', [ServiceController::class, 'getServicesApi']);
 
 // ServiceBox
-
+Route::get('service-boxes', [ServiceBoxController::class, 'index']);
 Route::get('service-boxes/{id}', [ServiceBoxController::class, 'show']);
 

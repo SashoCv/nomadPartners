@@ -14,7 +14,8 @@ class ServiceBoxController extends Controller
      */
     public function index()
     {
-        //
+        $serviceBoxes = ServiceBox::all('id', 'title');
+        return response()->json($serviceBoxes);
     }
 
     /**
