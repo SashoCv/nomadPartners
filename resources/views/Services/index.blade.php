@@ -197,7 +197,7 @@
                     });
             });
 
-            // Destroy CKEditor instance when modal is hidden
+            // Destroy CKEditor instance when modal is hidden and refresh page
             editModal.addEventListener('hidden.bs.modal', function() {
                 const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
                 if (descriptionInput.classList.contains('ck-editor__editable')) {
@@ -206,6 +206,8 @@
                             console.error(error);
                         });
                 }
+                // Refresh the page
+                location.reload();
             });
         });
     </script>
