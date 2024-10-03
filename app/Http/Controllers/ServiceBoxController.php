@@ -36,11 +36,19 @@ class ServiceBoxController extends Controller
         $serviceBox->description = $request->description;
         $serviceBox->service_id = $request->service_id;
 
+
         if($request->hasFile('iconForStore')) {
             Storage::disk('public')->put('service-boxes', $request->file('iconForStore'));
             $icon = Storage::disk('public')->put('service-boxes', $request->file('iconForStore'));
 
             $serviceBox->icon = $icon;
+        }
+
+        if($request->hasFile('imageServiceBox')) {
+            Storage::disk('public')->put('service-boxes', $request->file('imageServiceBox'));
+            $image = Storage::disk('public')->put('service-boxes', $request->file('imageServiceBox'));
+
+            $serviceBox->image = $image;
         }
 
         $serviceBox->save();
@@ -85,6 +93,13 @@ class ServiceBoxController extends Controller
             $icon = Storage::disk('public')->put('service-boxes', $request->file('iconForEdit'));
 
             $serviceBox->icon = $icon;
+        }
+
+        if($request->hasFile('imageServiceBox')) {
+            Storage::disk('public')->put('service-boxes', $request->file('imageServiceBox'));
+            $image = Storage::disk('public')->put('service-boxes', $request->file('imageServiceBox'));
+
+            $serviceBox->image = $image;
         }
 
         $serviceBox->save();

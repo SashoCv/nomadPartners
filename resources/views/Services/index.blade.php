@@ -14,6 +14,11 @@
         .section-heading {
             margin-top: 40px;
         }
+
+        .img-thumbnail {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
     </style>
 @endsection
 
@@ -35,31 +40,31 @@
         <!-- Service List Tab -->
         <div id="serviceList" class="tab-pane fade show active">
             <!-- Table for listing main services -->
-{{--            <table class="table">--}}
-{{--                <thead>--}}
-{{--                <tr>--}}
-{{--                    <th>Name Service</th>--}}
-{{--                    <th>Description Service</th>--}}
-{{--                    <th>Actions</th>--}}
-{{--                </tr>--}}
-{{--                </thead>--}}
-{{--                <tbody>--}}
-{{--                @if(!$services)--}}
-{{--                    <tr>--}}
-{{--                        <td colspan="3">No services found</td>--}}
-{{--                    </tr>--}}
-{{--                @else--}}
-{{--                    <tr>--}}
-{{--                        <td>{{ $services->title }}</td>--}}
-{{--                        <td>{{ $services->description }}</td>--}}
-{{--                        <td>--}}
-{{--                            <!-- Button to trigger edit modal for the main service -->--}}
-{{--                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editMainServiceModal">Edit</button>--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-{{--                @endif--}}
-{{--                </tbody>--}}
-{{--            </table>--}}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name Service</th>
+                    <th>Description Service</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(!$services)
+                    <tr>
+                        <td colspan="3">No services found</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>{{ $services->title }}</td>
+                        <td>{{ $services->description }}</td>
+                        <td>
+                            <!-- Button to trigger edit modal for the main service -->
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editMainServiceModal">Edit</button>
+                        </td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
 
             <!-- Table for listing service boxes -->
             <table class="table">
@@ -80,7 +85,16 @@
                             <td>{{ $box->title }}</td>
                             <td>
                                 <div class="d-flex" style="gap:10px">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceBoxModal" data-title="{{ $box->title }}" data-description="{{ $box->description }}" data-id="{{ $box->id }}">Edit</button>
+                                    <button class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editServiceBoxModal"
+                                            data-title="{{ $box->title }}"
+                                            data-description="{{ $box->description }}"
+                                            data-id="{{ $box->id }}"
+                                            data-icon-url="{{ Storage::url($box->icon) }}"
+                                            data-image-url="{{ Storage::url($box->image) }}">
+                                        Edit
+                                    </button>
                                     <form action="{{ route('servicesBox.destroy', $box->id) }}" method="post" style="display: inline">
                                         @csrf
                                         @method('DELETE')
@@ -103,7 +117,8 @@
                     <input type="hidden" name="service_id" value="{{ $services->id }}">
                     <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
                     <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
-                    <input type="file" name="iconForStore" class="form-control mb-3 mt-3">
+                    <input type="file" name="iconForStore" class="form-control mb-3 mt-3" accept="image/*">
+                    <input type="file" name="imageServiceBox" class="form-control mb-3 mt-3" accept="image/*">
                     <button class="btn btn-primary mb-3">Add Service Page</button>
                 </form>
             </div>
@@ -119,19 +134,35 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Form for Editing Service Box -->
                     <form action="{{ route('servicesBox.update', 'placeholder_id') }}" method="post" enctype="multipart/form-data" id="editServiceBoxForm">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="service_id" value="{{ $services->id }}">
                         <input type="text" name="title" class="form-control mb-3" placeholder="Name Service" id="serviceBoxTitle">
                         <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service" id="serviceBoxDescriptionModal"></textarea>
-                        <input type="file" name="iconForEdit" class="form-control mb-3 mt-3">
+
+                        <!-- Icon preview -->
+                        <div id="iconPreviewContainer" class="mb-3" style="display: none;">
+                            <label>Current Icon:</label>
+                            <img id="iconPreview" class="img-thumbnail">
+                        </div>
+                        <input type="file" name="iconForEdit" class="form-control mb-3 mt-3" accept="image/*">
+
+                        <!-- Image preview -->
+                        <div id="imagePreviewContainer" class="mb-3" style="display: none;">
+                            <label>Current Image:</label>
+                            <img id="imagePreview" class="img-thumbnail">
+                        </div>
+                        <input type="file" name="imageServiceBox" class="form-control mb-3 mt-3" accept="image/*">
+
                         <button class="btn btn-primary">Update Service Page</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('scripts')
@@ -159,50 +190,56 @@
             const editModal = document.getElementById('editServiceBoxModal');
             editModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget; // Button that triggered the modal
-                const title = button.getAttribute('data-title'); // Extract info from data-* attributes
+                const title = button.getAttribute('data-title');
                 const description = button.getAttribute('data-description');
                 const id = button.getAttribute('data-id');
+                const iconUrl = button.getAttribute('data-icon-url');
+                const imageUrl = button.getAttribute('data-image-url');
 
                 // Update the modal's content
                 const titleInput = editModal.querySelector('#serviceBoxTitle');
                 const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
                 const formAction = editModal.querySelector('#editServiceBoxForm');
 
+                // Handle Icon Preview
+                const iconPreviewContainer = editModal.querySelector('#iconPreviewContainer');
+                const iconPreview = editModal.querySelector('#iconPreview');
+                if (iconUrl) {
+                    iconPreview.src = iconUrl;
+                    iconPreviewContainer.style.display = 'block';
+                } else {
+                    iconPreviewContainer.style.display = 'none';
+                }
+
+                // Handle Image Preview
+                const imagePreviewContainer = editModal.querySelector('#imagePreviewContainer');
+                const imagePreview = editModal.querySelector('#imagePreview');
+                if (imageUrl) {
+                    imagePreview.src = imageUrl;
+                    imagePreviewContainer.style.display = 'block';
+                } else {
+                    imagePreviewContainer.style.display = 'none';
+                }
+
                 titleInput.value = title;
                 descriptionInput.value = description;
-                formAction.action = formAction.action.replace('placeholder_id', id); // Update the form action URL
+                formAction.action = formAction.action.replace('placeholder_id', id);
             });
 
-            // Initialize CKEditor for service box description in edit modal
-            editModal.addEventListener('shown.bs.modal', function() {
-                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
-                ClassicEditor
-                    .create(descriptionInput, {
-                        ckfinder: {
-                            uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
-                        },
-                        toolbar: [
-                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
-                            'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
-                        ],
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            });
-
-            // Destroy CKEditor instance when modal is hidden and refresh page
-            editModal.addEventListener('hidden.bs.modal', function() {
-                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
-                if (descriptionInput.classList.contains('ck-editor__editable')) {
-                    ClassicEditor.instances[descriptionInput.id].destroy()
-                        .catch(error => {
-                            console.error(error);
-                        });
-                }
-                // Refresh the page
-                location.reload();
-            });
+            // Initialize CKEditor for service box description in the modal
+            ClassicEditor
+                .create(document.querySelector('#serviceBoxDescriptionModal'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
 @endsection
