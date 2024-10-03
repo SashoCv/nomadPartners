@@ -195,6 +195,7 @@
             var teamMemberPosition = button.data('position');
             var teamMemberDescription = button.data('description');
             var teamMemberImage = button.data('image');
+            var teamMemberOrder = button.data('order');
 
             var modal = $(this);
             var form = modal.find('#editTeamMemberForm');
@@ -203,6 +204,7 @@
             form.find('#editTeamMemberPosition').val(teamMemberPosition);
             form.find('#editTeamMemberDescription').val(teamMemberDescription);
             form.find('#editImagePreview').attr('src', teamMemberImage);
+            form.find('#editTeamMemberOrder').val(teamMemberOrder);
         });
     </script>
 @endsection
