@@ -54,7 +54,7 @@ class ServiceBoxController extends Controller
     {
         $serviceBox = ServiceBox::find($id);
         $contact = Contact::all('emailContact', 'phoneContact');
-
+        $contact = $contact->first();
         return response()->json([
             'serviceBox' => $serviceBox,
             'contact' => $contact
