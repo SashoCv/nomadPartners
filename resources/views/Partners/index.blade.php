@@ -20,12 +20,15 @@
         }
 
         .table .partner-name {
-            width: 40%; /* Ширина за името на партнерот */
+            width: 30%; /* Ширина за името на партнерот */
         }
 
         .table .partner-logo {
-            width: 60px; /* Ширина за логото на партнерот */
-            height: 60px; /* Висина за логото на партнерот */
+            max-width: 80px; /* Ограничена ширина */
+            max-height: 80px; /* Ограничена висина */
+            width: auto; /* Автоматска ширина */
+            height: auto; /* Автоматска висина */
+            object-fit: contain; /* Одржување на пропорциите на сликата */
         }
 
         .table .actions {
@@ -42,9 +45,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th class="partner-name">Name Partner</th>
-            <th class="partner-logo">Logo Partner</th>
-            <th class="actions">Actions</th>
+            <th style="width: 30%;">Name Partner</th> <!-- Поголема ширина -->
+            <th style="width: 20%;">Logo Partner</th> <!-- Ограничена ширина -->
+            <th style="width: 30%;">Actions</th> <!-- Поголема ширина -->
         </tr>
         </thead>
         <tbody>
