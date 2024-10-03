@@ -14,6 +14,24 @@
         .section-heading {
             margin-top: 40px;
         }
+
+        .table th, .table td {
+            vertical-align: middle; /* Поравнување на текстот по центар */
+        }
+
+        .table .partner-name {
+            width: 40%; /* Ширина за името на партнерот */
+        }
+
+        .table .partner-logo {
+            width: 60px; /* Ширина за логото на партнерот */
+            height: 60px; /* Висина за логото на партнерот */
+        }
+
+        .table .actions {
+            width: 120px; /* Ширина за копчињата за акција */
+            text-align: right; /* Поравнување на копчињата десно */
+        }
     </style>
 @endsection
 
@@ -24,19 +42,19 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Name Partner</th>
-            <th>Logo Partner</th>
-            <th>Actions</th>
+            <th class="partner-name">Name Partner</th>
+            <th class="partner-logo">Logo Partner</th>
+            <th class="actions">Actions</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($partners as $partner)
             <tr>
-                <td>{{ $partner->namePartner }}</td>
-                <td style="width: 100px; height: 100px">
-                    <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" width="100%">
+                <td class="partner-name">{{ $partner->namePartner }}</td>
+                <td class="partner-logo">
+                    <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" class="img-fluid" style="width: 100%; height: auto;">
                 </td>
-                <td>
+                <td class="actions">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
                         Edit
                     </button>
