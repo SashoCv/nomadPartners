@@ -187,6 +187,8 @@
             document.querySelectorAll('[id^="editServiceBoxModal"]').forEach(modal => {
                 modal.addEventListener('shown.bs.modal', function() {
                     const textarea = modal.querySelector('textarea[name="description"]');
+
+                    // Destroy previous CKEditor instance if it exists
                     if (textarea.classList.contains('ck-editor__editable')) {
                         ClassicEditor.instances[textarea.id].destroy()
                             .then(() => {
@@ -213,6 +215,17 @@
                                 'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
                             ],
                         })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                });
+
+                // Destroy CKEditor instance when modal is hidden
+                modal.addEventListener('hidden.bs.modal', function() {
+                    const textarea = modal.querySelector('textarea[name="description"]');
+                    if (textarea.classList.contains('ck-editor__editable')) {
+                        ClassicEditor.instances[textarea.id].destroy()
                             .catch(error => {
                                 console.error(error);
                             });
