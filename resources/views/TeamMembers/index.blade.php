@@ -197,6 +197,7 @@
             var teamMemberImage = button.data('image');
             var teamMemberOrder = button.data('order');
 
+            console.log(button.data());
             var modal = $(this);
             var form = modal.find('#editTeamMemberForm');
             form.attr('action', '{{ url("team-members") }}/' + teamMemberId);
