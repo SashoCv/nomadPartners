@@ -24,10 +24,7 @@
         }
 
         .table .partner-logo {
-            max-width: 80px; /* Ограничена ширина */
-            max-height: 80px; /* Ограничена висина */
-            width: auto; /* Автоматска ширина */
-            height: auto; /* Автоматска висина */
+            width: 100px; /* Ограничена ширина */
             object-fit: contain; /* Одржување на пропорциите на сликата */
         }
 
@@ -46,7 +43,7 @@
         <thead>
         <tr>
             <th style="width: 30%;">Name Partner</th> <!-- Поголема ширина -->
-            <th style="width: 20%;">Logo Partner</th> <!-- Ограничена ширина -->
+            <th style="width: 10%;">Logo Partner</th> <!-- Ограничена ширина -->
             <th style="width: 30%;">Actions</th> <!-- Поголема ширина -->
         </tr>
         </thead>
