@@ -108,7 +108,7 @@
                     @csrf
                     <input type="hidden" name="service_id" value="{{ $services->id }}">
                     <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
-                    <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
+                    <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
                     <input type="file" name="iconForStore" class="form-control mb-3">
                     <button class="btn btn-primary mb-3">Add Service Box</button>
                 </form>
@@ -141,9 +141,27 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Initialize modal functionality
+            const csrfToken = '{{ csrf_token() }}';
+
+            // Initialize CKEditor for service box description textarea
+            ClassicEditor
+                .create(document.querySelector('#serviceBoxDescription'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            // Initialize CKEditor for service box description in edit modal
             const editModal = document.getElementById('editServiceBoxModal');
             editModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget; // Button that triggered the modal
@@ -161,10 +179,33 @@
                 formAction.action = formAction.action.replace('placeholder_id', id); // Update the form action URL
             });
 
-            // Reset modal content when hidden
+            // Initialize CKEditor for service box description in edit modal
+            editModal.addEventListener('shown.bs.modal', function() {
+                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
+                ClassicEditor
+                    .create(descriptionInput, {
+                        ckfinder: {
+                            uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                        },
+                        toolbar: [
+                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                            'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                        ],
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+
+            // Destroy CKEditor instance when modal is hidden
             editModal.addEventListener('hidden.bs.modal', function() {
-                editModal.querySelector('#serviceBoxTitle').value = '';
-                editModal.querySelector('#serviceBoxDescriptionModal').value = '';
+                const descriptionInput = editModal.querySelector('#serviceBoxDescriptionModal');
+                if (descriptionInput.classList.contains('ck-editor__editable')) {
+                    ClassicEditor.instances[descriptionInput.id].destroy()
+                        .catch(error => {
+                            console.error(error);
+                        });
+                }
             });
         });
     </script>
