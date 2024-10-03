@@ -44,7 +44,7 @@
         <tr>
             <th style="width: 30%;">Name Partner</th> <!-- Поголема ширина -->
             <th style="width: 10%;">Logo Partner</th> <!-- Ограничена ширина -->
-            <th style="width: 30%;">Actions</th> <!-- Поголема ширина -->
+            <th style="width: 60%; text-align: right">Actions</th> <!-- Поголема ширина -->
         </tr>
         </thead>
         <tbody>
