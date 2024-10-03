@@ -115,10 +115,33 @@
                 <form action="{{ route('servicesBox.create') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="service_id" value="{{ $services->id }}">
-                    <input type="text" name="title" class="form-control mb-3" placeholder="Name Service">
-                    <textarea id="serviceBoxDescription" name="description" class="form-control mb-3" placeholder="Subtitle Service"></textarea>
-                    <input type="file" name="iconForStore" class="form-control mb-3 mt-3" accept="image/*">
-                    <input type="file" name="imageServiceBox" class="form-control mb-3 mt-3" accept="image/*">
+
+                    <!-- Title Field -->
+                    <div class="form-group mb-3">
+                        <label for="title">Service Name</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter the name of the service">
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group mb-3">
+                        <label for="serviceBoxDescription">Service Subtitle</label>
+                        <textarea id="serviceBoxDescription" name="description" class="form-control" placeholder="Enter a short description of the service"></textarea>
+                    </div>
+
+                    <!-- Icon Upload -->
+                    <div class="form-group mb-3">
+                        <label for="iconForStore">Upload Service Icon</label>
+                        <input type="file" name="iconForStore" class="form-control" id="iconForStore" accept="image/*">
+                        <small class="form-text text-muted">Accepted file formats: jpg, png, svg</small>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="form-group mb-3">
+                        <label for="imageServiceBox">Upload Service Image</label>
+                        <input type="file" name="imageServiceBox" class="form-control" id="imageServiceBox" accept="image/*">
+                        <small class="form-text text-muted">Accepted file formats: jpg, png, svg</small>
+                    </div>
+
                     <button class="btn btn-primary mb-3">Add Service Page</button>
                 </form>
             </div>
@@ -143,7 +166,7 @@
                         <textarea name="description" class="form-control mb-3" placeholder="Subtitle Service" id="serviceBoxDescriptionModal"></textarea>
 
                         <!-- Icon preview -->
-                        <div id="iconPreviewContainer" class="mb-3" style="display: none;">
+                        <div id="iconPreviewContainer" class="mb-3 mt-3" style="display: none;">
                             <label>Current Icon:</label>
                             <img id="iconPreview" class="img-thumbnail">
                         </div>
