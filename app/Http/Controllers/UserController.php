@@ -35,9 +35,9 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        
+
         if (Auth::attempt($credentials)) {
-            return redirect()->route('admin.blogsView');
+            return redirect()->route('admin.homeViewForUpdate');
         }
 
         return back()->withErrors([

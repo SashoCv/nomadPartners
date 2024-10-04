@@ -40,6 +40,7 @@
         <!-- Service List Tab -->
         <div id="serviceList" class="tab-pane fade show active">
             <!-- Table for listing main services -->
+            <!-- Table for listing main services -->
             <table class="table">
                 <thead>
                 <tr>
@@ -56,7 +57,7 @@
                 @else
                     <tr>
                         <td>{{ $services->title }}</td>
-                        <td>{{ $services->description }}</td>
+                        <td>{!! $services->description !!}</td> <!-- Allows rendering HTML in description -->
                         <td>
                             <!-- Button to trigger edit modal for the main service -->
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editMainServiceModal">Edit</button>
@@ -65,6 +66,7 @@
                 @endif
                 </tbody>
             </table>
+
 
             <!-- Table for listing service boxes -->
             <table class="table">
@@ -147,6 +149,30 @@
             </div>
         @endif
     </div>
+
+    <!-- Modal for Editing Main Service -->
+    <div class="modal fade" id="editMainServiceModal" tabindex="-1" aria-labelledby="editMainServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMainServiceModalLabel">Edit Main Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for Editing Main Service -->
+                    <form action="{{ route('services.update', $services->id) }}" method="post" enctype="multipart/form-data" id="editMainServiceForm">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" name="title" class="form-control mb-3" placeholder="Name Service" value="{{ $services->title }}">
+                        <textarea name="description" class="form-control mb-3" placeholder="Service Description" id="mainServiceDescription">{{ $services->description }}</textarea>
+
+                        <button class="btn btn-primary mt-3">Update Main Service</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal for Editing Service Box -->
     <div class="modal fade" id="editServiceBoxModal" tabindex="-1" aria-labelledby="editServiceBoxModalLabel" aria-hidden="true">
@@ -274,6 +300,22 @@
                 // Refresh the page
                 location.reload();
             });
+
+
+            ClassicEditor
+                .create(document.querySelector('#mainServiceDescription'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
         });
     </script>
 @endsection
