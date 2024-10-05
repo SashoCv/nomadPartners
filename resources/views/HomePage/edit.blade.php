@@ -171,8 +171,13 @@
                     <textarea class="form-control" id="contentAbout" name="contentAbout">{{ old('contentAbout', $homePage->contentAbout) }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="buttonTextAbout">Button About</label>
+                    <label for="buttonTextAbout">Button About Text</label>
                     <input type="text" class="form-control" id="buttonTextAbout" name="buttonTextAbout" value="{{ old('buttonTextAbout', $homePage->buttonTextAbout) }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="buttonLinkAbout">Button About Link</label>
+                    <input type="text" class="form-control" id="buttonLinkAbout" name="buttonLinkAbout" value="{{ old('buttonLinkAbout', $homePage->buttonLinkAbout) }}">
                 </div>
             </div>
 

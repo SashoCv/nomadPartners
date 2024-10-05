@@ -73,12 +73,12 @@ class HomeController extends Controller
             $home->infoBoxContentThree = $request->input('infoBoxContentThree');
             $home->buttonBoxTextThree = $request->input('buttonBoxTextThree');
             $home->buttonBoxLinkThree = $request->input('buttonBoxLinkThree');
-            
+
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
             $home->buttonTextAbout = $request->input('buttonTextAbout');
-
+            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
 
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
@@ -195,6 +195,7 @@ class HomeController extends Controller
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
             $home->buttonTextAbout = $request->input('buttonTextAbout');
+            $home->buttonLinkAbout = $request->input('buttonLinkAbout');
 
             $home->missionTitle = $request->input('missionTitle');
             $home->missionContent = $request->input('missionContent');
