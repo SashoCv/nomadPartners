@@ -62,16 +62,18 @@ class HomeController extends Controller
             $home->infoBoxTitleOne = $request->input('infoBoxTitleOne');
             $home->infoBoxContentOne = $request->input('infoBoxContentOne');
             $home->buttonBoxTextOne = $request->input('buttonBoxTextOne');
+            $home->buttonBoxLinkOne = $request->input('buttonBoxLinkOne');
 
             $home->infoBoxTitleTwo = $request->input('infoBoxTitleTwo');
             $home->infoBoxContentTwo = $request->input('infoBoxContentTwo');
             $home->buttonBoxTextTwo = $request->input('buttonBoxTextTwo');
+            $home->buttonBoxLinkTwo = $request->input('buttonBoxLinkTwo');
 
             $home->infoBoxTitleThree = $request->input('infoBoxTitleThree');
             $home->infoBoxContentThree = $request->input('infoBoxContentThree');
             $home->buttonBoxTextThree = $request->input('buttonBoxTextThree');
-
-
+            $home->buttonBoxLinkThree = $request->input('buttonBoxLinkThree');
+            
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');
             $home->contentAbout = $request->input('contentAbout');
@@ -177,14 +179,17 @@ class HomeController extends Controller
             $home->infoBoxTitleOne = $request->input('infoBoxTitleOne');
             $home->infoBoxContentOne = $request->input('infoBoxContentOne');
             $home->buttonBoxTextOne = $request->input('buttonBoxTextOne');
+            $home->buttonBoxLinkOne = $request->input('buttonBoxLinkOne');
 
             $home->infoBoxTitleTwo = $request->input('infoBoxTitleTwo');
             $home->infoBoxContentTwo = $request->input('infoBoxContentTwo');
             $home->buttonBoxTextTwo = $request->input('buttonBoxTextTwo');
+            $home->buttonBoxLinkTwo = $request->input('buttonBoxLinkTwo');
 
             $home->infoBoxTitleThree = $request->input('infoBoxTitleThree');
             $home->infoBoxContentThree = $request->input('infoBoxContentThree');
             $home->buttonBoxTextThree = $request->input('buttonBoxTextThree');
+            $home->buttonBoxLinkThree = $request->input('buttonBoxLinkThree');
 
             $home->titleAbout = $request->input('titleAbout');
             $home->subtitleAbout = $request->input('subtitleAbout');

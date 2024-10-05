@@ -90,6 +90,12 @@
                         <label for="buttonBoxTextOne">Button Info One</label>
                         <input type="text" class="form-control" id="buttonBoxTextOne" name="buttonBoxTextOne" value="{{ old('buttonBoxTextOne', $homePage->{'buttonBoxTextOne'}) }}">
                     </div>
+
+                    <div class="form-group">
+                        <label for="buttonBoxLinkOne">Button Link One</label>
+                        <input type="text" class="form-control" id="buttonBoxLinkOne" name="buttonBoxLinkOne" value="{{ old('buttonBoxLinkOne', $homePage->{'buttonBoxLinkOne'}) }}">
+                    </div>
+
                     <div class="form-group">
                         <label for="infoBoxImageOne">Info Card Image One</label>
                         <input type="file" class="form-control-file" id="infoBoxImageOne" name="infoBoxImageOne">
@@ -111,6 +117,11 @@
                         <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">
                     </div>
 
+                    <div class="form-group">
+                        <label for="buttonBoxLinkTwo">Button Link Two</label>
+                        <input type="text" class="form-control" id="buttonBoxLinkTwo" name="buttonBoxLinkTwo" value="{{ old('buttonBoxLinkTwo', $homePage->{'buttonBoxLinkTwo'}) }}">
+                    </div>
+
                     <div class="form-group" >
                         <label for="infoBoxImageTwo">Info Card Image Two</label>
                         <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">
@@ -130,6 +141,11 @@
                     <div class="form-group">
                         <label for="buttonBoxTextThree">Button Info Three</label>
                         <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buttonBoxLinkThree">Button Link Three</label>
+                        <input type="text" class="form-control" id="buttonBoxLinkThree" name="buttonBoxLinkThree" value="{{ old('buttonBoxLinkThree', $homePage->{'buttonBoxLinkThree'}) }}">
                     </div>
 
                     <div class="form-group">
