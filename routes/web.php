@@ -8,7 +8,9 @@ use App\Http\Controllers\BusinessFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OurBusinessPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceBoxController;
@@ -61,8 +63,9 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('team-members', [TeamMembersController::class, 'index'])->name("admin.teamMembersView");
     Route::post('team-members', [TeamMembersController::class, 'store'])->name("admin.teamMembersPost");
-    Route::put('/team-members/{id}', [TeamMembersController::class, 'update'])->name('admin.updateTeamMember');
+    Route::put('team-members/{id}', [TeamMembersController::class, 'update'])->name('admin.updateTeamMember');
     Route::delete('team-members/{id}', [TeamMembersController::class, 'destroy'])->name("admin.deleteTeamMember");
+    Route::put('teams/{id}', [TeamController::class, 'update'])->name('admin.updateTeam');
 
     Route::get('contact', [ContactController::class, 'index'])->name("admin.contactView");
     Route::post('contact', [ContactController::class, 'store'])->name("admin.contactPost");
@@ -72,6 +75,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('business-submits', [BusinessFormController::class, 'index'])->name("admin.forBusinessView");
     Route::post('business', [BusinessFormController::class, 'store'])->name("admin.forBusinessPost");
+    Route::put('our-business-update/{id}', [OurBusinessPageController::class, 'update'])->name("admin.updateBusiness");
     Route::delete('delete-business-submit/{id}', [BusinessFormController::class, 'destroy'])->name('admin.deleteBusinessSubmit');
 
 

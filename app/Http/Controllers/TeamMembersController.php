@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use App\Models\TeamMembers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,8 @@ class TeamMembersController extends Controller
     {
         try {
             $team_members = TeamMembers::orderBy('order', 'asc')->get();
-            return view('TeamMembers.index', compact('team_members'));
+            $items = Team::first();
+            return view('TeamMembers.index', compact(['team_members', 'items']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -29,8 +31,12 @@ class TeamMembersController extends Controller
     public function getTeamMembersApi()
         {
         try {
+            $team_page = Team::first();
             $team_members = TeamMembers::orderBy('order', 'asc')->get();
-            return response()->json($team_members);
+            return response()->json([
+                'team_page' => $team_page,
+                'team_members' => $team_members
+            ]);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => 'Error fetching team members']);

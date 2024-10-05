@@ -14,11 +14,81 @@
         .section-heading {
             margin-top: 40px;
         }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: cover;
+        }
     </style>
 @endsection
 
 @section('content')
-    <h2 class="mb-5 pt-3 titleBlogs">Team Members</h2>
+    <div style="display: flex; justify-content: space-between">
+        <h2 class="mb-3 pt-3 titleBlogs">TEAMS</h2>
+        <!-- Button to trigger Add Team Member form -->
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTeamMemberModal">
+            Add Team Member
+        </button>
+    </div>
+
+    <!-- Table for listing titles and descriptions -->
+    <table class="table mb-4">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if($items)
+            <tr>
+                <td>{{ $items->title }}</td>
+                <td>{{ $items->description }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
+                            data-id="{{ $items->id }}"
+                            data-title="{{ $items->title }}"
+                            data-description="{{ $items->description }}">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        @endif
+        </tbody>
+    </table>
+
+    <!-- Modal for editing title and description -->
+    <div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editItemModalLabel">Edit Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editItemForm" method="POST" action="{{ route('admin.updateTeam', $items->id) }}" class="formAddHomePage">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="editItemTitle">Title</label>
+                            <input type="text" class="form-control" id="editItemTitle" name="title" value="{{ $items->title }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editItemDescription">Description</label>
+                            <textarea class="form-control" id="editItemDescription" name="description" rows="4">{{ $items->description }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-3 w-100">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Table for listing team members -->
     <table class="table">
@@ -36,8 +106,8 @@
             <tr>
                 <td>{{ $team_member->full_name }}</td>
                 <td>{{ $team_member->position }}</td>
-                <td style="width: 100px; height: 100px">
-                    <img src="{{ Storage::url($team_member->imagePath) }}" alt="Team Member Image" width="100%">
+                <td>
+                    <img src="{{ Storage::url($team_member->imagePath) }}" alt="Team Member Image">
                 </td>
                 <td>{{ $team_member->order }}</td>
                 <td>
@@ -49,7 +119,9 @@
                             data-order="{{ $team_member->order }}">
                         Edit
                     </button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-team-member="{{ $team_member->full_name }}" data-action="{{ route('admin.deleteTeamMember', $team_member->id) }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                            data-team-member="{{ $team_member->full_name }}"
+                            data-action="{{ route('admin.deleteTeamMember', $team_member->id) }}">
                         Delete
                     </button>
                 </td>
@@ -57,11 +129,6 @@
         @endforeach
         </tbody>
     </table>
-
-    <!-- Button to trigger form popup -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTeamMemberModal">
-        Add Team Member
-    </button>
 
     <!-- Modal for adding a team member -->
     <div class="modal fade" id="addTeamMemberModal" tabindex="-1" aria-labelledby="addTeamMemberModalLabel" aria-hidden="true">
@@ -110,7 +177,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editTeamMemberForm" method="POST" action="{{route('admin.updateTeamMember', $team_member->id)}}" enctype="multipart/form-data" class="formAddHomePage">
+                    <form id="editTeamMemberForm" method="POST" action="{{ route('admin.updateTeamMember', $team_member->id) }}" enctype="multipart/form-data" class="formAddHomePage">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -126,7 +193,7 @@
                         <div class="form-group">
                             <label for="editTeamMemberImage">Team Member Image</label>
                             <input type="file" class="form-control-file" id="editTeamMemberImage" name="imagePath">
-                            <img id="editImagePreview" src="" alt="Current Image" style="margin-top: 10px; width: 100px; height: auto;">
+                            <img id="editImagePreview" src="" alt="Current Image" style="margin-top: 10px;">
                         </div>
 
                         <div class="form-group">
@@ -150,53 +217,47 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete <span id="teamMemberName"></span>?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <form id="deleteForm" method="POST">
+                    <p>Are you sure you want to delete <strong id="confirmDeleteItem"></strong>?</p>
+                    <form id="confirmDeleteForm" method="POST" action="">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger mb-3 w-100">Yes, Delete</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script>
-        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var teamMemberName = button.data('team-member');
-            var action = button.data('action');
-
-            var modal = $(this);
-            modal.find('#teamMemberName').text(teamMemberName);
-            modal.find('#deleteForm').attr('action', action);
-        });
-
+        // Edit team member modal functionality
         $('#editTeamMemberModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var teamMemberId = button.data('id');
-            var teamMemberName = button.data('name');
-            var teamMemberPosition = button.data('position');
-            var teamMemberImage = button.data('image');
-            var teamMemberOrder = button.data('order');
-
-            console.log(button.data());
+            var id = button.data('id');
+            var name = button.data('name');
+            var position = button.data('position');
+            var image = button.data('image');
+            var order = button.data('order');
             var modal = $(this);
-            var form = modal.find('#editTeamMemberForm');
-            form.attr('action', '{{ url("team-members") }}/' + teamMemberId);
-            form.find('#editTeamMemberName').val(teamMemberName);
-            form.find('#editTeamMemberPosition').val(teamMemberPosition);
-            form.find('#editImagePreview').attr('src', teamMemberImage);
-            form.find('#editTeamMemberOrder').val(teamMemberOrder);
+
+            modal.find('#editTeamMemberName').val(name);
+            modal.find('#editTeamMemberPosition').val(position);
+            modal.find('#editImagePreview').attr('src', image); // Ensure the image preview updates
+            modal.find('#editTeamMemberOrder').val(order);
+            // Set the action URL for the form
+            $('#editTeamMemberForm').attr('action', '/team-members/' + id);
+        });
+
+        // Delete team member modal functionality
+        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var teamMember = button.data('team-member');
+            var action = button.data('action');
+            var modal = $(this);
+
+            modal.find('#confirmDeleteItem').text(teamMember);
+            $('#confirmDeleteForm').attr('action', action);
         });
     </script>
 @endsection

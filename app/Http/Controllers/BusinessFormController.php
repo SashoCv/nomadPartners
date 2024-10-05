@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessForm;
+use App\Models\OurBusinessPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -14,7 +15,8 @@ class BusinessFormController extends Controller
     public function index()
     {
         $allBusinessForms = BusinessForm::all();
-        return view('Business.index', compact('allBusinessForms'));
+        $items = OurBusinessPage::first();
+        return view('Business.index', compact('allBusinessForms', 'items'));
     }
 
     /**
