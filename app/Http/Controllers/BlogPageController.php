@@ -50,9 +50,19 @@ class BlogPageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BlogPage $blogPage)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $blogPage = BlogPage::find($id);
+            $blogPage->title = $request->title;
+            $blogPage->description = $request->description;
+
+            $blogPage->save();
+            return redirect()->back()->with('success', 'Blog page updated successfully');
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Error updating blog page');
+        }
     }
 
     /**

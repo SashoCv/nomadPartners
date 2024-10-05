@@ -8,6 +8,7 @@ use App\Http\Controllers\BusinessFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OurBusinessPageController;
@@ -42,6 +43,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('blogs/picture', [BlogController::class, 'updatePicture'])->name("admin.updatePicture");
     Route::get('edit-blog-post/{id}', [BlogController::class, 'edit'])->name('admin.editBlogPost');
     Route::delete('delete-blog-post/{id}', [BlogController::class, 'destroy'])->name('admin.deleteBlogPost');
+    Route::put('bogs-page-update/{id}', [BlogPageController::class, 'update'])->name('admin.updateBlogPage');
 
 
     Route::get('home-page', [HomeController::class, 'index'])->name("admin.homePageView");

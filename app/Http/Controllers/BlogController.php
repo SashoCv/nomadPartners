@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
+use App\Models\BlogPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -18,8 +19,9 @@ class BlogController extends Controller
     {
         try {
             $blogs = Blog::with('user')->get();
+            $items = BlogPage::first();
 
-            return view('Blogs.viewBlogs', compact('blogs'));
+            return view('Blogs.viewBlogs', compact(['blogs', 'items']));
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return redirect()->back()->with('error', 'Error fetching blogs');
@@ -166,7 +168,7 @@ class BlogController extends Controller
                 $blog->pictureNameBlog = $request->file('picturePathBlog')->getClientOriginalName();
             }
 
-            
+
             $blog->save();
             return redirect()->route('admin.blogsView')->with('success', 'Blog updated successfully');
         } catch (\Exception $e) {
