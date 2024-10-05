@@ -14,7 +14,14 @@ class OurBusinessPageController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $pageInfo = OurBusinessPage::first();
+
+            return response()->json($pageInfo);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['error' => 'Error fetching business page']);
+        }
     }
 
     /**

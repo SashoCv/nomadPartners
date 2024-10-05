@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\OurBusinessPageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceBoxController;
 use Illuminate\Http\Request;
@@ -53,7 +54,7 @@ Route::post('contact', [ContactFormController::class, 'store']);
 
 // CONTACT
 Route::post('business', [BusinessFormController::class, 'store']);
-
+Route::get('business', [OurBusinessPageController::class, 'index']);
 
 // ServicesSection
 Route::get('services', [ServiceController::class, 'getServicesApi']);
