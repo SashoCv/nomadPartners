@@ -33,7 +33,12 @@ class BlogController extends Controller
     {
         try {
             $blogs = Blog::with('user')->paginate(8);
-            return response()->json($blogs);
+            $items = BlogPage::first();
+
+            return response()->json([
+                'blogs' => $blogs,
+                'items' => $items
+            ]);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => 'Error fetching blogs']);
