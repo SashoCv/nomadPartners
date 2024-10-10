@@ -45,6 +45,7 @@ class PartnerController extends Controller
             $partner = new Partner();
             $partner->namePartner = $request->namePartner;
             $partner->linkPartner = $request->linkPartner;
+
             $partner->home_id = $homeId;
             if ($request->hasFile('logoPathPartner')) {
                 Storage::disk('public')->put('partners', $request->file('logoPathPartner'));
@@ -52,6 +53,14 @@ class PartnerController extends Controller
                 $partner->logoPath = $name;
                 $partner->logoName = $request->file('logoPathPartner')->getClientOriginalName() ?? "logo name";
             }
+
+            if(!$request->order){
+                $getLastOrder = Partner::orderBy('order', 'desc')->first();
+                $order = $getLastOrder->order + 1;
+            } else {
+                $order = $request->order;
+            }
+            $partner->order = $order;
 
             $partner->save();
             return redirect()->route('admin.partnersView');
