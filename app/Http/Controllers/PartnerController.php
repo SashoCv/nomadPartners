@@ -54,14 +54,6 @@ class PartnerController extends Controller
                 $partner->logoName = $request->file('logoPathPartner')->getClientOriginalName() ?? "logo name";
             }
 
-            if(!$request->order){
-                $getLastOrder = Partner::orderBy('order', 'desc')->first();
-                $order = $getLastOrder->order + 1;
-            } else {
-                $order = $request->order;
-            }
-            $partner->order = $order;
-
             $partner->save();
             return redirect()->route('admin.partnersView');
         } catch (\Exception $e) {
