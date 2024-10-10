@@ -40,12 +40,11 @@
         <!-- Service List Tab -->
         <div id="serviceList" class="tab-pane fade show active">
             <!-- Table for listing main services -->
-            <!-- Table for listing main services -->
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Name Service</th>
-                    <th>Description Service</th>
+                    <th>Title Service Page</th>
+                    <th>Description Service Page</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -165,6 +164,21 @@
                         @method('PUT')
                         <input type="text" name="title" class="form-control mb-3" placeholder="Name Service" value="{{ $services->title }}">
                         <textarea name="description" class="form-control mb-3" placeholder="Service Description" id="mainServiceDescription">{{ $services->description }}</textarea>
+
+                        <!-- Image upload for Main Service -->
+                        <div class="form-group mt-3">
+                            <label for="imageMainService">Upload Service Image</label>
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                            <small class="form-text text-muted">Accepted file formats: jpg, png, svg</small>
+                        </div>
+
+                        <!-- Preview current image if it exists -->
+                        @if($services->image)
+                            <div class="mb-3">
+                                <label>Current Image:</label>
+                                <img src="{{ Storage::url($services->image) }}" class="img-thumbnail" style="max-width: 200px;">
+                            </div>
+                        @endif
 
                         <button class="btn btn-primary mt-3">Update Main Service</button>
                     </form>

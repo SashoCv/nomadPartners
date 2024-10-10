@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Service;
 use App\Models\ServiceBox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -28,8 +30,8 @@ class ServiceController extends Controller
     public function getServicesApi()
     {
         $services = Service::with('serviceBoxes')->first();
-
-        return response()->json($services);
+        $contactInfo = Contact::first(['phoneContact', 'emailContact']);
+        return response()->json([$services, $contactInfo]);
     }
 
     /**
@@ -64,6 +66,11 @@ class ServiceController extends Controller
         $service = Service::find($id);
         $service->title = $request->title;
         $service->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            $name = Storage::disk('public')->put('services', $request->file('image'));
+            $service->image = $name;
+        }
 
         $service->save();
         return redirect()->back();
