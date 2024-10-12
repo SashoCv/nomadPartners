@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Home;
 use App\Models\Partner;
+use App\Models\PartnerInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +18,8 @@ class PartnerController extends Controller
     {
        try {
             $partners = Partner::all();
-            return view('Partners.index', compact('partners'));
+            $items = PartnerInfo::first();
+            return view('Partners.index', compact(['partners','items']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -28,11 +30,27 @@ class PartnerController extends Controller
     {
         try {
             $partners = Partner::all();
-            return response()->json($partners);
+            $partnerInfo = PartnerInfo::first();
+            return response()->json([
+                'partners' => $partners,
+                'partnerPageInfo' => $partnerInfo
+            ]);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
             return response()->json(['error' => 'Error fetching partners']);
         }
+    }
+
+    public function updatePartnersInfo(Request $request, $id)
+    {
+        $partnerInfo = PartnerInfo::where('id', $id)->first();
+
+        $partnerInfo->title = $request->title;
+        $partnerInfo->description = $request->description;
+
+        $partnerInfo->save();
+
+        return redirect()->route('admin.partnersView')->with('success', 'Blog updated successfully');
     }
 
     /**
