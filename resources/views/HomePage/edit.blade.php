@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+    {{ dd($homePage) }}
     <div class="container">
         <h2 class="mb-5 pt-3 titleBlogs">Update Home Page</h2>
 
