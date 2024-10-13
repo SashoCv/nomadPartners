@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <label for="infoBoxImageOne">Info Card Image One</label>
                         <input type="file" class="form-control-file" id="infoBoxImageOne" name="infoBoxImageOne">
-                            <img src="{{ asset('storage/' . $homePage->infoBoxImageOne) }}" alt="Info Card Image One" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageOne) }}" alt="Info Card Image One" style="width: 200px">
                     </div>
 
                     <div class="form-group">
