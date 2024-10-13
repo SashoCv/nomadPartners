@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <label for="infoBoxImageOne">Info Card Image One</label>
                         <input type="file" class="form-control-file" id="infoBoxImageOne" name="infoBoxImageOne">
-                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageOne'}) }}" alt="Info Card Image One" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageOne) }}" alt="Info Card Image One" style="max-width: 200px; margin-top: 10px;">
                     </div>
 
                     <div class="form-group">
@@ -125,7 +125,7 @@
                     <div class="form-group" >
                         <label for="infoBoxImageTwo">Info Card Image Two</label>
                         <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">
-                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageTwo'}) }}" alt="Info Card Image Two" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageTwo) }}" alt="Info Card Image Two" style="max-width: 200px; margin-top: 10px;">
                     </div>
 
                     <div class="form-group">
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label for="infoBoxImageThree">Info Card Image Three</label>
                         <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">
-                            <img src="{{ asset('storage/' . $homePage->{'infoBoxImageThree'}) }}" alt="Info Card Image Three" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageThree) }}" alt="Info Card Image Three" style="max-width: 200px; margin-top: 10px;">
                     </div>
             </div>
 
@@ -188,7 +188,7 @@
                     <label for="missionSubtitle">Mission Main Image</label>
                     <input type="file" class="form-control" id="missionSubtitle" name="missionMainImage">
                     @if ($homePage->{'missionMainImagePath'})
-                        <img src="{{ asset('storage/' . $homePage->{'missionMainImagePath'}) }}" alt="Main Image" style="max-width: 200px; margin-top: 10px;">
+                        <img src="{{ asset('storage/' . $homePage->missionMainImagePath) }}" alt="Main Image" style="max-width: 200px; margin-top: 10px;">
                     @endif
                 </div>
                 <div class="form-group">
@@ -203,7 +203,7 @@
                         <label for="missionPicturePathOne">Mission Icon One</label>
                         <input type="file" class="form-control-file" id="missionPicturePathOne" name="missionPicturePathOne">
                         @if ($homePage->{'missionPicturePathOne'})
-                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathOne'}) }}" alt="Mission Icon One" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->missionPicturePathOne) }}" alt="Mission Icon One" style="max-width: 200px; margin-top: 10px;">
                         @endif
                     </div>
                     <div class="form-group">
@@ -219,7 +219,7 @@
                         <label for="missionPicturePathTwo">Mission Icon Two</label>
                         <input type="file" class="form-control-file" id="missionPicturePathTwo" name="missionPicturePathTwo">
                         @if ($homePage->{'missionPicturePathTwo'})
-                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathTwo'}) }}" alt="Mission Icon Two" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->missionPicturePathTwo) }}" alt="Mission Icon Two" style="max-width: 200px; margin-top: 10px;">
                         @endif
                     </div>
 
@@ -237,7 +237,7 @@
                         <label for="missionPicturePathThree">Mission Icon Three</label>
                         <input type="file" class="form-control-file" id="missionPicturePathThree" name="missionPicturePathThree">
                         @if ($homePage->{'missionPicturePathThree'})
-                            <img src="{{ asset('storage/' . $homePage->{'missionPicturePathThree'}) }}" alt="Mission Icon Three" style="max-width: 200px; margin-top: 10px;">
+                            <img src="{{ asset('storage/' . $homePage->missionPicturePathThree) }}" alt="Mission Icon Three" style="max-width: 200px; margin-top: 10px;">
                         @endif
                     </div>
 
