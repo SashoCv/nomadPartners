@@ -60,10 +60,10 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('partners', [PartnerController::class, 'index'])->name("admin.partnersView");
     Route::post('partners', [PartnerController::class, 'store'])->name("admin.partnersPost");
-    Route::put('/partners/{id}', [PartnerController::class, 'update'])->name('admin.updatePartner');
+    Route::put('partners/{id}', [PartnerController::class, 'update'])->name('admin.updatePartner');
     Route::delete('partners/{id}', [PartnerController::class, 'destroy'])->name("admin.deletePartner");
-    Route::put('partners/{id}', [PartnerController::class, 'updatePartnersInfo'])->name("admin.updatePartnerInfo");
-    
+    Route::put('partners-info/{id}', [PartnerController::class, 'updatePartnersInfo'])->name("admin.updatePartnerInfo");
+
 
     Route::get('team-members', [TeamMembersController::class, 'index'])->name("admin.teamMembersView");
     Route::post('team-members', [TeamMembersController::class, 'store'])->name("admin.teamMembersPost");
