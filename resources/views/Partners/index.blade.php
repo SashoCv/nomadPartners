@@ -97,20 +97,26 @@
     <table class="table">
         <thead>
         <tr>
-            <th style="width: 30%;">Name Partner</th> <!-- Поголема ширина -->
-            <th style="width: 10%;">Logo Partner</th> <!-- Ограничена ширина -->
-            <th style="width: 60%; text-align: right">Actions</th> <!-- Поголема ширина -->
+            <th style="width: 25%; text-align: left;">Name Partner</th> <!-- Поголема ширина -->
+            <th style="width: 30%; text-align: left;">Logo Partner</th> <!-- Ограничена ширина -->
+            <th style="width: 5%; text-align: center;">Order</th> <!-- Централно порамнување -->
+            <th style="width: 40%; text-align: right;">Actions</th> <!-- Поголема ширина -->
         </tr>
         </thead>
         <tbody>
         @foreach ($partners as $partner)
             <tr>
                 <td class="partner-name">{{ $partner->namePartner }}</td>
-                <td class="partner-logo">
-                    <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" class="img-fluid" style="width: 100%; height: auto;">
+                <td class="partner-logo" style="text-align: left;">
+                    <img src="{{ Storage::url($partner->logoPath) }}" alt="Partner Logo" class="img-fluid" style="width: 100%; height: auto; max-width: 80px;">
                 </td>
-                <td class="actions">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal" data-id="{{ $partner->id }}" data-name="{{ $partner->namePartner }}" data-logo="{{ Storage::url($partner->logoPath) }}">
+                <td style="text-align: center;">{{ $partner->order }}</td>
+                <td class="actions" style="text-align: right;">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPartnerModal"
+                            data-id="{{ $partner->id }}"
+                            data-name="{{ $partner->namePartner }}"
+                            data-logo="{{ Storage::url($partner->logoPath) }}"
+                            data-order="{{ $partner->order }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-partner="{{ $partner->namePartner }}" data-action="{{ route('admin.deletePartner', $partner->id) }}">
@@ -148,6 +154,11 @@
                             <input type="file" class="form-control-file" id="logoPathPartner" name="logoPathPartner" required>
                         </div>
 
+                        <div class="form-group">
+                            <label for="order">Order</label>
+                            <input type="number" class="form-control" id="order" name="order" required>
+                        </div>
+
                         <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
                     </form>
                 </div>
@@ -176,6 +187,11 @@
                             <label for="editLogoPathPartner">Logo Partner</label>
                             <input type="file" class="form-control-file" id="editLogoPathPartner" name="logoPathPartner">
                             <img id="editLogoPreview" src="" alt="Current Logo" style="margin-top: 10px; width: 100px; height: auto;">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editOrder">Order</label>
+                            <input type="number" class="form-control" id="editOrder" name="order" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-3 w-100">Save Changes</button>
@@ -230,12 +246,14 @@
             var partnerId = button.data('id');
             var partnerName = button.data('name');
             var partnerLogo = button.data('logo');
+            var partnerOrder = button.data('order');
 
             var modal = $(this);
             var form = modal.find('#editPartnerForm');
             form.attr('action', '{{ url("partners") }}/' + partnerId);
             form.find('#editNamePartner').val(partnerName);
             form.find('#editLogoPreview').attr('src', partnerLogo);
+            form.find('#editOrder').val(partnerOrder);
         });
     </script>
 @endsection
