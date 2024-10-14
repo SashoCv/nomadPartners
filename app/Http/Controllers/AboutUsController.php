@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\BoxAboutUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,11 @@ class AboutUsController extends Controller
     {
         try {
             $aboutUs = AboutUs::first();
-            return response()->json($aboutUs);
+            $aboutUsBoxes = BoxAboutUs::where('about_us_id', $aboutUs->id)->get();
+            return response()->json([
+                'aboutUs' => $aboutUs,
+                'aboutUsBoxes' => $aboutUsBoxes
+            ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['error' => 'Error fetching about us']);
