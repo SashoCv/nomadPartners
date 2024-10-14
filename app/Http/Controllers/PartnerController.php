@@ -17,7 +17,7 @@ class PartnerController extends Controller
     public function index()
     {
        try {
-            $partners = Partner::all();
+            $partners = Partner::orderBy('order', 'asc')->get();
             $items = PartnerInfo::first();
             return view('Partners.index', compact(['partners','items']));
         } catch (\Exception $e) {
@@ -29,7 +29,7 @@ class PartnerController extends Controller
     public function getPartnersApi()
     {
         try {
-            $partners = Partner::all();
+            $partners = Partner::orderBy('order', 'asc')->get();
             $partnerInfo = PartnerInfo::first();
             return response()->json([
                 'partners' => $partners,
