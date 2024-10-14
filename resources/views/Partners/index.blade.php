@@ -32,13 +32,24 @@
             width: 120px; /* Ширина за копчињата за акција */
             text-align: right; /* Поравнување на копчињата десно */
         }
+
+        .partnersNameAndAdd {
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
 @endsection
 
 @section('content')
-    <h2 class="mb-5 titleBlogs">Partners</h2>
+   <div class="d-flex partnersNameAndAdd">
+       <h2 class="mb-5 titleBlogs">Partners</h2>
+
+       <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPartnerModal">
+           Add Partner
+       </button>
+   </div>
   <!-- Table for listing titles and descriptions -->
-  <table class="table mb-4">
+  <table class="table mb-3">
         <thead>
         <tr>
             <th>Title Page</th>
@@ -93,6 +104,9 @@
         </div>
     </div>
 
+
+    <!-- Button to trigger form popup -->
+
     <!-- Table for listing partners -->
     <table class="table">
         <thead>
@@ -128,10 +142,7 @@
         </tbody>
     </table>
 
-    <!-- Button to trigger form popup -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPartnerModal">
-        Add Partner
-    </button>
+
 
     <!-- Modal for adding a partner -->
     <div class="modal fade" id="addPartnerModal" tabindex="-1" aria-labelledby="addPartnerModalLabel" aria-hidden="true">
