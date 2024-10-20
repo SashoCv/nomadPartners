@@ -92,6 +92,7 @@ class HomeController extends Controller
             $home->bookYourAppointmentTitle = $request->input('bookYourAppointmentTitle');
             $home->bookYourAppointmentContent = $request->input('bookYourAppointmentContent');
             $home->bookYourAppointmentButton = $request->input('bookYourAppointmentButton');
+            $home->bookYourAppointmentButtonLink = $request->input('bookYourAppointmentButtonLink');
 
 
             if ($request->hasFile('imageHeroSectionPath')) {
@@ -209,6 +210,7 @@ class HomeController extends Controller
             $home->bookYourAppointmentTitle = $request->input('bookYourAppointmentTitle');
             $home->bookYourAppointmentContent = $request->input('bookYourAppointmentContent');
             $home->bookYourAppointmentButton = $request->input('bookYourAppointmentButton');
+            $home->bookYourAppointmentButtonLink = $request->input('bookYourAppointmentButtonLink');
 
             $home->serviceTitle = $request->input('serviceTitle');
             $home->serviceContent = $request->input('serviceContent');

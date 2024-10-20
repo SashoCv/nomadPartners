@@ -87,6 +87,15 @@ class AboutUsController extends Controller
 
             $aboutUs->titleHeroAboutUs = $request->input('titleHeroAboutUs');
             $aboutUs->subtitleHeroAboutUs = $request->input('subtitleHeroAboutUs');
+            $aboutUs->titleConnect = $request->input('titleConnect');
+            $aboutUs->descriptionConnect = $request->input('descriptionConnect');
+            $aboutUs->buttonTextConnect = $request->input('buttonTextConnect');
+            $aboutUs->buttonLinkConnect = $request->input('buttonLinkConnect');
+
+            if ($request->hasFile('picture')) {
+                $name = Storage::disk('public')->put('about-us', $request->file('picture'));
+                $aboutUs->picture = $name;
+            }
 
             $aboutUs->save();
 

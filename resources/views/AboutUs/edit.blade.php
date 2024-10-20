@@ -42,6 +42,9 @@
                         <a class="nav-link" href="#heroAboutUsSection">Hero About Us</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#aboutUsConnectWithUs">About Us Connect</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#aboutUsBoxesSection">About Us Boxes</a>
                     </li>
                 </ul>
@@ -49,60 +52,95 @@
         </nav>
 
         <div id="aboutUsBoxesSection" class="section-content">
-        <form action="{{ route('admin.boxAboutUsPost') }}" method="POST" id="formForAddBoxAbout" class="mb-4">
-            @csrf
-            <input type="hidden" name="about_us_id" value="{{ $aboutUs->id }}">
-            <div class="form-group">
-                <label for="titleBoxAboutUs">Title box</label>
-                <input type="text" class="form-control" id="titleBoxAboutUs" name="titleBoxAboutUs">
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Save</button>
-        </form>
+            <form action="{{ route('admin.boxAboutUsPost') }}" method="POST" id="formForAddBoxAbout" class="mb-4">
+                @csrf
+                <input type="hidden" name="about_us_id" value="{{ $aboutUs->id }}">
+                <div class="form-group">
+                    <label for="titleBoxAboutUs">Title box</label>
+                    <input type="text" class="form-control" id="titleBoxAboutUs" name="titleBoxAboutUs">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Save</button>
+            </form>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($boxes as $box)
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>{{ $box->titleBoxAboutUs }}</td>
-                    <td>
-                        <form action="{{ route('admin.deleteBoxAboutUs', $box->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    <th>Title</th>
+                    <th>Actions</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($boxes as $box)
+                    <tr>
+                        <td>{{ $box->titleBoxAboutUs }}</td>
+                        <td>
+                            <form action="{{ route('admin.deleteBoxAboutUs', $box->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-        <div id="heroAboutUsSection" class="section-content">
+
+        <!-- Combined form for both sections -->
         <form action="{{ route('admin.aboutUsUpdate', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" class="formAddAboutUs">
             @csrf
             @method('PUT')
 
             <!-- Hero About Us Section -->
+            <div id="heroAboutUsSection" class="section-content">
                 <div class="form-group">
                     <label for="titleHeroAboutUs">Title Hero About Us</label>
                     <input type="text" class="form-control" id="titleHeroAboutUs" name="titleHeroAboutUs" value="{{ $aboutUs->titleHeroAboutUs }}">
                 </div>
 
-            <div class="form-group w-100 mb-3">
-                <label for="blogContent">Content</label>
-                <textarea id="blogContent" name="subtitleHeroAboutUs" class="form-control" placeholder="Enter your content here">{{ $aboutUs->subtitleHeroAboutUs }}</textarea>
+                <div class="form-group w-100 mb-3">
+                    <label for="blogContent">Content</label>
+                    <textarea id="blogContent" name="subtitleHeroAboutUs" class="form-control" placeholder="Enter your content here">{{ $aboutUs->subtitleHeroAboutUs }}</textarea>
+                </div>
             </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Update</button>
-        </form>
-        </div>
-    </div>
+            <!-- Connect With Us Section -->
+            <div id="aboutUsConnectWithUs" class="section-content">
+                <div class="form-group d-flex">
+                   <div>
+                       <label for="picture">Upload Picture</label>
+                       <input type="file" class="form-control-file mt-3" id="picture" name="picture">
+                   </div>
+                    <div>
+                        <img src="{{ asset('storage/' . $aboutUs->picture) }}" alt="Picture" class="img-fluid mt-3" style="max-width: 200px;">
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label for="titleConnect">Title</label>
+                    <input type="text" class="form-control" id="titleConnect" name="titleConnect" value="{{ $aboutUs->titleConnect }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="descriptionConnect">Description</label>
+                    <textarea id="descriptionConnect" name="descriptionConnect" class="form-control" placeholder="Enter a short description here">{{ $aboutUs->descriptionConnect }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="buttonTextConnect">Button Text</label>
+                    <input type="text" class="form-control" id="buttonTextConnect" name="buttonTextConnect" value="{{ $aboutUs->buttonTextConnect }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="buttonLinkConnect">Button Link</label>
+                    <input type="text" class="form-control" id="buttonLinkConnect" name="buttonLinkConnect" value="{{ $aboutUs->buttonLinkConnect }}">
+                </div>
+            </div>
+
+            <!-- Submit button common for both sections -->
+            <button type="submit" class="btn btn-primary mt-3">Save</button>
+        </form>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -123,7 +161,6 @@
             }
 
             showSection();
-
             window.addEventListener('hashchange', showSection);
 
             const csrfToken = '{{ csrf_token() }}';

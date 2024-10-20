@@ -280,6 +280,10 @@
                     <input type="text" class="form-control" id="bookYourAppointmentButton" name="bookYourAppointmentButton" value="{{ old('bookYourAppointmentButton', $homePage->bookYourAppointmentButton) }}">
                 </div>
                 <div class="form-group">
+                    <label for="bookYourAppointmentButtonLink">Button Link</label>
+                    <input type="text" class="form-control" id="bookYourAppointmentButtonLink" name="bookYourAppointmentButtonLink" value="{{ old('bookYourAppointmentButtonLink', $homePage->bookYourAppointmentButtonLink) }}">
+                </div>
+                <div class="form-group">
                     <label for="bookYourAppointmentImage">Image</label>
                     <input type="file" class="form-control-file" id="bookYourAppointmentImage" name="bookYourAppointmentImage">
                     @if ($homePage->bookYourAppointmentImage)
