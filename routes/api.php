@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\NetworkPersonnelController;
 use App\Http\Controllers\OurBusinessPageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceBoxController;
@@ -62,4 +63,7 @@ Route::get('services', [ServiceController::class, 'getServicesApi']);
 // ServiceBox
 Route::get('service-boxes', [ServiceBoxController::class, 'index']);
 Route::get('service-boxes/{id}', [ServiceBoxController::class, 'show']);
+
+// NetworkPersonnel
+Route::get('network-personnel', [NetworkPersonnelController::class, 'getNetworkPersonnelApi']);
 

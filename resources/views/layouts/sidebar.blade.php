@@ -80,6 +80,14 @@ $contactPage = Contact::all();
             </a>
             <i class="fa-solid fa-users"></i>
         </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.networkPersonnelView') }}" class="nav-link link-dark {{ request()->routeIs('admin.networkPersonnelView') ? 'underline' : '' }}">
+                Network
+            </a>
+            <i class="fa-solid fa-network-wired"></i>
+        </li>
+
         @if($contactPage->isEmpty())
             <li class="nav-item d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.contactView') }}" class="nav-link link-dark">

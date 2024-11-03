@@ -11,6 +11,7 @@ use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NetworkPersonnelController;
 use App\Http\Controllers\OurBusinessPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
@@ -99,6 +100,14 @@ Route::middleware(['admin'])->group(function () {
     Route::put('about-us-box-update', [BoxAboutUsController::class, 'update'])->name("admin.boxAboutUsUpdate");
     Route::delete('about-us-box-delete/{id}', [BoxAboutUsController::class, 'destroy'])->name("admin.deleteBoxAboutUs");
     Route::get('about-us-box-edit/{id}', [BoxAboutUsController::class, 'edit'])->name("admin.editBoxAboutUs");
+
+
+    Route::get('network-personnel', [NetworkPersonnelController::class, 'index'])->name("admin.networkPersonnelView");
+    Route::put('network-personnel/{id}', [NetworkPersonnelController::class, 'update'])->name("admin.networkPersonnelPost");
+    Route::post('add-carts', [NetworkPersonnelController::class, 'addCarts'])->name("admin.addCarts");
+    Route::put('update-carts/{id}', [NetworkPersonnelController::class, 'updateCarts'])->name("admin.updateCarts");
+    Route::delete('delete-carts/{id}', [NetworkPersonnelController::class, 'destroy'])->name("admin.deleteCarts");
+
 
 
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");

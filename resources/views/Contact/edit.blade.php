@@ -23,11 +23,11 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div>
     <h2 class="mb-5 pt-3 titleBlogs">Edit Contact Page</h2>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="w-100">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#contactInfoSection">Contact Information</a>
