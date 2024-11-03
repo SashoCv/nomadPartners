@@ -157,7 +157,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Icon</th>
-                    <th>Actions</th>
+                    <th style="width: 200px">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -172,7 +172,7 @@
                                 No icon
                             @endif
                         </td>
-                        <td>
+                        <td style="width: 200px">
                             {{--need to be implemented--}}
                             <button type="button" class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editCartModal"
                                     data-id="{{ $cart->id }}" data-title="{{ $cart->title }}" data-description="{{ $cart->description }}">
