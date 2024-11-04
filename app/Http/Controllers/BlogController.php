@@ -94,9 +94,7 @@ class BlogController extends Controller
     {
         try {
             if ($request->hasFile('upload')) {
-                $file = $request->file('upload');
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('public/uploads', $filename);
+                $path = $request->file('upload')->store('blogs', 'public');
 
                 $url = Storage::url($path);
                 $msg = 'Image uploaded successfully';
