@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogPage;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -18,8 +19,9 @@ class BlogController extends Controller
     public function index()
     {
         try {
-            $blogs = Blog::with('user')->get();
-            $items = BlogPage::first();
+            $language = Auth::user()->language_id;
+            $blogs = Blog::with('user')->where('language_id', $language)->paginate(8);
+            $items = BlogPage::where('language_id', $language)->first();
 
             return view('Blogs.viewBlogs', compact(['blogs', 'items']));
         } catch (\Exception $e) {
@@ -29,11 +31,13 @@ class BlogController extends Controller
     }
 
 
-    public function getBlogsApi()
+    public function getBlogsApi(Request $request)
     {
         try {
-            $blogs = Blog::with('user')->paginate(8);
-            $items = BlogPage::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $blogs = Blog::with('user')->where('language_id', $language_id)->paginate(8);
+            $items = BlogPage::where('language_id', $language_id)->first();
 
             return response()->json([
                 'blogs' => $blogs,
@@ -73,6 +77,7 @@ class BlogController extends Controller
             $blog->titleOfBlog = $request->titleOfBlog;
             $blog->content = $request->content;
             $blog->user_id = Auth::user()->id;
+            $blog->language_id = Auth::user()->language_id;
 
             if ($request->hasFile('picturePathBlog')) {
                 Storage::disk('public')->put('blogs', $request->file('picturePathBlog'));

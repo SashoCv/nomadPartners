@@ -64,9 +64,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function language(Request $request)
     {
-        //
+        $user = Auth::user();
+        $user->language_id = $request->language;
+        $user->save();
+        return response()->json(['success' => 'Language updated successfully']);
     }
 
     /**

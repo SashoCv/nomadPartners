@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Models\Language;
 use App\Models\Partner;
 use App\Models\PartnerInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,8 +19,9 @@ class PartnerController extends Controller
     public function index()
     {
        try {
+           $language_id = Auth::user()->language_id;
             $partners = Partner::orderBy('order', 'asc')->get();
-            $items = PartnerInfo::first();
+            $items = PartnerInfo::where('language_id', $language_id)->first();
             return view('Partners.index', compact(['partners','items']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -26,11 +29,13 @@ class PartnerController extends Controller
        }
     }
 
-    public function getPartnersApi()
+    public function getPartnersApi(Request $request)
     {
         try {
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
             $partners = Partner::orderBy('order', 'asc')->get();
-            $partnerInfo = PartnerInfo::first();
+            $partnerInfo = PartnerInfo::where('language_id', $language_id)->first();
             return response()->json([
                 'partners' => $partners,
                 'partnerPageInfo' => $partnerInfo

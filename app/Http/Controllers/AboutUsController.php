@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutUs;
 use App\Models\BoxAboutUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -68,7 +69,8 @@ class AboutUsController extends Controller
     public function edit()
     {
         try {
-            $aboutUs = AboutUs::first();
+            $language_id = Auth::user()->language_id;
+            $aboutUs = AboutUs::where('language_id', $language_id)->first();
             $boxes = $aboutUs->boxAboutUs ?? [];
             return view('AboutUs.edit', compact(['aboutUs', 'boxes']));
         } catch (\Exception $e) {

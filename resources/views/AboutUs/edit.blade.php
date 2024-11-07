@@ -45,7 +45,7 @@
                         <a class="nav-link" href="#aboutUsConnectWithUs">About Us Connect</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#aboutUsBoxesSection">About Us Boxes</a>
+                        <a class="nav-link" id="sectionBoxes" href="#aboutUsBoxesSection">About Us Boxes</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +59,7 @@
                     <label for="titleBoxAboutUs">Title box</label>
                     <input type="text" class="form-control" id="titleBoxAboutUs" name="titleBoxAboutUs">
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                <button type="submit" id="submitButtonBox" class="btn btn-primary mt-3">Save</button>
             </form>
 
             <table class="table">
@@ -102,15 +102,19 @@
                     <label for="blogContent">Content</label>
                     <textarea id="blogContent" name="subtitleHeroAboutUs" class="form-control" placeholder="Enter your content here">{{ $aboutUs->subtitleHeroAboutUs }}</textarea>
                 </div>
+
+                <!-- Save button for Hero About Us section -->
+                <button type="submit" id="submitHeroSection" class="btn btn-primary mt-3">Save</button>
             </div>
+
 
             <!-- Connect With Us Section -->
             <div id="aboutUsConnectWithUs" class="section-content">
                 <div class="form-group d-flex">
-                   <div>
-                       <label for="picture">Upload Picture</label>
-                       <input type="file" class="form-control-file mt-3" id="picture" name="picture">
-                   </div>
+                    <div>
+                        <label for="picture">Upload Picture</label>
+                        <input type="file" class="form-control-file mt-3" id="picture" name="picture">
+                    </div>
                     <div>
                         <img src="{{ asset('storage/' . $aboutUs->picture) }}" alt="Picture" class="img-fluid mt-3" style="max-width: 200px;">
                     </div>
@@ -135,10 +139,10 @@
                     <label for="buttonLinkConnect">Button Link</label>
                     <input type="text" class="form-control" id="buttonLinkConnect" name="buttonLinkConnect" value="{{ $aboutUs->buttonLinkConnect }}">
                 </div>
-            </div>
 
-            <!-- Submit button common for both sections -->
-            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                <!-- Save button for Connect With Us section -->
+                <button type="submit" id="submitConnectSection" class="btn btn-primary mt-3">Save</button>
+            </div>
         </form>
     </div>
 

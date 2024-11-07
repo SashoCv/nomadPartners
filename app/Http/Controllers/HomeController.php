@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Home;
+use App\Models\Language;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
@@ -18,11 +20,13 @@ class HomeController extends Controller
         return view('HomePage.index');
     }
 
-    public function getHomePageApi()
+    public function getHomePageApi(Request $request)
     {
         try {
-            $home = Home::first();
-            $latestFourBlogs = Blog::latest()->take(4)->get();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $home = Home::where('language_id', $language_id)->first();
+            $latestFourBlogs = Blog::latest()->take(4)->where('language_id', $language_id)->get();
             $allPartners = Partner::all();
 
             return response()->json([
@@ -161,7 +165,8 @@ class HomeController extends Controller
      */
     public function edit(Home $home)
     {
-        $homePage = Home::first();
+        $userLang = Auth::user()->language_id;
+        $homePage = Home::where('language_id', $userLang)->first();
         return view('HomePage.edit', compact('homePage'));
     }
 

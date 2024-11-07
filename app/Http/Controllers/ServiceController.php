@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Language;
 use App\Models\Service;
 use App\Models\ServiceBox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
@@ -15,7 +17,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::first();
+        $language_id = Auth::user()->language_id;
+        $services = Service::where('language_id', $language_id)->first();
         if($services){
             $servicesBoxes = ServiceBox::where('service_id', $services->id)->get();
         } else {
@@ -27,9 +30,11 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function getServicesApi()
+    public function getServicesApi(Request $request)
     {
-        $services = Service::with('serviceBoxes')->first();
+        $language = $request->language;
+        $language_id = Language::where('name', $language)->first()->id;
+        $services = Service::with('serviceBoxes')->where('language_id', $language_id)->first();
         $contactInfo = Contact::first(['phoneContact', 'emailContact']);
         return response()->json([$services, $contactInfo]);
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
@@ -16,10 +18,12 @@ class ContactController extends Controller
         return view('Contact.index');
     }
 
-    public function getContactApi()
+    public function getContactApi(Request $request)
     {
         try {
-            $contact = Contact::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $contact = Contact::where('language_id', $language_id)->first();
             return response()->json($contact);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -65,7 +69,8 @@ class ContactController extends Controller
     public function edit()
     {
         try{
-            $contact = Contact::first();
+            $language_id = Auth::user()->language_id;
+            $contact = Contact::where('language_id', $language_id)->first();
             return view('Contact.edit', compact('contact'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -93,7 +98,7 @@ class ContactController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
-        
+
         }
     }
 

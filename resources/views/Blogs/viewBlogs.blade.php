@@ -116,7 +116,7 @@
             <td>{{ $blog->titleOfBlog }}</td>
             <td>{{ $blog->user->email }}</td>
             <td>{{ $blog->deleted_at ? 'Inactive' : 'Active' }}</td>
-            <td>{{ $blog->created_at->format('F j, Y') }}</td>
+            <td>{{ $blog->created_at }}</td>
             <td>
                 <a href="{{ route('admin.editBlogPost', $blog->id) }}" class="btnBlogsEdit">Edit</a>
                 <form action="{{ route('admin.deleteBlogPost', $blog->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');" class="m-0 p-0" style="display: inline;">

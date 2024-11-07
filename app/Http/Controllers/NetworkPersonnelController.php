@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartsNetworkPersonnel;
+use App\Models\Language;
 use App\Models\NetworkPersonnel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class NetworkPersonnelController extends Controller
 {
-    public function getNetworkPersonnelApi()
+    public function getNetworkPersonnelApi(Request $request)
     {
         try {
-            $network = NetworkPersonnel::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $network = NetworkPersonnel::where('language_id', $language_id)->first();
             $carts = CartsNetworkPersonnel::where('network_personnel_id', $network->id)->get();
 
             return response()->json([
@@ -29,7 +33,8 @@ class NetworkPersonnelController extends Controller
      */
     public function index()
     {
-        $network = NetworkPersonnel::first();
+        $language_id = Auth::user()->language_id;
+        $network = NetworkPersonnel::where('language_id', $language_id)->first();
         $carts = CartsNetworkPersonnel::where('network_personnel_id', $network->id)->get();
         return view('NetworkPersonnel.index', compact(['network', 'carts']));
     }

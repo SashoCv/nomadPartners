@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Team;
 use App\Models\TeamMembers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,8 +18,9 @@ class TeamMembersController extends Controller
     public function index()
     {
         try {
+            $language_id = Auth::user()->language_id;
             $team_members = TeamMembers::orderBy('order', 'asc')->get();
-            $items = Team::first();
+            $items = Team::where('language_id', $language_id)->first();
             return view('TeamMembers.index', compact(['team_members', 'items']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -28,10 +31,12 @@ class TeamMembersController extends Controller
     /**
      * API to get all team members.
      */
-    public function getTeamMembersApi()
+    public function getTeamMembersApi(Request $request)
         {
         try {
-            $team_page = Team::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $team_page = Team::where('language_id', $language_id)->first();
             $team_members = TeamMembers::orderBy('order', 'asc')->get();
             return response()->json([
                 'team_page' => $team_page,
