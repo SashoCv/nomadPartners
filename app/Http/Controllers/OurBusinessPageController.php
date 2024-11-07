@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\OurBusinessPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -12,10 +13,12 @@ class OurBusinessPageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $pageInfo = OurBusinessPage::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $pageInfo = OurBusinessPage::where('language_id', $language_id)->first();
 
             return response()->json($pageInfo);
         } catch (\Exception $e) {

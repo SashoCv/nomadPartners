@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BusinessForm;
 use App\Models\OurBusinessPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class BusinessFormController extends Controller
@@ -14,8 +15,9 @@ class BusinessFormController extends Controller
      */
     public function index()
     {
+        $language_id = Auth::user()->language_id;
         $allBusinessForms = BusinessForm::all();
-        $items = OurBusinessPage::first();
+        $items = OurBusinessPage::where('language_id', $language_id)->first();
         return view('Business.index', compact('allBusinessForms', 'items'));
     }
 
