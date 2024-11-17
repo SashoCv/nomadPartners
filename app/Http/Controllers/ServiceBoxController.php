@@ -12,9 +12,9 @@ class ServiceBoxController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $serviceBoxes = ServiceBox::all('id', 'title','icon','image');
+        $serviceBoxes = ServiceBox::where('service_id', $request->service_id)->get('id', 'title','icon','image');
         return response()->json($serviceBoxes);
     }
 
