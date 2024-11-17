@@ -15,11 +15,11 @@ class ServiceBoxController extends Controller
     public function index(Request $request)
     {
         if($request->language == 'English'){
-            $language_id = 2;
+            $language_id = "2";
+        } else {
+            $language_id = "1";
         }
-        if($request->language == 'Bulgarian'){
-            $language_id = 1;
-        }
+
         $serviceBoxes = ServiceBox::where('service_id', $language_id)->get();
         return response()->json($serviceBoxes);
     }
