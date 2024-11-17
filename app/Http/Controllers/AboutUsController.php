@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
 use App\Models\BoxAboutUs;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -20,10 +21,12 @@ class AboutUsController extends Controller
         return view('AboutUs.index', compact('aboutUs'));
     }
 
-    public function getAboutUsApi()
+    public function getAboutUsApi(Request $request)
     {
         try {
-            $aboutUs = AboutUs::first();
+            $language = $request->language;
+            $language_id = Language::where('name', $language)->first()->id;
+            $aboutUs = AboutUs::where('language_id', $language_id)->first();
             $aboutUsBoxes = BoxAboutUs::where('about_us_id', $aboutUs->id)->get();
             return response()->json([
                 'aboutUs' => $aboutUs,
