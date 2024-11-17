@@ -14,7 +14,13 @@ class ServiceBoxController extends Controller
      */
     public function index(Request $request)
     {
-        $serviceBoxes = ServiceBox::where('service_id', $request->service_id)->get();
+        if($request->language == 'English'){
+            $language_id = 2;
+        }
+        if($request->language == 'Bulgarian'){
+            $language_id = 1;
+        }
+        $serviceBoxes = ServiceBox::where('service_id', $language_id)->get();
         return response()->json($serviceBoxes);
     }
 
