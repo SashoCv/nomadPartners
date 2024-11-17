@@ -14,7 +14,7 @@ class ServiceBoxController extends Controller
      */
     public function index(Request $request)
     {
-        $serviceBoxes = ServiceBox::where('service_id', $request->service_id)->get('id', 'title','icon','image');
+        $serviceBoxes = ServiceBox::where('service_id', $request->service_id)->get();
         return response()->json($serviceBoxes);
     }
 
