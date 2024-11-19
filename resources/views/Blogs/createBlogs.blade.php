@@ -42,15 +42,10 @@
 @section('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const csrfToken = '{{ csrf_token() }}';
-
         ClassicEditor
             .create(document.querySelector('#blogContent'), {
                 ckfinder: {
-                    uploadUrl: "{{ route('admin.updatePicture') }}", // Remove the CSRF token from the URL
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken, // Add CSRF token in the headers
-                    },
+                    uploadUrl: "{{ route('admin.updatePicture') }}", // No need for CSRF token in the URL or headers
                 },
                 toolbar: [
                     'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
