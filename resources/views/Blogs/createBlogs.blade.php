@@ -19,7 +19,7 @@
 
 <form method="POST" action="{{ route('admin.createBlogPost') }}" enctype="multipart/form-data" class="w-100 p-0">
     @csrf
-    
+
     <div class="form-group w-100 mb-3">
         <label for="titleOfBlog">Title</label>
         <input type="text" id="titleOfBlog" name="titleOfBlog" class="form-control" placeholder="Enter the title of your blog">
@@ -47,7 +47,10 @@
         ClassicEditor
             .create(document.querySelector('#blogContent'), {
                 ckfinder: {
-                    uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    uploadUrl: "{{ route('admin.updatePicture') }}", // Remove the CSRF token from the URL
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken, // Add CSRF token in the headers
+                    },
                 },
                 toolbar: [
                     'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
