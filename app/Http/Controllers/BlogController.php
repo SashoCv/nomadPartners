@@ -98,33 +98,18 @@ class BlogController extends Controller
     public function updatePicture(Request $request)
     {
         try {
-            if ($request->hasFile('upload')) {
-                $path = $request->file('upload')->store('blogs', 'public');
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->store('uploads/blog_images', 'public'); // Чувај слика во storage
 
-                $url = Storage::url($path);
-                $msg = 'Image uploaded successfully';
-
-                return response()->json([
-                    'uploaded' => true,
-                    'url' => $url,
-                    'message' => $msg,
-                ]);
-            } else {
-                return response()->json([
-                    'uploaded' => false,
-                    'error' => [
-                        'message' => 'No file was uploaded.',
-                    ]
-                ]);
+                return response()->json(['url' => asset('storage/' . $path)], 200);
             }
+
+            return response()->json(['error' => 'No file uploaded'], 400);
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return response()->json([
-                'uploaded' => false,
-                'error' => [
-                    'message' => 'File upload error: ' . $e->getMessage(),
-                ]
-            ]);
+            // Додади логирање за дебагирање
+            \Log::error('Error uploading image: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal server error'], 500);
         }
     }
 
