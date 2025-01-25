@@ -116,6 +116,12 @@ $contactPage = Contact::all();
             <i class="fa-solid fa-chart-line"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.metaTags') }}" class="nav-link link-dark">
+                Meta Tags
+            </a>
+            <i class="fa-brands fa-meta"></i>
+        </li>
+        <li class="nav-item d-flex align-items-center justify-content-between mt-3">
             <form action="{{ route('admin.logout') }}" method="post" class="nav-link link-dark">
                 @csrf
                 <button class="btn-sideBar" type="submit">Logout</button>
