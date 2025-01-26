@@ -27,13 +27,13 @@ class MetaTagController extends Controller
         return response()->json($metaTags);
     }
 
-    public function showMetaTagApi(Request $request)
+    public function showMetaTagApi(Request $request, $id)
     {
         $language = $request->language;
         $language_id = Language::where('name', $language)->first()->id;
         $metaTags = MetaTag::with(['page', "keywords"])
             ->where('language_id', $language_id)
-            ->where('page_id', $request->page_id)
+            ->where('page_id', $id)
             ->first();
 
         return response()->json($metaTags);
