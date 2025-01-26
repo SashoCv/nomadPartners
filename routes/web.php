@@ -113,6 +113,7 @@ Route::middleware(['admin'])->group(function () {
 
 
     Route::get('metaTags', [\App\Http\Controllers\MetaTagController::class, 'index'])->name("admin.metaTags");
+    Route::get('/metaTags/{page}', [\App\Http\Controllers\MetaTagController::class, 'show'])->name('metaTags.show');
     Route::post('metaTags', [\App\Http\Controllers\MetaTagController::class, 'store'])->name("metaTags.store");
     Route::put('/metaTags/{id}', [\App\Http\Controllers\MetaTagController::class, 'update'])->name("metaTags.update");
     Route::post('logout', [UserController::class, 'logout'])->name("admin.logout");

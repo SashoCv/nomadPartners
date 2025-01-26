@@ -119,7 +119,7 @@ $contactPage = Contact::all();
             <a href="{{ route('admin.metaTags') }}" class="nav-link link-dark">
                 Meta Tags
             </a>
-            <i class="fa-brands fa-meta"></i>
+            <i class="fa-solid fa-tag"></i>
         </li>
         <li class="nav-item d-flex align-items-center justify-content-between mt-3">
             <form action="{{ route('admin.logout') }}" method="post" class="nav-link link-dark">

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\MetaTag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MetaTagController extends Controller
 {
@@ -22,6 +24,18 @@ class MetaTagController extends Controller
     public function metaTagsApi()
     {
         $metaTags = MetaTag::with(['page', "keywords"])->get();
+        return response()->json($metaTags);
+    }
+
+    public function showMetaTagApi(Request $request)
+    {
+        $language = $request->language;
+        $language_id = Language::where('name', $language)->first()->id;
+        $metaTags = MetaTag::with(['page', "keywords"])
+            ->where('language_id', $language_id)
+            ->where('page_id', $request->page_id)
+            ->first();
+
         return response()->json($metaTags);
     }
 
@@ -51,9 +65,14 @@ class MetaTagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MetaTag $metaTag)
+    public function show($pageId)
     {
-        //
+        $metaTag = MetaTag::with('keywords')->where('page_id', $pageId)
+            ->where('language_id', Auth::user()->language_id)
+            ->first();
+        return response()->json([
+            'meta_tag' => $metaTag,
+        ]);
     }
 
     /**
@@ -71,7 +90,6 @@ class MetaTagController extends Controller
     {
         $metaTag = MetaTag::find($id);
         $metaTag->update([
-            'page_id' => $request->page_id,
             'meta_title' => $request->title,
             'meta_description' => $request->description,
             'meta_cannonical_link' => $request->meta_cannonical_link,

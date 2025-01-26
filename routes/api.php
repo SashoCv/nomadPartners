@@ -69,3 +69,4 @@ Route::get('network-personnel', [NetworkPersonnelController::class, 'getNetworkP
 
 // MetaTags
 Route::get('meta-tags', [\App\Http\Controllers\MetaTagController::class, 'metaTagsApi']);
+Route::get('meta-tags/{pageId}', [\App\Http\Controllers\MetaTagController::class, 'showMetaTagApi']);

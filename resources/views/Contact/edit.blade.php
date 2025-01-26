@@ -62,6 +62,16 @@
                     <label for="descriptionContact">Description</label>
                     <textarea class="form-control" id="descriptionContact" name="descriptionContact">{{ $contact->descriptionContact }}</textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="phoneContact">Phone Contact</label>
+                    <input type="text" class="form-control" id="phoneContact" name="phoneContact" value="{{ $contact->phoneContact }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailContact">Email Contact</label>
+                    <input type="email" class="form-control" id="emailContact" name="emailContact" value="{{ $contact->emailContact }}">
+                </div>
             </div>
 
             <div id="workingHoursSection" class="section-content">
@@ -71,6 +81,7 @@
                     <input type="text" class="form-control" id="workingHoursContact" name="workingHoursContact" value="{{ $contact->workingHoursContact }}">
                 </div>
             </div>
+
 
             <div id="editAddressesSection" class="section-content">
                 <div class="d-flex justify-content-between">
