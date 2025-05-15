@@ -20,7 +20,11 @@ class BlogController extends Controller
     {
         try {
             $language = Auth::user()->language_id;
-            $blogs = Blog::with('user')->where('language_id', $language)->paginate(8);
+            $blogs = Blog::with('user')
+                ->where('language_id', $language)
+                ->orderBy('id', 'desc')
+                ->paginate(8);
+
             $items = BlogPage::where('language_id', $language)->first();
 
             return view('Blogs.viewBlogs', compact(['blogs', 'items']));
@@ -36,7 +40,9 @@ class BlogController extends Controller
         try {
             $language = $request->language;
             $language_id = Language::where('name', $language)->first()->id;
-            $blogs = Blog::with('user')->where('language_id', $language_id)->paginate(8);
+            $blogs = Blog::with('user')->where('language_id', $language_id)
+                ->orderBy('id', 'desc')
+                ->paginate(8);
             $items = BlogPage::where('language_id', $language_id)->first();
 
             return response()->json([
