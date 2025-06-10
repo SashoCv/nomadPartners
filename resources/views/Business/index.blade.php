@@ -14,6 +14,49 @@
         .section-heading {
             margin-top: 40px;
         }
+
+        .card.card-body {
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .btn-outline-primary {
+            font-size: 0.85rem;
+        }
+
+        .titleBlogs {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .img-thumbnail {
+            object-fit: cover;
+        }
+
+        .btn-toggle-message.active {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .collapse.full-width-collapse td[colspan] {
+            padding: 0 !important;
+        }
+
+        /* Custom collapse logic */
+        tr[data-message-row] {
+            display: none;
+        }
+
+        tr[data-message-row].open {
+            display: table-row;
+        }
     </style>
 @endsection
 
@@ -40,7 +83,6 @@
                     @endif
                 </td>
                 <td>
-                    <!-- Edit button to trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
                             data-id="{{ $items->id }}"
                             data-title="{{ $items->title }}"
@@ -54,7 +96,7 @@
         </tbody>
     </table>
 
-    <!-- Modal for editing title, description, and image -->
+    <!-- Modal for editing -->
     <div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -91,9 +133,9 @@
         </div>
     </div>
 
-    <!-- Table for listing business forms (messages) -->
-    <table class="table">
-        <thead>
+    <!-- Table for listing business form messages -->
+    <table class="table table-bordered align-middle">
+        <thead class="table-light">
         <tr>
             <th>From</th>
             <th>Company</th>
@@ -107,46 +149,66 @@
         @if($allBusinessForms->count() > 0)
             @foreach ($allBusinessForms as $businessForm)
                 <tr>
-                    <td class="col-2">{{ $businessForm->first_name }} {{ $businessForm->last_name }}</td>
-                    <td class="col-3">{{ $businessForm->company_name }}</td>
-                    <td class="col-2">{{ $businessForm->phone_number }}</td>
-                    <td class="col-4">{{ $businessForm->message }}</td>
-                    <td class="col-2">
+                    <td>{{ $businessForm->first_name }} {{ $businessForm->last_name }}</td>
+                    <td>{{ $businessForm->company_name }}</td>
+                    <td>{{ $businessForm->phone_number }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary btn-toggle-message" type="button"
+                                data-bs-target="#message{{ $businessForm->id }}">
+                            View Message
+                        </button>
+                    </td>
+                    <td>
                         <a href="mailto:{{ $businessForm->email }}">{{ $businessForm->email }}</a>
                     </td>
-                    <td class="col-2">
-                        <form action="{{ route('admin.deleteBusinessSubmit', $businessForm->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this submit?');" class="m-0 p-0" style="display: inline;">
+                    <td>
+                        <form action="{{ route('admin.deleteBusinessSubmit', $businessForm->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this submit?');" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-sideBar">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
+                    </td>
+                </tr>
+                <tr id="message{{ $businessForm->id }}" data-message-row>
+                    <td colspan="6" class="full-width-collapse">
+                        <div class="card card-body bg-light">
+                            {{ $businessForm->message }}
+                        </div>
                     </td>
                 </tr>
             @endforeach
         @else
             <tr>
-                <td colspan="6">No messages found.</td>
+                <td colspan="6" class="text-center text-muted">No messages found.</td>
             </tr>
         @endif
         </tbody>
     </table>
-
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script>
-        $('#editItemModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var title = button.data('title');
-            var description = button.data('description');
-            var image = button.data('image');
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.btn-toggle-message');
+            const collapses = document.querySelectorAll('tr[data-message-row]');
 
-            var modal = $(this);
-            modal.find('#editItemTitle').val(title);
-            modal.find('#editItemDescription').val(description);
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const targetRow = document.querySelector(targetId);
+                    const isOpen = targetRow.classList.contains('open');
+
+                    // Затвори сите
+                    collapses.forEach(row => row.classList.remove('open'));
+                    buttons.forEach(btn => btn.classList.remove('active'));
+
+                    // Ако не е отворен, отвори го тековниот
+                    if (!isOpen) {
+                        targetRow.classList.add('open');
+                        this.classList.add('active');
+                    }
+                });
+            });
         });
     </script>
 @endsection

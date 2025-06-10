@@ -226,26 +226,12 @@ class HomeController extends Controller
             $home->serviceStatsNumberThree = $request->input('serviceStatsNumberThree');
             $home->serviceStatsTextThree = $request->input('serviceStatsTextThree');
 
-//            $table->string('serviceTitle')->nullable();
-//            $table->string('serviceContent')->nullable();
-//            $table->string('serviceImageStatsOnePath')->nullable();
-//            $table->string('serviceImageStatsOneName')->nullable();
-//            $table->string('serviceStatsNumberOne')->nullable();
-//            $table->string('serviceStatsTextOne')->nullable();
-//            $table->string('serviceImageStatsTwoPath')->nullable();
-//            $table->string('serviceImageStatsTwoName')->nullable();
-//            $table->string('serviceStatsNumberTwo')->nullable();
-//            $table->string('serviceStatsTextTwo')->nullable();
-//            $table->string('serviceImageStatsThreePath')->nullable();
-//            $table->string('serviceImageStatsThreeName')->nullable();
-//            $table->string('serviceStatsNumberThree')->nullable();
-//            $table->string('serviceStatsTextThree')->nullable();
-
             // Handle file uploads
             if ($request->hasFile('imageHeroSectionPath')) {
                 $path = $request->file('imageHeroSectionPath')->store('heroImages', 'public');
                 $home->imageHeroSectionPath = $path;
                 $home->imageHeroSectionName = $request->file('imageHeroSectionPath')->getClientOriginalName();
+                Log::info(' $home->imageHeroSectionName',  [$home->imageHeroSectionName]);
             }
 
             if ($request->hasFile('infoBoxImageOne')) {

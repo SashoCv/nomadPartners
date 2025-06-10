@@ -57,7 +57,7 @@
                 @csrf
                 <select id="languageSelect" name="language" class="form-select" aria-label="Default select example">
                     <option value="1" <?php echo $languageId == 1 ? 'selected' : ''; ?>>English </option>
-                    <option value="2" <?php echo $languageId == 2 ? 'selected' : ''; ?>>Bulgarian</option>
+                    <option value="2" <?php echo $languageId == 2 ? 'selected' : ''; ?>>Greece</option>
                 </select>
             </form>
         </div>

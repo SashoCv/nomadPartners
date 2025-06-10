@@ -17,7 +17,7 @@ class LanguageSeeder extends Seeder
                 'name' => 'English',
             ],
             [
-                'name' => 'Bulgarian',
+                'name' => 'Greece',
             ]
         ];
 

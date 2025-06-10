@@ -31,18 +31,18 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#testimonialSection" role="button" aria-expanded="false" aria-controls="testimonialSection">Info Cards</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#aboutSection" role="button" aria-expanded="false" aria-controls="aboutSection">About</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" data-bs-toggle="collapse" href="#aboutSection" role="button" aria-expanded="false" aria-controls="aboutSection">About</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#missionSection" role="button" aria-expanded="false" aria-controls="missionSection">Mission Section</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#bookYourAppointment" role="button" aria-expanded="false" aria-controls="bookYourAppointment">Book Your Appointment</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#service" role="button" aria-expanded="false" aria-controls="service">Services</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" data-bs-toggle="collapse" href="#service" role="button" aria-expanded="false" aria-controls="service">Services</a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </nav>
@@ -106,92 +106,92 @@
                         @endif
                     </div>
 
-                    <div class="form-group">
-                        <label for="infoBoxTitleTwo">Info Card Title Two</label>
-                        <input type="text" class="form-control" id="infoBoxTitleTwo" name="infoBoxTitleTwo" value="{{ old('infoBoxTitleTwo' , $homePage->{'infoBoxTitleTwo'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="infoBoxTitleTwo">Info Card Title Two</label>--}}
+{{--                        <input type="text" class="form-control" id="infoBoxTitleTwo" name="infoBoxTitleTwo" value="{{ old('infoBoxTitleTwo' , $homePage->{'infoBoxTitleTwo'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="infoBoxContentTwo">Info Card Content Two</label>
-                        <textarea class="form-control" id="infoBoxContentTwo" name="infoBoxContentTwo">{{ old('infoBoxContentTwo', $homePage->{'infoBoxContentTwo'}) }}</textarea>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="infoBoxContentTwo">Info Card Content Two</label>--}}
+{{--                        <textarea class="form-control" id="infoBoxContentTwo" name="infoBoxContentTwo">{{ old('infoBoxContentTwo', $homePage->{'infoBoxContentTwo'}) }}</textarea>--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="buttonBoxTextTwo">Button Info Two</label>
-                        <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="buttonBoxTextTwo">Button Info Two</label>--}}
+{{--                        <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="buttonBoxLinkTwo">Button Link Two</label>
-                        <input type="text" class="form-control" id="buttonBoxLinkTwo" name="buttonBoxLinkTwo" value="{{ old('buttonBoxLinkTwo', $homePage->{'buttonBoxLinkTwo'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="buttonBoxLinkTwo">Button Link Two</label>--}}
+{{--                        <input type="text" class="form-control" id="buttonBoxLinkTwo" name="buttonBoxLinkTwo" value="{{ old('buttonBoxLinkTwo', $homePage->{'buttonBoxLinkTwo'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group" >
-                        <label for="infoBoxImageTwo">Info Card Image Two</label>
-                        <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">
-                        @if($homePage->infoBoxImageTwo)
-                            <div style="width: 200px">
-                            <img src="{{ asset('storage/' . $homePage->infoBoxImageTwo) }}" alt="Info Card Image Two" style="width: 100%; margin-top: 10px; background-color: gray">
-                            </div>
-                        @endif
-                    </div>
+{{--                    <div class="form-group" >--}}
+{{--                        <label for="infoBoxImageTwo">Info Card Image Two</label>--}}
+{{--                        <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">--}}
+{{--                        @if($homePage->infoBoxImageTwo)--}}
+{{--                            <div style="width: 200px">--}}
+{{--                            <img src="{{ asset('storage/' . $homePage->infoBoxImageTwo) }}" alt="Info Card Image Two" style="width: 100%; margin-top: 10px; background-color: gray">--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="infoBoxTitleThree">Info Card Title Three</label>
-                        <input type="text" class="form-control" id="infoBoxTitleThree" name="infoBoxTitleThree" value="{{ old('infoBoxTitleThree' , $homePage->{'infoBoxTitleThree'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="infoBoxTitleThree">Info Card Title Three</label>--}}
+{{--                        <input type="text" class="form-control" id="infoBoxTitleThree" name="infoBoxTitleThree" value="{{ old('infoBoxTitleThree' , $homePage->{'infoBoxTitleThree'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="infoBoxContentThree">Info Card Content Three</label>
-                        <textarea class="form-control" id="infoBoxContentThree" name="infoBoxContentThree">{{ old('infoBoxContentThree', $homePage->{'infoBoxContentThree'}) }}</textarea>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="infoBoxContentThree">Info Card Content Three</label>--}}
+{{--                        <textarea class="form-control" id="infoBoxContentThree" name="infoBoxContentThree">{{ old('infoBoxContentThree', $homePage->{'infoBoxContentThree'}) }}</textarea>--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="buttonBoxTextThree">Button Info Three</label>
-                        <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="buttonBoxTextThree">Button Info Three</label>--}}
+{{--                        <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="buttonBoxLinkThree">Button Link Three</label>
-                        <input type="text" class="form-control" id="buttonBoxLinkThree" name="buttonBoxLinkThree" value="{{ old('buttonBoxLinkThree', $homePage->{'buttonBoxLinkThree'}) }}">
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="buttonBoxLinkThree">Button Link Three</label>--}}
+{{--                        <input type="text" class="form-control" id="buttonBoxLinkThree" name="buttonBoxLinkThree" value="{{ old('buttonBoxLinkThree', $homePage->{'buttonBoxLinkThree'}) }}">--}}
+{{--                    </div>--}}
 
-                    <div class="form-group">
-                        <label for="infoBoxImageThree">Info Card Image Three</label>
-                        <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">
-                         @if($homePage->infoBoxImageThree)
-                            <div style="width: 200px">
-                            <img src="{{ asset('storage/' . $homePage->infoBoxImageThree) }}" alt="Info Card Image Three" style="width: 100%; margin-top: 10px; background-color: gray">
-                            </div>
-                        @endif
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="infoBoxImageThree">Info Card Image Three</label>--}}
+{{--                        <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">--}}
+{{--                         @if($homePage->infoBoxImageThree)--}}
+{{--                            <div style="width: 200px">--}}
+{{--                            <img src="{{ asset('storage/' . $homePage->infoBoxImageThree) }}" alt="Info Card Image Three" style="width: 100%; margin-top: 10px; background-color: gray">--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
             </div>
 
             <!-- About Section -->
-            <div id="aboutSection" class="collapse">
-                <h2 class="section-heading">About</h2>
-                <div class="form-group">
-                    <label for="titleAbout">Title About</label>
-                    <input type="text" class="form-control" id="titleAbout" name="titleAbout" value="{{ old('titleAbout', $homePage->titleAbout) }}">
-                </div>
-                <div class="form-group">
-                    <label for="subtitleAbout">Subtitle About</label>
-                    <input type="text" class="form-control" id="subtitleAbout" name="subtitleAbout" value="{{ old('subtitleAbout', $homePage->subtitleAbout) }}">
-                </div>
-                <div class="form-group">
-                    <label for="contentAbout">Content About</label>
-                    <textarea class="form-control" id="contentAbout" name="contentAbout">{{ old('contentAbout', $homePage->contentAbout) }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="buttonTextAbout">Button About Text</label>
-                    <input type="text" class="form-control" id="buttonTextAbout" name="buttonTextAbout" value="{{ old('buttonTextAbout', $homePage->buttonTextAbout) }}">
-                </div>
+{{--            <div id="aboutSection" class="collapse">--}}
+{{--                <h2 class="section-heading">About</h2>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="titleAbout">Title About</label>--}}
+{{--                    <input type="text" class="form-control" id="titleAbout" name="titleAbout" value="{{ old('titleAbout', $homePage->titleAbout) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="subtitleAbout">Subtitle About</label>--}}
+{{--                    <input type="text" class="form-control" id="subtitleAbout" name="subtitleAbout" value="{{ old('subtitleAbout', $homePage->subtitleAbout) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="contentAbout">Content About</label>--}}
+{{--                    <textarea class="form-control" id="contentAbout" name="contentAbout">{{ old('contentAbout', $homePage->contentAbout) }}</textarea>--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="buttonTextAbout">Button About Text</label>--}}
+{{--                    <input type="text" class="form-control" id="buttonTextAbout" name="buttonTextAbout" value="{{ old('buttonTextAbout', $homePage->buttonTextAbout) }}">--}}
+{{--                </div>--}}
 
-                <div class="form-group">
-                    <label for="buttonLinkAbout">Button About Link</label>
-                    <input type="text" class="form-control" id="buttonLinkAbout" name="buttonLinkAbout" value="{{ old('buttonLinkAbout', $homePage->buttonLinkAbout) }}">
-                </div>
-            </div>
+{{--                <div class="form-group">--}}
+{{--                    <label for="buttonLinkAbout">Button About Link</label>--}}
+{{--                    <input type="text" class="form-control" id="buttonLinkAbout" name="buttonLinkAbout" value="{{ old('buttonLinkAbout', $homePage->buttonLinkAbout) }}">--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!-- Mission Section -->
             <div id="missionSection" class="collapse">
@@ -293,64 +293,64 @@
             </div>
 
             <!-- Services Section -->
-            <div id="service" class="collapse">
-                <h2 class="section-heading">Services</h2>
-                <div class="form-group">
-                    <label for="serviceTitle">Title</label>
-                        <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" value="{{ old('serviceTitle', $homePage->serviceTitle) }}">
-                </div>
-                <div class="form-group" >
-                    <label for="serviceContent">Content</label>
-                    <textarea class="form-control" id="serviceContent" name="serviceContent">{{ old('serviceContent', $homePage->serviceContent) }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="serviceImage">Image For Stats One</label>
-                    <input type="file" class="form-control-file" id="serviceImage" name="serviceImageStatsOne">
-                    @if ($homePage->serviceImageStatsOnePath)
-                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsOnePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="serviceStatsNumberOne">Stats Number One</label>
-                    <input type="text" class="form-control" id="serviceStatsNumberOne" name="serviceStatsNumberOne" value="{{ old('serviceStatsNumberOne', $homePage->serviceStatsNumberOne) }}">
-                </div>
-                <div class="form-group" >
-                    <label for="serviceStatsTextOne">Stats Text One</label>
-                    <input type="text" class="form-control" id="serviceStatsTextOne" name="serviceStatsTextOne" value="{{ old('serviceStatsTextOne', $homePage->serviceStatsTextOne) }}">
-                </div>
+{{--            <div id="service" class="collapse">--}}
+{{--                <h2 class="section-heading">Services</h2>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceTitle">Title</label>--}}
+{{--                        <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" value="{{ old('serviceTitle', $homePage->serviceTitle) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group" >--}}
+{{--                    <label for="serviceContent">Content</label>--}}
+{{--                    <textarea class="form-control" id="serviceContent" name="serviceContent">{{ old('serviceContent', $homePage->serviceContent) }}</textarea>--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceImage">Image For Stats One</label>--}}
+{{--                    <input type="file" class="form-control-file" id="serviceImage" name="serviceImageStatsOne">--}}
+{{--                    @if ($homePage->serviceImageStatsOnePath)--}}
+{{--                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsOnePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceStatsNumberOne">Stats Number One</label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsNumberOne" name="serviceStatsNumberOne" value="{{ old('serviceStatsNumberOne', $homePage->serviceStatsNumberOne) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group" >--}}
+{{--                    <label for="serviceStatsTextOne">Stats Text One</label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsTextOne" name="serviceStatsTextOne" value="{{ old('serviceStatsTextOne', $homePage->serviceStatsTextOne) }}">--}}
+{{--                </div>--}}
 
-                <div class="form-group">
-                    <label for="serviceImageStatsTwo">Image For Stats Two</label>
-                    <input type="file" class="form-control-file" id="serviceImageStatsTwo" name="serviceImageStatsTwo">
-                    @if ($homePage->serviceImageStatsTwoPath)
-                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsTwoPath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="serviceStatsNumberTwo">Stats Number Two </label>
-                    <input type="text" class="form-control" id="serviceStatsNumberTwo" name="serviceStatsNumberTwo" value="{{ old('serviceStatsNumberTwo', $homePage->serviceStatsNumberTwo) }}">
-                </div>
-                <div class="form-group">
-                    <label for="serviceStatsTextTwo">Stats Text Two</label>
-                    <input type="text" class="form-control" id="serviceStatsTextTwo" name="serviceStatsTextTwo" value="{{ old('serviceStatsTextTwo', $homePage->serviceStatsTextTwo) }}">
-                </div>
-                <div class="form-group">
-                    <label for="serviceImageStatsThree">Image For Stats Three</label>
-                    <input type="file" class="form-control-file" id="serviceImageStatsThree" name="serviceImageStatsThree">
-                    @if ($homePage->serviceImageStatsThreePath)
-                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsThreePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="serviceStatsNumberThree">Stats Number Three</label>
-                    <input type="text" class="form-control" id="serviceStatsNumberThree" name="serviceStatsNumberThree" value="{{ old('serviceStatsNumberThree', $homePage->serviceStatsNumberThree) }}">
-                </div>
-                <div class="form-group">
-                    <label for="serviceStatsTextThree">Stats Text Three</label>
-                    <input type="text" class="form-control" id="serviceStatsTextThree" name="serviceStatsTextThree" value="{{ old('serviceStatsTextThree', $homePage->serviceStatsTextThree) }}">
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceImageStatsTwo">Image For Stats Two</label>--}}
+{{--                    <input type="file" class="form-control-file" id="serviceImageStatsTwo" name="serviceImageStatsTwo">--}}
+{{--                    @if ($homePage->serviceImageStatsTwoPath)--}}
+{{--                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsTwoPath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceStatsNumberTwo">Stats Number Two </label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsNumberTwo" name="serviceStatsNumberTwo" value="{{ old('serviceStatsNumberTwo', $homePage->serviceStatsNumberTwo) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceStatsTextTwo">Stats Text Two</label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsTextTwo" name="serviceStatsTextTwo" value="{{ old('serviceStatsTextTwo', $homePage->serviceStatsTextTwo) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceImageStatsThree">Image For Stats Three</label>--}}
+{{--                    <input type="file" class="form-control-file" id="serviceImageStatsThree" name="serviceImageStatsThree">--}}
+{{--                    @if ($homePage->serviceImageStatsThreePath)--}}
+{{--                        <img src="{{ asset('storage/' . $homePage->serviceImageStatsThreePath) }}" alt="Service Image" style="max-width: 200px; margin-top: 10px;">--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceStatsNumberThree">Stats Number Three</label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsNumberThree" name="serviceStatsNumberThree" value="{{ old('serviceStatsNumberThree', $homePage->serviceStatsNumberThree) }}">--}}
+{{--                </div>--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="serviceStatsTextThree">Stats Text Three</label>--}}
+{{--                    <input type="text" class="form-control" id="serviceStatsTextThree" name="serviceStatsTextThree" value="{{ old('serviceStatsTextThree', $homePage->serviceStatsTextThree) }}">--}}
+{{--                </div>--}}
 
-            </div>
+{{--            </div>--}}
             <button type="submit" class="btn btn-primary mt-4">Update</button>
         </form>
     </div>
