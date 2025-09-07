@@ -26,6 +26,37 @@ class HomeController extends Controller
             $language = $request->language;
             $language_id = Language::where('name', $language)->first()->id;
             $home = Home::where('language_id', $language_id)->first();
+            
+            // Transform info boxes into array format for frontend
+            if ($home) {
+                $home->infoBoxes = [
+                    [
+                        'title' => $home->infoBoxTitleOne,
+                        'content' => $home->infoBoxContentOne,
+                        'buttonText' => $home->buttonBoxTextOne,
+                        'buttonLink' => $home->buttonBoxLinkOne,
+                        'image' => $home->infoBoxImageOne,
+                        'imageName' => $home->infoBoxImageNameOne,
+                    ],
+                    [
+                        'title' => $home->infoBoxTitleTwo,
+                        'content' => $home->infoBoxContentTwo,
+                        'buttonText' => $home->buttonBoxTextTwo,
+                        'buttonLink' => $home->buttonBoxLinkTwo,
+                        'image' => $home->infoBoxImageTwo,
+                        'imageName' => $home->infoBoxImageNameTwo,
+                    ],
+                    [
+                        'title' => $home->infoBoxTitleThree,
+                        'content' => $home->infoBoxContentThree,
+                        'buttonText' => $home->buttonBoxTextThree,
+                        'buttonLink' => $home->buttonBoxLinkThree,
+                        'image' => $home->infoBoxImageThree,
+                        'imageName' => $home->infoBoxImageNameThree,
+                    ]
+                ];
+            }
+            
             $latestFourBlogs = Blog::latest()->take(4)->where('language_id', $language_id)->get();
             $allPartners = Partner::all();
 
