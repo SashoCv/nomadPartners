@@ -106,65 +106,65 @@
                         @endif
                     </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="infoBoxTitleTwo">Info Card Title Two</label>--}}
-{{--                        <input type="text" class="form-control" id="infoBoxTitleTwo" name="infoBoxTitleTwo" value="{{ old('infoBoxTitleTwo' , $homePage->{'infoBoxTitleTwo'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="infoBoxTitleTwo">Info Card Title Two</label>
+                        <input type="text" class="form-control" id="infoBoxTitleTwo" name="infoBoxTitleTwo" value="{{ old('infoBoxTitleTwo' , $homePage->{'infoBoxTitleTwo'}) }}">
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="infoBoxContentTwo">Info Card Content Two</label>--}}
-{{--                        <textarea class="form-control" id="infoBoxContentTwo" name="infoBoxContentTwo">{{ old('infoBoxContentTwo', $homePage->{'infoBoxContentTwo'}) }}</textarea>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="infoBoxContentTwo">Info Card Content Two</label>
+                        <textarea class="form-control" id="infoBoxContentTwo" name="infoBoxContentTwo">{{ old('infoBoxContentTwo', $homePage->{'infoBoxContentTwo'}) }}</textarea>
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="buttonBoxTextTwo">Button Info Two</label>--}}
-{{--                        <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="buttonBoxTextTwo">Button Info Two</label>
+                        <input type="text" class="form-control" id="buttonBoxTextTwo" name="buttonBoxTextTwo" value="{{ old('buttonBoxTextTwo', $homePage->{'buttonBoxTextTwo'}) }}">
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="buttonBoxLinkTwo">Button Link Two</label>--}}
-{{--                        <input type="text" class="form-control" id="buttonBoxLinkTwo" name="buttonBoxLinkTwo" value="{{ old('buttonBoxLinkTwo', $homePage->{'buttonBoxLinkTwo'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="buttonBoxLinkTwo">Button Link Two</label>
+                        <input type="text" class="form-control" id="buttonBoxLinkTwo" name="buttonBoxLinkTwo" value="{{ old('buttonBoxLinkTwo', $homePage->{'buttonBoxLinkTwo'}) }}">
+                    </div>
 
-{{--                    <div class="form-group" >--}}
-{{--                        <label for="infoBoxImageTwo">Info Card Image Two</label>--}}
-{{--                        <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">--}}
-{{--                        @if($homePage->infoBoxImageTwo)--}}
-{{--                            <div style="width: 200px">--}}
-{{--                            <img src="{{ asset('storage/' . $homePage->infoBoxImageTwo) }}" alt="Info Card Image Two" style="width: 100%; margin-top: 10px; background-color: gray">--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
+                    <div class="form-group" >
+                        <label for="infoBoxImageTwo">Info Card Image Two</label>
+                        <input type="file" class="form-control-file" id="infoBoxImageTwo" name="infoBoxImageTwo">
+                        @if($homePage->infoBoxImageTwo)
+                            <div style="width: 200px">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageTwo) }}" alt="Info Card Image Two" style="width: 100%; margin-top: 10px; background-color: gray">
+                            </div>
+                        @endif
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="infoBoxTitleThree">Info Card Title Three</label>--}}
-{{--                        <input type="text" class="form-control" id="infoBoxTitleThree" name="infoBoxTitleThree" value="{{ old('infoBoxTitleThree' , $homePage->{'infoBoxTitleThree'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="infoBoxTitleThree">Info Card Title Three</label>
+                        <input type="text" class="form-control" id="infoBoxTitleThree" name="infoBoxTitleThree" value="{{ old('infoBoxTitleThree' , $homePage->{'infoBoxTitleThree'}) }}">
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="infoBoxContentThree">Info Card Content Three</label>--}}
-{{--                        <textarea class="form-control" id="infoBoxContentThree" name="infoBoxContentThree">{{ old('infoBoxContentThree', $homePage->{'infoBoxContentThree'}) }}</textarea>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="infoBoxContentThree">Info Card Content Three</label>
+                        <textarea class="form-control" id="infoBoxContentThree" name="infoBoxContentThree">{{ old('infoBoxContentThree', $homePage->{'infoBoxContentThree'}) }}</textarea>
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="buttonBoxTextThree">Button Info Three</label>--}}
-{{--                        <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="buttonBoxTextThree">Button Info Three</label>
+                        <input type="text" class="form-control" id="buttonBoxTextThree" name="buttonBoxTextThree" value="{{ old('buttonBoxTextThree', $homePage->{'buttonBoxTextThree'}) }}">
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="buttonBoxLinkThree">Button Link Three</label>--}}
-{{--                        <input type="text" class="form-control" id="buttonBoxLinkThree" name="buttonBoxLinkThree" value="{{ old('buttonBoxLinkThree', $homePage->{'buttonBoxLinkThree'}) }}">--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="buttonBoxLinkThree">Button Link Three</label>
+                        <input type="text" class="form-control" id="buttonBoxLinkThree" name="buttonBoxLinkThree" value="{{ old('buttonBoxLinkThree', $homePage->{'buttonBoxLinkThree'}) }}">
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="infoBoxImageThree">Info Card Image Three</label>--}}
-{{--                        <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">--}}
-{{--                         @if($homePage->infoBoxImageThree)--}}
-{{--                            <div style="width: 200px">--}}
-{{--                            <img src="{{ asset('storage/' . $homePage->infoBoxImageThree) }}" alt="Info Card Image Three" style="width: 100%; margin-top: 10px; background-color: gray">--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="infoBoxImageThree">Info Card Image Three</label>
+                        <input type="file" class="form-control-file" id="infoBoxImageThree" name="infoBoxImageThree">
+                         @if($homePage->infoBoxImageThree)
+                            <div style="width: 200px">
+                            <img src="{{ asset('storage/' . $homePage->infoBoxImageThree) }}" alt="Info Card Image Three" style="width: 100%; margin-top: 10px; background-color: gray">
+                            </div>
+                        @endif
+                    </div>
             </div>
 
             <!-- About Section -->
