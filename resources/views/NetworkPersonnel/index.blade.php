@@ -93,7 +93,7 @@
 
                 <div class="form-group">
                     <label for="testimonial_description">Testimonial Description</label>
-                    <textarea class="form-control" id="testimonial_description" name="testimonial_description">{{ $network->testimonial_description }}</textarea>
+                    <textarea id="testimonialContent" class="form-control" name="testimonial_description">{{ $network->testimonial_description }}</textarea>
                 </div>
             </div>
 
@@ -248,49 +248,76 @@
     </div>
 
     <script>
-        const submitButton = document.getElementById('submitButton');
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.getElementById('submitButton');
 
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('.section-content').forEach(section => {
-                    section.style.display = 'none';
+            // Hide all sections initially
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.style.display = 'none';
+            });
+            // Show the first section by default
+            const firstSection = document.querySelector('#networkInfoSection');
+            if (firstSection) firstSection.style.display = 'block';
+            if (submitButton) submitButton.style.display = 'block';
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    document.querySelectorAll('.section-content').forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    const section = document.querySelector(this.getAttribute('href'));
+                    if (section) {
+                        section.style.display = 'block';
+                    }
+
+                    if (this.getAttribute('href') === '#cartsListSection') {
+                        submitButton.style.display = 'none';
+                    } else {
+                        submitButton.style.display = 'block';
+                    }
                 });
-
-                const section = document.querySelector(this.getAttribute('href'));
-                if (section) {
-                    section.style.display = 'block';
-                }
-
-                if (this.getAttribute('href') === '#cartsListSection') {
-                    submitButton.style.display = 'none';
-                } else {
-                    submitButton.style.display = 'block';
-                }
             });
-        });
 
-        document.querySelectorAll('.btn-edit').forEach(button => {
-            button.addEventListener('click', function() {
-                const cartId = this.dataset.id;
-                const title = this.dataset.title;
-                const description = this.dataset.description;
+            document.querySelectorAll('.btn-edit').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.id;
+                    const title = this.dataset.title;
+                    const description = this.dataset.description;
 
-                document.getElementById('edit_cart_id').value = cartId;
-                document.getElementById('edit_cart_title').value = title;
-                document.getElementById('edit_cart_description').value = description;
+                    document.getElementById('edit_cart_id').value = cartId;
+                    document.getElementById('edit_cart_title').value = title;
+                    document.getElementById('edit_cart_description').value = description;
 
-                const editCartForm = document.getElementById('editCartForm');
-                editCartForm.action = `/update-carts/${cartId}`;
+                    const editCartForm = document.getElementById('editCartForm');
+                    editCartForm.action = `/update-carts/${cartId}`;
+                });
             });
-        });
 
-        document.querySelectorAll('.btn-delete').forEach(button => {
-            button.addEventListener('click', function() {
-                const cartId = this.dataset.id;
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.id;
 
-                const deleteCartForm = document.getElementById('deleteCartForm');
-                deleteCartForm.action = `/delete-carts/${cartId}`;
+                    const deleteCartForm = document.getElementById('deleteCartForm');
+                    deleteCartForm.action = `/delete-carts/${cartId}`;
+                });
             });
+
+            const csrfToken = '{{ csrf_token() }}';
+
+            ClassicEditor
+                .create(document.querySelector('#testimonialContent'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('admin.updatePicture') }}?_token=" + csrfToken
+                    },
+                    toolbar: [
+                        'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                        'blockQuote', 'imageUpload', 'insertTable', 'undo', 'redo'
+                    ],
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
 
