@@ -19,7 +19,7 @@ class TeamMembersController extends Controller
     {
         try {
             $language_id = Auth::user()->language_id;
-            $team_members = TeamMembers::orderBy('order', 'asc')->get();
+            $team_members = TeamMembers::where('language_id', $language_id)->orderBy('order', 'asc')->get();
             $items = Team::where('language_id', $language_id)->first();
             return view('TeamMembers.index', compact(['team_members', 'items']));
         } catch (\Exception $e) {
