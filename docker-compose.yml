@@ -30,7 +30,7 @@ services:
     db:
         image: mysql:8.1
         ports:
-            - 3306:3306
+            - 3307:3306
         volumes:
             - .docker/db/data:/var/lib/mysql
             - .docker/logs:/var/log/mysql
@@ -74,8 +74,8 @@ services:
     mail:
         image: axllent/mailpit:latest
         ports:
-        - 8025:8025
-        - 1025:1025
+        - 8026:8025
+        - 1026:1025
 
     ####################################################################################################
     # Redis
@@ -86,7 +86,7 @@ services:
         volumes:
         - .docker/redis/data:/data
         ports:
-        - 6379:6379
+        - 6380:6379
 
     # ####################################################################################################
     # # DATABASE (MariaDB)

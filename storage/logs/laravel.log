@@ -17920,3 +17920,6 @@ Did you mean one of these?
 #54 /Users/sasho/Sites/nomad-partners/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('/Users/sasho/Si...')
 #55 {main}
 "} 
+[2026-01-30 17:03:30] local.ERROR: Attempt to read property "id" on null  
+[2026-01-30 17:03:38] local.INFO: Attempt to read property "id" on null  
+[2026-01-30 17:04:43] local.INFO: Attempt to read property "id" on null  

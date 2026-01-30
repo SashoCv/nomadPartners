@@ -32,12 +32,24 @@ class TeamMembersController extends Controller
      * API to get all team members.
      */
     public function getTeamMembersApi(Request $request)
-        {
+    {
         try {
             $language = $request->language;
             $language_id = Language::where('name', $language)->first()->id;
             $team_page = Team::where('language_id', $language_id)->first();
-            $team_members = TeamMembers::orderBy('order', 'asc')->get();
+
+            // Get team members filtered by language
+            $team_members = TeamMembers::where('language_id', $language_id)
+                ->orderBy('order', 'asc')
+                ->get();
+
+            // Fallback to English (language_id=1) if no members found for requested language
+            if ($team_members->isEmpty()) {
+                $team_members = TeamMembers::where('language_id', 1)
+                    ->orderBy('order', 'asc')
+                    ->get();
+            }
+
             return response()->json([
                 'team_page' => $team_page,
                 'team_members' => $team_members
