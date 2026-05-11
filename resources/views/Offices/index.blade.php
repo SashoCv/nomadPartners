@@ -33,6 +33,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>Image</th>
             <th>Slug</th>
             <th>Name</th>
             <th>City</th>
@@ -44,6 +45,13 @@
         <tbody>
         @foreach ($offices as $office)
             <tr>
+                <td>
+                    @if ($office->imagePath)
+                        <img src="{{ Storage::url($office->imagePath) }}" alt="Office image" style="max-width:80px;max-height:80px;object-fit:cover;border-radius:6px;">
+                    @else
+                        <span class="text-muted">—</span>
+                    @endif
+                </td>
                 <td><code>{{ $office->slug }}</code></td>
                 <td>{{ $office->name }}</td>
                 <td>{{ $office->city }}</td>
@@ -57,7 +65,8 @@
                             data-city="{{ $office->city }}"
                             data-country="{{ $office->country }}"
                             data-address="{{ $office->address }}"
-                            data-order="{{ $office->order }}">
+                            data-order="{{ $office->order }}"
+                            data-image="{{ $office->imagePath ? Storage::url($office->imagePath) : '' }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteOfficeModal"
@@ -80,7 +89,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.officesPost') }}" method="POST" class="formAddHomePage">
+                    <form action="{{ route('admin.officesPost') }}" method="POST" enctype="multipart/form-data" class="formAddHomePage">
                         @csrf
                         <div class="form-group">
                             <label for="officeSlug">Slug <small class="text-muted">(language-agnostic identifier, e.g. "sofia")</small></label>
@@ -103,6 +112,10 @@
                             <input type="text" class="form-control" id="officeAddress" name="address">
                         </div>
                         <div class="form-group">
+                            <label for="officeImage">Image <small class="text-muted">(cover photo for the office card)</small></label>
+                            <input type="file" class="form-control-file" id="officeImage" name="imagePath" accept="image/*">
+                        </div>
+                        <div class="form-group">
                             <label for="officeOrder">Order</label>
                             <input type="number" class="form-control" id="officeOrder" name="order">
                         </div>
@@ -123,7 +136,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editOfficeForm" method="POST" action="" class="formAddHomePage">
+                    <form id="editOfficeForm" method="POST" action="" enctype="multipart/form-data" class="formAddHomePage">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -145,6 +158,11 @@
                         <div class="form-group">
                             <label for="editOfficeAddress">Address</label>
                             <input type="text" class="form-control" id="editOfficeAddress" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOfficeImage">Image <small class="text-muted">(leave empty to keep current)</small></label>
+                            <input type="file" class="form-control-file" id="editOfficeImage" name="imagePath" accept="image/*">
+                            <img id="editOfficeImagePreview" src="" alt="" style="margin-top:8px;max-width:160px;max-height:120px;object-fit:cover;border-radius:6px;display:none;">
                         </div>
                         <div class="form-group">
                             <label for="editOfficeOrder">Order</label>
@@ -193,6 +211,14 @@
             modal.find('#editOfficeCountry').val(button.data('country'));
             modal.find('#editOfficeAddress').val(button.data('address'));
             modal.find('#editOfficeOrder').val(button.data('order'));
+
+            var image = button.data('image');
+            var preview = modal.find('#editOfficeImagePreview');
+            if (image) {
+                preview.attr('src', image).show();
+            } else {
+                preview.hide();
+            }
 
             $('#editOfficeForm').attr('action', '/offices/' + id);
         });

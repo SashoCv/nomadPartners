@@ -15,6 +15,8 @@ class Office extends Model
         'city',
         'country',
         'address',
+        'imagePath',
+        'imageName',
         'order',
         'language_id',
     ];

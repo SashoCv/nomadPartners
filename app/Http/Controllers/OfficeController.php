@@ -7,6 +7,7 @@ use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class OfficeController extends Controller
@@ -73,6 +74,12 @@ class OfficeController extends Controller
                 $office->order = $request->order;
             }
 
+            if ($request->hasFile('imagePath')) {
+                $path = Storage::disk('public')->put('offices', $request->file('imagePath'));
+                $office->imagePath = $path;
+                $office->imageName = $request->file('imagePath')->getClientOriginalName() ?? 'image';
+            }
+
             $office->save();
 
             return redirect()->route('admin.officesView');
@@ -93,6 +100,16 @@ class OfficeController extends Controller
             $office->country = $request->country;
             $office->address = $request->address;
             $office->order = $request->order;
+
+            if ($request->hasFile('imagePath')) {
+                if ($office->imagePath) {
+                    Storage::disk('public')->delete($office->imagePath);
+                }
+                $path = Storage::disk('public')->put('offices', $request->file('imagePath'));
+                $office->imagePath = $path;
+                $office->imageName = $request->file('imagePath')->getClientOriginalName() ?? 'image';
+            }
+
             $office->save();
 
             return redirect()->route('admin.officesView');
@@ -107,6 +124,11 @@ class OfficeController extends Controller
     {
         try {
             $office = Office::findOrFail($id);
+
+            if ($office->imagePath) {
+                Storage::disk('public')->delete($office->imagePath);
+            }
+
             $office->delete();
 
             return redirect()->route('admin.officesView');
