@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
+use App\Models\Office;
 use App\Models\Team;
 use App\Models\TeamMembers;
 use Illuminate\Http\Request;
@@ -19,9 +20,16 @@ class TeamMembersController extends Controller
     {
         try {
             $language_id = Auth::user()->language_id;
-            $team_members = TeamMembers::where('language_id', $language_id)->orderBy('order', 'asc')->get();
+            $team_members = TeamMembers::with('office')
+                ->where('language_id', $language_id)
+                ->orderBy('order', 'asc')
+                ->get();
             $items = Team::where('language_id', $language_id)->first();
-            return view('TeamMembers.index', compact(['team_members', 'items']));
+            $offices = Office::where('language_id', $language_id)
+                ->orderBy('order', 'asc')
+                ->get();
+
+            return view('TeamMembers.index', compact(['team_members', 'items', 'offices']));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -38,21 +46,34 @@ class TeamMembersController extends Controller
             $language_id = Language::where('name', $language)->first()->id;
             $team_page = Team::where('language_id', $language_id)->first();
 
+            $offices = Office::where('language_id', $language_id)
+                ->orderBy('order', 'asc')
+                ->get();
+
             // Get team members filtered by language
-            $team_members = TeamMembers::where('language_id', $language_id)
+            $team_members = TeamMembers::with('office')
+                ->where('language_id', $language_id)
                 ->orderBy('order', 'asc')
                 ->get();
 
             // Fallback to English (language_id=1) if no members found for requested language
             if ($team_members->isEmpty()) {
-                $team_members = TeamMembers::where('language_id', 1)
+                $team_members = TeamMembers::with('office')
+                    ->where('language_id', 1)
+                    ->orderBy('order', 'asc')
+                    ->get();
+            }
+
+            if ($offices->isEmpty()) {
+                $offices = Office::where('language_id', 1)
                     ->orderBy('order', 'asc')
                     ->get();
             }
 
             return response()->json([
                 'team_page' => $team_page,
-                'team_members' => $team_members
+                'team_members' => $team_members,
+                'offices' => $offices,
             ]);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
@@ -70,10 +91,11 @@ class TeamMembersController extends Controller
             $team_member->full_name = $request->full_name;
             $team_member->position = $request->position;
             $team_member->description = $request->description;
+            $team_member->office_id = $request->office_id ?: null;
 
             if(! $request->order) {
                 $orderTeamMember = TeamMembers::orderBy('order', 'desc')->first();
-                $team_member->order = $orderTeamMember->order + 1;
+                $team_member->order = $orderTeamMember ? $orderTeamMember->order + 1 : 1;
             } else {
                 $team_member->order = $request->order;
             }
@@ -87,7 +109,6 @@ class TeamMembersController extends Controller
             $team_member->save();
             return redirect()->route('admin.teamMembersView');
         } catch (\Exception $e) {
-            dd($e);
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
         }
@@ -130,6 +151,7 @@ class TeamMembersController extends Controller
             $team_member->position = $request->position;
             $team_member->description = $request->description;
             $team_member->order = $request->order;
+            $team_member->office_id = $request->office_id ?: null;
 
             if ($request->hasFile('imagePath')) {
                 // Delete the old image if it exists

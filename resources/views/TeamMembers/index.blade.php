@@ -96,6 +96,7 @@
         <tr>
             <th>Full Name</th>
             <th>Position</th>
+            <th>Office</th>
             <th>Image</th>
             <th>Order</th>
             <th>Actions</th>
@@ -106,6 +107,7 @@
             <tr>
                 <td>{{ $team_member->full_name }}</td>
                 <td>{{ $team_member->position }}</td>
+                <td>{{ $team_member->office?->name ?? '—' }}</td>
                 <td>
                     <img src="{{ Storage::url($team_member->imagePath) }}" alt="Team Member Image">
                 </td>
@@ -116,7 +118,8 @@
                             data-name="{{ $team_member->full_name }}"
                             data-position="{{ $team_member->position }}"
                             data-image="{{ Storage::url($team_member->imagePath) }}"
-                            data-order="{{ $team_member->order }}">
+                            data-order="{{ $team_member->order }}"
+                            data-office="{{ $team_member->office_id }}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
@@ -161,6 +164,16 @@
                             <input type="number" class="form-control" id="teamMemberOrder" name="order">
                         </div>
 
+                        <div class="form-group">
+                            <label for="teamMemberOffice">Office</label>
+                            <select class="form-control" id="teamMemberOffice" name="office_id">
+                                <option value="">— No office —</option>
+                                @foreach ($offices as $office)
+                                    <option value="{{ $office->id }}">{{ $office->name }} ({{ $office->slug }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
                     </form>
                 </div>
@@ -199,6 +212,16 @@
                         <div class="form-group">
                             <label for="editTeamMemberOrder">Team Member Order</label>
                             <input type="number" class="form-control" id="editTeamMemberOrder" name="order">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editTeamMemberOffice">Office</label>
+                            <select class="form-control" id="editTeamMemberOffice" name="office_id">
+                                <option value="">— No office —</option>
+                                @foreach ($offices as $office)
+                                    <option value="{{ $office->id }}">{{ $office->name }} ({{ $office->slug }})</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-3 w-100">Save Changes</button>
@@ -245,6 +268,7 @@
             modal.find('#editTeamMemberPosition').val(position);
             modal.find('#editImagePreview').attr('src', image); // Ensure the image preview updates
             modal.find('#editTeamMemberOrder').val(order);
+            modal.find('#editTeamMemberOffice').val(button.data('office') || '');
             // Set the action URL for the form
             $('#editTeamMemberForm').attr('action', '/team-members/' + id);
         });

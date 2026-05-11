@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\NetworkPersonnelController;
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\OurBusinessPageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceBoxController;
@@ -45,6 +46,9 @@ Route::get('partners', [PartnerController::class, 'getPartnersApi']);
 
 // TEAM MEMBERS
 Route::get('team-members', [TeamMembersController::class, 'getTeamMembersApi']);
+
+// OFFICES
+Route::get('offices', [OfficeController::class, 'getOfficesApi']);
 
 // CONTACT SECTION
 Route::get('contact', [ContactController::class, 'getContactApi']);

@@ -82,6 +82,13 @@ $contactPage = Contact::all();
         </li>
 
         <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.officesView') }}" class="nav-link link-dark {{ request()->routeIs('admin.officesView') ? 'underline' : '' }}">
+                Offices
+            </a>
+            <i class="fa-solid fa-building"></i>
+        </li>
+
+        <li class="nav-item d-flex align-items-center justify-content-between">
             <a href="{{ route('admin.networkPersonnelView') }}" class="nav-link link-dark {{ request()->routeIs('admin.networkPersonnelView') ? 'underline' : '' }}">
                 Network
             </a>

@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeamMembers extends Model
+class Office extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'full_name',
-        'position',
-        'description',
-        'imageName',
-        'imagePath',
+        'slug',
+        'name',
+        'city',
+        'country',
+        'address',
         'order',
         'language_id',
-        'office_id',
     ];
 
     public function language()
@@ -25,8 +24,8 @@ class TeamMembers extends Model
         return $this->belongsTo(Language::class);
     }
 
-    public function office()
+    public function teamMembers()
     {
-        return $this->belongsTo(Office::class);
+        return $this->hasMany(TeamMembers::class, 'office_id')->orderBy('order', 'asc');
     }
 }

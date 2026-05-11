@@ -12,6 +12,7 @@ use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NetworkPersonnelController;
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\OurBusinessPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
@@ -74,6 +75,11 @@ Route::middleware(['admin'])->group(function () {
     Route::put('team-members/{id}', [TeamMembersController::class, 'update'])->name('admin.updateTeamMember');
     Route::delete('team-members/{id}', [TeamMembersController::class, 'destroy'])->name("admin.deleteTeamMember");
     Route::put('teams/{id}', [TeamController::class, 'update'])->name('admin.updateTeam');
+
+    Route::get('offices', [OfficeController::class, 'index'])->name("admin.officesView");
+    Route::post('offices', [OfficeController::class, 'store'])->name("admin.officesPost");
+    Route::put('offices/{id}', [OfficeController::class, 'update'])->name('admin.updateOffice');
+    Route::delete('offices/{id}', [OfficeController::class, 'destroy'])->name("admin.deleteOffice");
 
     Route::get('contact', [ContactController::class, 'index'])->name("admin.contactView");
     Route::post('contact', [ContactController::class, 'store'])->name("admin.contactPost");
