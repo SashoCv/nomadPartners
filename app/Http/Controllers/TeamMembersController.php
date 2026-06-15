@@ -87,14 +87,19 @@ class TeamMembersController extends Controller
     public function store(Request $request)
     {
         try {
+            $language_id = Auth::user()->language_id;
+
             $team_member = new TeamMembers();
             $team_member->full_name = $request->full_name;
             $team_member->position = $request->position;
             $team_member->description = $request->description;
             $team_member->office_id = $request->office_id ?: null;
+            $team_member->language_id = $language_id;
 
             if(! $request->order) {
-                $orderTeamMember = TeamMembers::orderBy('order', 'desc')->first();
+                $orderTeamMember = TeamMembers::where('language_id', $language_id)
+                    ->orderBy('order', 'desc')
+                    ->first();
                 $team_member->order = $orderTeamMember ? $orderTeamMember->order + 1 : 1;
             } else {
                 $team_member->order = $request->order;
