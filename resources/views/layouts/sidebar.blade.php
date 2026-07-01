@@ -102,6 +102,13 @@ $contactPage = Contact::all();
             <i class="fa-solid fa-circle-question"></i>
         </li>
 
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.countriesView') }}" class="nav-link link-dark {{ request()->routeIs('admin.countriesView') ? 'underline' : '' }}">
+                Countries
+            </a>
+            <i class="fa-solid fa-earth-europe"></i>
+        </li>
+
         @if($contactPage->isEmpty())
             <li class="nav-item d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.contactView') }}" class="nav-link link-dark">

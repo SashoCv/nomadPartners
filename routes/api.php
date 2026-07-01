@@ -74,6 +74,10 @@ Route::get('network-personnel', [NetworkPersonnelController::class, 'getNetworkP
 // FAQ
 Route::get('faqs', [\App\Http\Controllers\FaqController::class, 'getFaqsApi']);
 
+// COUNTRIES
+Route::get('countries', [\App\Http\Controllers\CountryController::class, 'getCountriesApi']);
+Route::get('countries/{slug}', [\App\Http\Controllers\CountryController::class, 'getCountryApi']);
+
 // MetaTags
 Route::get('meta-tags', [\App\Http\Controllers\MetaTagController::class, 'metaTagsApi']);
 Route::get('meta-tags/{pageId}', [\App\Http\Controllers\MetaTagController::class, 'showMetaTagApi']);
