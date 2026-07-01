@@ -81,6 +81,11 @@ Route::middleware(['admin'])->group(function () {
     Route::put('offices/{id}', [OfficeController::class, 'update'])->name('admin.updateOffice');
     Route::delete('offices/{id}', [OfficeController::class, 'destroy'])->name("admin.deleteOffice");
 
+    Route::get('faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name("admin.faqsView");
+    Route::post('faqs', [\App\Http\Controllers\FaqController::class, 'store'])->name("admin.faqsPost");
+    Route::put('faqs/{id}', [\App\Http\Controllers\FaqController::class, 'update'])->name('admin.updateFaq');
+    Route::delete('faqs/{id}', [\App\Http\Controllers\FaqController::class, 'destroy'])->name("admin.deleteFaq");
+
     Route::get('contact', [ContactController::class, 'index'])->name("admin.contactView");
     Route::post('contact', [ContactController::class, 'store'])->name("admin.contactPost");
     Route::get('contact-edit', [ContactController::class, 'edit'])->name("admin.contactViewForUpdate");

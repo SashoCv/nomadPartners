@@ -71,6 +71,9 @@ Route::get('service-boxes/{id}', [ServiceBoxController::class, 'show']);
 // NetworkPersonnel
 Route::get('network-personnel', [NetworkPersonnelController::class, 'getNetworkPersonnelApi']);
 
+// FAQ
+Route::get('faqs', [\App\Http\Controllers\FaqController::class, 'getFaqsApi']);
+
 // MetaTags
 Route::get('meta-tags', [\App\Http\Controllers\MetaTagController::class, 'metaTagsApi']);
 Route::get('meta-tags/{pageId}', [\App\Http\Controllers\MetaTagController::class, 'showMetaTagApi']);

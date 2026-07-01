@@ -95,6 +95,13 @@ $contactPage = Contact::all();
             <i class="fa-solid fa-network-wired"></i>
         </li>
 
+        <li class="nav-item d-flex align-items-center justify-content-between">
+            <a href="{{ route('admin.faqsView') }}" class="nav-link link-dark {{ request()->routeIs('admin.faqsView') ? 'underline' : '' }}">
+                FAQ
+            </a>
+            <i class="fa-solid fa-circle-question"></i>
+        </li>
+
         @if($contactPage->isEmpty())
             <li class="nav-item d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.contactView') }}" class="nav-link link-dark">
