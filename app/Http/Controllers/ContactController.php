@@ -106,6 +106,7 @@ class ContactController extends Controller
                     // Update existing address
                     $existingAddress = $existingAddresses[$address['id']];
                     $existingAddress->fullAddress = $address['fullAddress'];
+                    $existingAddress->phone = $address['phone'] ?? null;
                     $existingAddress->save();
 
                     // Remove from existing list to track remaining addresses
@@ -115,6 +116,7 @@ class ContactController extends Controller
                     $newAddress = new Address();
                     $newAddress->contact_id = $contact->id;
                     $newAddress->fullAddress = $address['fullAddress'];
+                    $newAddress->phone = $address['phone'] ?? null;
                     $newAddress->save();
                 }
             }
