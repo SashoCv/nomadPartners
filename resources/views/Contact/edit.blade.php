@@ -95,6 +95,8 @@
                             <input type="hidden" name="addresses[{{ $loop->index }}][id]" value="{{ $address->id }}">
                             <label for="address_{{ $loop->index }}">Full Address</label>
                             <input type="text" class="form-control" id="address_{{ $loop->index }}" name="addresses[{{ $loop->index }}][fullAddress]" value="{{ $address->fullAddress }}">
+                            <label for="phone_{{ $loop->index }}">Phone</label>
+                            <input type="text" class="form-control" id="phone_{{ $loop->index }}" name="addresses[{{ $loop->index }}][phone]" value="{{ $address->phone }}">
                         </div>
                     @endforeach
                 </div>
@@ -129,6 +131,8 @@
             addressItem.innerHTML = `
             <label for="address_${index}">Full Address</label>
             <input type="text" class="form-control" id="address_${index}" name="addresses[${index}][fullAddress]" placeholder="Enter address">
+            <label for="phone_${index}">Phone</label>
+            <input type="text" class="form-control" id="phone_${index}" name="addresses[${index}][phone]" placeholder="Enter phone">
         `;
 
             addressesWrapper.appendChild(addressItem);
